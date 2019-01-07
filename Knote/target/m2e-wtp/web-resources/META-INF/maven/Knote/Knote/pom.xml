@@ -1,0 +1,122 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>Knote</groupId>
+  <artifactId>Knote</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>war</packaging>
+  
+  
+  	<!-- 父仓库 -->
+     <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.0.5.RELEASE</version>
+    </parent>
+    <dependencies>
+    	<!--Springboot 启动web包  -->
+    	<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        	<!-- Springboot热部署 -->
+		        <dependency>
+				    <groupId>org.springframework.boot</groupId>
+				    <artifactId>spring-boot-devtools</artifactId>
+				</dependency>
+		<!-- jstl    jsp  内嵌的tomcat，jetty不支持以jar形式运行jsp文件，
+		所以用war包形式采用外部web容器运行jsp是没问题的，
+		但是这样就与springboot设计的初衷有些悖逆，
+		它存在的价值就是不用我们再去部署web容器，
+		只需jar就可运行 -->
+        <!-- 	<dependency>
+    		<groupId>javax.servlet</groupId>
+    		<artifactId>jstl</artifactId>
+		</dependency> -->
+        
+        <!-- 页面解析器    html -->
+          <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+        
+        <!-- mysql驱动 -->
+      <dependency>
+     	 <groupId>mysql</groupId>
+     	 <artifactId>mysql-connector-java</artifactId>
+      	 <version>5.1.41</version>
+      </dependency>
+      <!-- Redis驱动 -->
+      <!-- https://mvnrepository.com/artifact/redis.clients/jedis -->
+		<dependency>
+		    <groupId>redis.clients</groupId>
+		    <artifactId>jedis</artifactId>
+		    <version>2.9.0</version>
+		</dependency>
+      <!-- 连接池 alibaba的druid连接池依赖  -->
+      <dependency>
+      		<groupId>com.alibaba</groupId>
+      		<artifactId>druid</artifactId>
+      		<version>1.1.3</version>
+      </dependency>
+      <!-- springboot 对 mybatis 的依赖 -->
+      <dependency>
+      	 	<groupId>org.mybatis.spring.boot</groupId>
+      	 	<artifactId>mybatis-spring-boot-starter</artifactId>
+      	 	<version>1.3.1</version>
+      </dependency>
+      		<!-- redis 依赖 -->
+		<dependency>
+	    <groupId>org.springframework.boot</groupId>
+	    <artifactId>spring-boot-starter-data-redis</artifactId>
+		</dependency>
+		
+    </dependencies>
+    <build>
+    	<pluginManagement>
+    		<plugins>
+    			<plugin>
+    				<artifactId>maven-deploy-plugin</artifactId>
+    				<version>2.8.2</version>
+    			</plugin>
+    			<!-- mybatis 生成插件 -->
+    			<plugin>
+    				<groupId>org.mybatis.generator</groupId>
+    				<artifactId>mybatis-generator-maven-plugin</artifactId>
+    				<version>1.3.7</version>
+    				<dependencies>
+    					<dependency>
+    						<groupId>org.mybatis.generator</groupId>
+    						<artifactId>mybatis-generator-core</artifactId>
+    						<version>1.3.5</version>
+    					</dependency>
+    					<dependency>
+    						<groupId>mysql</groupId>
+    						<artifactId>mysql-connector-java</artifactId>
+    						<version>5.1.41</version>
+    					</dependency>
+    				</dependencies>
+    				<!--  -->
+    				<executions>
+    					<execution>
+    						<id>mybatis generator</id>
+    						<phase>package</phase>
+    						<goals>
+    							<goal>generate</goal>
+    						</goals>
+    					</execution>
+    				</executions>
+    				<configuration>
+    					<!-- 允许移动生成的文件 -->
+    					<verbose>true</verbose>
+    					<!-- 允许自动覆盖 -->
+    					<overwrite>true</overwrite>
+    					<configurationFile>
+    						<!-- 配置文件路径 -->
+    					src/main/resources/mybatis-generator.xml
+    					</configurationFile>
+    				</configuration>
+    			</plugin>
+    		</plugins>
+    	</pluginManagement>
+    </build>
+</project>

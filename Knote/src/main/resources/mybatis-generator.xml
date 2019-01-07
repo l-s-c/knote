@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+ 
+<generatorConfiguration>
+    <!-- context 是逆向工程的主要配置信息 -->
+    <!-- id：起个名字 -->
+    <!-- targetRuntime：设置生成的文件适用于那个 mybatis 版本 -->
+    <context id="mybatis3" targetRuntime="MyBatis3">
+ 
+        <!--optional,旨在创建class时，对注释进行控制-->
+        <commentGenerator>
+            <property name="suppressDate" value="true" />
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true" />
+        </commentGenerator>
+ 
+        <!--jdbc的数据库连接-->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://120.79.10.49:3306/note?serverTimezone=UTC"
+                        userId="root"
+                        password="Lsc282430">
+        </jdbcConnection>
+        <!-- 生成DateObject类存放位置(数据库查出来的实体，和表字段相对应) -->
+          <javaModelGenerator targetPackage="cn.buu.note.entity" targetProject="Knote/src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+ 
+        <!-- targetPackage 和 targetProject：生成的 mapper 文件的包和位置 -->
+        <sqlMapGenerator targetPackage="mapper"
+                         targetProject="Knote/src/main/resources">
+            <!-- 针对数据库的一个配置，是否把 schema 作为字包名 -->
+            <property name="enableSubPackages" value="false" />
+        </sqlMapGenerator>
+ 
+        <!-- targetPackage 和 targetProject：生成的 Dao 文件的包和位置 -->
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="cn.buu.note.dao" targetProject="Knote/src/main/java">
+            <!-- 针对  数据库的一个配置，是否把 schema 作为字包名 -->
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+ 		<!-- 生成对应表及其类名 -->
+         <table tableName="user_info" domainObjectName="UserDao" 
+        	enableCountByExample="false" enableUpdateByExample="false"
+            enableDeleteByExample="false" enableSelectByExample="false"
+            selectByExampleQueryId="false"></table>
+            
+         <table tableName="user_password" domainObjectName="UserPasswordDao"
+        	enableCountByExample="false" enableUpdateByExample="false"
+            enableDeleteByExample="false" enableSelectByExample="false"
+            selectByExampleQueryId="false"></table>
+            
+         <table tableName="seckill" domainObjectName="SeckillDao"
+        	enableCountByExample="false" enableUpdateByExample="false"
+            enableDeleteByExample="false" enableSelectByExample="false"
+            selectByExampleQueryId="false"></table>
+            
+         <table tableName="success_killed" domainObjectName="SuccessKilledDao"
+        	enableCountByExample="false" enableUpdateByExample="false"
+            enableDeleteByExample="false" enableSelectByExample="false"
+            selectByExampleQueryId="false"></table>
+    </context>
+</generatorConfiguration>
