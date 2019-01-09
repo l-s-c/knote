@@ -1,9 +1,15 @@
 package cn.buu.note.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 //用户类
-public class UserDao {
-    private Long id;
+public class UserDao implements Serializable{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private Long id;
 
     private Integer phone;
 
@@ -15,7 +21,15 @@ public class UserDao {
 
     private Date modifyTime;
 
-    public Long getId() {
+    
+    
+    @Override
+	public String toString() {
+		return "UserDao [id=" + id + ", phone=" + phone + ", pwd=" + pwd + ", openId=" + openId + ", createTime="
+				+ createTime + ", modifyTime=" + modifyTime + "]";
+	}
+
+	public Long getId() {
         return id;
     }
 

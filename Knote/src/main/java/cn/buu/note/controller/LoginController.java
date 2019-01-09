@@ -27,12 +27,17 @@ public class LoginController extends BaseController{
 		@Resource
 		private LoginService loginService;
 		
-		
+		/**
+		 * 激活地址
+		 * @param phone
+		 * @return
+		 * @throws Exception
+		 */
 		@RequestMapping("/activate")
 		@ResponseBody
-		public JsonResult activate(String phone) throws Exception {
-			logger.info(phone);
-			loginService.activateEmail(phone);
+		public JsonResult activate(byte[] user) throws Exception {
+			logger.info(user);
+			loginService.activateEmail(user);
 			return new JsonResult();
 			
 		}
@@ -52,9 +57,7 @@ public class LoginController extends BaseController{
 				throw new CustomException(ErrorEnum.ILL_PARAMETER_ERROR,"邮箱格式错误");
 			}
 			//发送邮箱激活码
-			
-			String code = "Http://120.79.10.49:8888/Knote/login/activate?phone="+userDao.getPhone();
-			MailUtils.sendMail(email, code);
+			loginService.sendEmail(email,userDao);
 			return new JsonResult();
 		}
 		/**

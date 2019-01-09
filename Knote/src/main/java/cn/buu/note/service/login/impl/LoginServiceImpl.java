@@ -1,6 +1,7 @@
 package cn.buu.note.service.login.impl;
 
 import javax.annotation.Resource;
+import javax.mail.MessagingException;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
@@ -10,7 +11,9 @@ import cn.buu.note.entity.UserDao;
 import cn.buu.note.exception.CustomException;
 import cn.buu.note.exception.ErrorEnum;
 import cn.buu.note.service.login.LoginService;
+import cn.buu.note.utils.MailUtils;
 import cn.buu.note.utils.Md5Utils;
+import cn.buu.note.utils.SerializableUtils;
 
 @Service
 public class LoginServiceImpl implements LoginService{
@@ -43,10 +46,23 @@ public class LoginServiceImpl implements LoginService{
 		return userDao;
 	}
 	@Override
-	public void activateEmail(String phone) throws Exception {
+	public void activateEmail(byte[] byt) throws Exception {
 		//已经激活
-		if(true) {
+	/*	if(true) {
 			throw new CustomException(ErrorEnum.RE_ACTIVATE_ERROR);
+		}*/
+		UserDao userDao = (UserDao) SerializableUtils.unserializable(byt);
+	//	userDao.s 
+		userDaoMapper.updateByPrimaryKey(userDao);
+	}
+	@Override
+	public void sendEmail(String email,UserDao userDao) throws Exception {
+		String code = "Http://120.79.10.49:8888/Knote/login/activate?user="+SerializableUtils.serializable(userDao);
+		try {
+			MailUtils.sendMail(email, code);
+		} catch (MessagingException e) {
+			e.printStackTrace();
+			throw new CustomException(ErrorEnum.EMAIL_ERROR);
 		}
 	}
 

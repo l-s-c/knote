@@ -11,4 +11,10 @@ CREATE table user_info (
 	create_time datetime(0) NOT NULL COMMENT '创建时间',
 	modify_time datetime(0) NOT NULL COMMENT '修改时间',
 	PRIMARY  KEY (id)
-) ;
+)  ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+/**增加是否激活字段*/
+alter table user_info add column is_aclivate tinyint(1) NOT NULL DEFAULT 0 COMMENT '是否激活';
+/*增加时间默认值*/
+alter table user_info modify column create_time timestamp not null default current_timestamp COMMENT '创建时间';
+alter table user_info modify column modify_time timestamp NOT NULL default current_timestamp on UPDATE CURRENT_TIMESTAMP COMMENT '修改时间';

@@ -14,6 +14,8 @@ public interface LoginService {
 
 	UserDao selUserByOpenId(String openId) throws Exception;
 
-	void activateEmail(String phone) throws Exception;
+	void activateEmail(byte[] user) throws Exception;
+
+	void sendEmail(String email,UserDao userDao) throws Exception;
 
 }

@@ -5,7 +5,8 @@ public enum ErrorEnum {
 	UN_KNOW_ERROR(101,"未知错误"),
 	ILL_PARAMETER_ERROR(201,"参数错误"),
 	DB_CONNECT_ERROR(301,"数据库连接异常"),
-	RE_ACTIVATE_ERROR(401,"重复激活")
+	RE_ACTIVATE_ERROR(401,"重复激活"),
+	EMAIL_ERROR(501,"邮件发送失败"),
 	;
 	
 
