@@ -21,3 +21,19 @@ alter table user_info modify column modify_time timestamp NOT NULL default curre
 
 /*增加頭像路徑字段名*/
 alter table user_info add column head_path varchar(100) NOT NULL DEFAULT 'file/default.png' COMMENT '頭像路徑';
+
+/**笔记表*/
+CREATE table note_info (
+	id bigint(20) NOT NULL AUTO_INCREMENT COMMENT '自增Id',
+	note_title char(50) NOT NULL DEFAULT '' COMMENT '笔记标题',
+	note_text  varchar(255) NOT NULL DEFAULT '' COMMENT '笔记内容',
+	label tinyint(1) NULL DEFAULT 0 COMMENT '标签',
+	create_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+	modify_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
+	PRIMARY KEY (id)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+/**插入笔记表测试数据*/
+insert into note_info(note_title,note_text,label,create_time,modify_time) value('note1','noteText1',1,now(),now());
+
+);
