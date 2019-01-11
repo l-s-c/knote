@@ -7,6 +7,8 @@ public enum ErrorEnum {
 	DB_CONNECT_ERROR(301,"数据库连接异常"),
 	RE_ACTIVATE_ERROR(401,"重复激活"),
 	EMAIL_ERROR(501,"邮件发送失败"),
+	REGISTER_ERROR(601,"注册失败"),
+	USER_EXIT_ERROR(701,"用户已存在"),
 	;
 	
 

@@ -12,6 +12,8 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import cn.buu.note.entity.UserDao;
+
 /**
  * 发送邮件工具类
  * @author ABC
@@ -46,15 +48,20 @@ public class MailUtils {
 	         message.addRecipient(Message.RecipientType.TO,
 	                                  new InternetAddress(to));
 	 
-	         message.setSubject("激活邮件");
-	 
-	         message.setText(code);
+	         message.setSubject("激活邮件0.0");
+	         message.setContent("<a href='"+code+"'>"+code+"</a>","text/html;charset=UTF-8");
+	       //  message.setText(code);
 	 
 	         Transport.send(message);
 	         System.out.println("Sent message successfully....from runoob.com");
 	      }catch (MessagingException mex) {
 	         mex.printStackTrace();
 	      }
+	}
+	public static void main(String[] args) throws Exception {
+		UserDao d =  new UserDao();
+		String code = "Http://120.79.10.49:8888/Knote/login/activate?user="+SerializableUtils.serializable(d);
+		sendMail("542133879@qq.com",code);
 	}
 	
 }

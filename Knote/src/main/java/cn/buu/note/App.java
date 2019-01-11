@@ -18,6 +18,7 @@ public class App {
 	@RequestMapping("/")
 	public String index() {
 		return "redirect:http://127.0.0.1:8020/Knote/html/index.html";
+		//return "redirect:index.html";
 	}
 	public static void main(String[] args) {
 		System.out.println("start");

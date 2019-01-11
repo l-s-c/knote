@@ -18,3 +18,6 @@ alter table user_info add column is_aclivate tinyint(1) NOT NULL DEFAULT 0 COMME
 /*增加时间默认值*/
 alter table user_info modify column create_time timestamp not null default current_timestamp COMMENT '创建时间';
 alter table user_info modify column modify_time timestamp NOT NULL default current_timestamp on UPDATE CURRENT_TIMESTAMP COMMENT '修改时间';
+
+/*增加頭像路徑字段名*/
+alter table user_info add column head_path varchar(100) NOT NULL DEFAULT 'file/default.png' COMMENT '頭像路徑';

@@ -5,15 +5,19 @@ import cn.buu.note.entity.UserDao;
 public interface UserDaoMapper {
     int deleteByPrimaryKey(Long id);
 
-    int insert(UserDao record);
+	int insert(UserDao record);
 
-    int insertSelective(UserDao record);
+	int insertSelective(UserDao record);
 
-    UserDao selectByPrimaryKey(Long phone);
+	UserDao selectByPrimaryKey(Long id);
 
-    int updateByPrimaryKeySelective(UserDao record);
+	int updateByPrimaryKeySelective(UserDao record);
 
-    int updateByPrimaryKey(UserDao record);
+	int updateByPrimaryKey(UserDao record);
 
 	UserDao selectByOpenId(String openId);
+
+	UserDao selectUserByPhone(Integer phone);
+
+	boolean ifAclitvate(Integer parseInt);
 }

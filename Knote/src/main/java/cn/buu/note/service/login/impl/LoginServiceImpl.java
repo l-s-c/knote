@@ -52,18 +52,45 @@ public class LoginServiceImpl implements LoginService{
 			throw new CustomException(ErrorEnum.RE_ACTIVATE_ERROR);
 		}*/
 		UserDao userDao = (UserDao) SerializableUtils.unserializable(byt);
-	//	userDao.s 
+		userDao.setIsAclivate(1);
 		userDaoMapper.updateByPrimaryKey(userDao);
 	}
 	@Override
 	public void sendEmail(String email,UserDao userDao) throws Exception {
-		String code = "Http://120.79.10.49:8888/Knote/login/activate?user="+SerializableUtils.serializable(userDao);
+		String code = "Http://120.79.10.49:8888/Knote/login/activate?user="+SerializableUtils.serializable(userDao)+"";
 		try {
 			MailUtils.sendMail(email, code);
 		} catch (MessagingException e) {
 			e.printStackTrace();
 			throw new CustomException(ErrorEnum.EMAIL_ERROR);
 		}
+	}
+	@Override
+	public void saveUser(UserDao userDao) throws Exception {
+		try {
+			userDao.setPwd(Md5Utils.getMd5(userDao.getPwd()));
+			userDaoMapper.insert(userDao);
+		}catch(Exception e) {
+			e.printStackTrace();
+			throw new CustomException(ErrorEnum.REGISTER_ERROR);
+		}
+		
+	}
+	@Override
+	public void checkUser(Integer phone) throws Exception {
+		if(phone==null) {
+			throw new CustomException(ErrorEnum.USER_EXIT_ERROR);
+
+		}
+		UserDao userDao = userDaoMapper.selectUserByPhone(phone);
+		if(userDao!=null) {
+			throw new CustomException(ErrorEnum.USER_EXIT_ERROR);
+		}
+	}
+	@Override
+	public boolean ifAclitave(String phone) {
+		boolean b = userDaoMapper.ifAclitvate(Integer.parseInt(phone));
+		return b;
 	}
 
 }

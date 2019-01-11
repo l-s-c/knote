@@ -6,6 +6,7 @@
     <result column="phone" jdbcType="INTEGER" property="phone" />
     <result column="pwd" jdbcType="VARCHAR" property="pwd" />
     <result column="open_id" jdbcType="VARCHAR" property="openId" />
+    <result column="head_path" jdbcType="VARCHAR" property="headPath" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
   </resultMap>
@@ -26,6 +27,21 @@
     where open_id = #{openId,jdbcType=VARCHAR}
   </select>
   
+   <select id="selectUserByPhone" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_info
+    where phone =#{phone,jdbcType=INTEGER}
+  </select>
+  
+    <select id="ifAclitvate" parameterType="java.lang.Integer" resultType="java.lang.Boolean">
+    select 
+    if(is_aclivate,'true','false')
+    from user_info
+    where phone =#{phone,jdbcType=INTEGER}
+  </select>
+  
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from user_info
     where id = #{id,jdbcType=BIGINT}
@@ -35,7 +51,7 @@
       open_id, create_time, modify_time
       )
     values (#{id,jdbcType=BIGINT}, #{phone,jdbcType=INTEGER}, #{pwd,jdbcType=VARCHAR}, 
-      #{openId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}
+      #{openId,jdbcType=VARCHAR}, now(),now()
       )
   </insert>
   <insert id="insertSelective" parameterType="cn.buu.note.entity.UserDao">
@@ -109,6 +125,6 @@
       open_id = #{openId,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       modify_time = #{modifyTime,jdbcType=TIMESTAMP}
-    where id = #{id,jdbcType=BIGINT}
+    where phone =#{phone,jdbcType=INTEGER}
   </update>
 </mapper>

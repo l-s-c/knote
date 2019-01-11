@@ -18,4 +18,10 @@ public interface LoginService {
 
 	void sendEmail(String email,UserDao userDao) throws Exception;
 
+	void saveUser(UserDao userDao) throws Exception;
+
+	void checkUser(Integer phone) throws Exception;
+
+	boolean ifAclitave(String phone);
+
 }
