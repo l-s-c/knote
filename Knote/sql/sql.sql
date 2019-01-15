@@ -37,3 +37,6 @@ CREATE table note_info (
 insert into note_info(note_title,note_text,label,create_time,modify_time) value('note1','noteText1',1,now(),now());
 
 );
+
+/**增加笔记表电话字段*/
+alter table note_info add column phone int(15) NOT NULL default 0 COMMENT '手机号' ;

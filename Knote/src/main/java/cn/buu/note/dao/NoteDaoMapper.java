@@ -23,4 +23,6 @@ public interface NoteDaoMapper {
      * */
 	List<NoteDao> selectByLimit(@Param("prefix") Integer prefix,
 								@Param("suffix") Integer suffix);
+
+	List<NoteDao> selectByCreateUser(Integer phone);
 }

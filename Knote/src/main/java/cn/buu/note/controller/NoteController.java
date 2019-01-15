@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -21,11 +22,22 @@ public class NoteController extends BaseController{
 	 @Resource
 	 private NoteService noteService;
 	 
+	 @RequestMapping("/{id}/loadNoteDesc")
+	 @ResponseBody
+	 public JsonResult loadNoteDesc(@PathVariable long id) throws Exception {
+		NoteDao note = noteService.loadNoteDesc(id);
+		return new JsonResult(note);
+	 }
+	 /**
+	  * 加载自己笔记
+	  * @return
+	  * @throws Exception
+	  */
 	 @RequestMapping("/loadMyNote")
 	 @ResponseBody
 	 public JsonResult loadMyNote () throws Exception {
-		//List<NoteDao> list = noteService.loadMyNote();
-		return new JsonResult();
+		List<NoteDao> list = noteService.loadMyNote();
+		return new JsonResult(list);
 	 }
 	 /**
 	  * 初始加载

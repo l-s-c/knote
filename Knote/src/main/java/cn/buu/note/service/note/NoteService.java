@@ -8,4 +8,8 @@ public interface NoteService {
 
 	List<NoteDao> loadNote(Integer prefix, Integer suffix) throws Exception;
 
+	List<NoteDao> loadMyNote() throws Exception;
+
+	NoteDao loadNoteDesc(long id) throws Exception;
+
 }
