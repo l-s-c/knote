@@ -5,61 +5,73 @@ import java.util.Date;
 public class NoteDao {
     private Long id;
 
-    private String noteTitle;
+	private Integer phone;
 
-    private String noteText;
+	private String noteTitle;
 
-    private Boolean label;
+	private String noteText;
 
-    private Date createTime;
+	private int label;
 
-    private Date modifyTime;
+	private Date createTime;
 
-    public Long getId() {
-        return id;
-    }
+	private Date modifyTime;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public String getNoteTitle() {
-        return noteTitle;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public void setNoteTitle(String noteTitle) {
-        this.noteTitle = noteTitle == null ? null : noteTitle.trim();
-    }
+	public Integer getPhone() {
+		return phone;
+	}
 
-    public String getNoteText() {
-        return noteText;
-    }
+	public void setPhone(Integer phone) {
+		this.phone = phone;
+	}
 
-    public void setNoteText(String noteText) {
-        this.noteText = noteText == null ? null : noteText.trim();
-    }
+	public String getNoteTitle() {
+		return noteTitle;
+	}
 
-    public Boolean getLabel() {
-        return label;
-    }
+	public void setNoteTitle(String noteTitle) {
+		this.noteTitle = noteTitle == null ? null : noteTitle.trim();
+	}
 
-    public void setLabel(Boolean label) {
-        this.label = label;
-    }
+	public String getNoteText() {
+		return noteText;
+	}
 
-    public Date getCreateTime() {
-        return createTime;
-    }
+	public void setNoteText(String noteText) {
+		this.noteText = noteText == null ? null : noteText.trim();
+	}
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
+	public int getLabel() {
+		return label;
+	}
 
-    public Date getModifyTime() {
-        return modifyTime;
-    }
+	public void setLabel(int label) {
+		this.label = label;
+	}
 
-    public void setModifyTime(Date modifyTime) {
-        this.modifyTime = modifyTime;
-    }
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+
+	public Date getModifyTime() {
+		return modifyTime;
+	}
+
+	public void setModifyTime(Date modifyTime) {
+		this.modifyTime = modifyTime;
+	}
+
+
 }

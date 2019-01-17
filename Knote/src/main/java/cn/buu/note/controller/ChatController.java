@@ -19,6 +19,14 @@ import cn.buu.note.service.chat.ChatService;
 public class ChatController {
 	@Resource
 	private ChatService chatService;
+	
+	@RequestMapping("/sendMsg")
+	@ResponseBody
+	public JsonResult sendMsg(Integer frPhone,String msg) {
+		return new JsonResult();
+	}
+	
+	
 	/**
 	 * 加载好友
 	 * @return

@@ -22,6 +22,26 @@ public class NoteController extends BaseController{
 	 @Resource
 	 private NoteService noteService;
 	 
+	 /**
+	  * 保存筆記
+	  * @param title
+	  * @param text
+	  * @return
+	  * @throws Exception
+	  */
+	 @RequestMapping("/saveNote")
+	 @ResponseBody
+	 public JsonResult saveNote(String title,String text,int label) throws Exception{
+		 noteService.insertNote(title,text,label);
+		 return new JsonResult();
+	 }
+	 
+	 /**
+	  * 查询笔记信息
+	  * @param id
+	  * @return
+	  * @throws Exception
+	  */
 	 @RequestMapping("/{id}/loadNoteDesc")
 	 @ResponseBody
 	 public JsonResult loadNoteDesc(@PathVariable long id) throws Exception {

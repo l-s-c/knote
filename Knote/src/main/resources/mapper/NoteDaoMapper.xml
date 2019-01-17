@@ -3,6 +3,7 @@
 <mapper namespace="cn.buu.note.dao.NoteDaoMapper">
   <resultMap id="BaseResultMap" type="cn.buu.note.entity.NoteDao">
     <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="phone" jdbcType="INTEGER" property="phone" />
     <result column="note_title" jdbcType="CHAR" property="noteTitle" />
     <result column="note_text" jdbcType="VARCHAR" property="noteText" />
     <result column="label" jdbcType="BIT" property="label" />
@@ -10,7 +11,7 @@
     <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, note_title, note_text, label, create_time, modify_time
+    id, phone, note_title, note_text, label, create_time, modify_time
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
@@ -19,6 +20,7 @@
     where id = #{id,jdbcType=BIGINT}
   </select>
   
+    
     <select id="selectByLimit" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -26,7 +28,7 @@
     limit #{prefix},#{suffix}
   	</select>
   
-      <select id="selectByCreateUser" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <select id="selectByCreateUser" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from note_info
@@ -38,18 +40,21 @@
     where id = #{id,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="cn.buu.note.entity.NoteDao">
-    insert into note_info (id, note_title, note_text, 
-      label, create_time, modify_time
-      )
-    values (#{id,jdbcType=BIGINT}, #{noteTitle,jdbcType=CHAR}, #{noteText,jdbcType=VARCHAR}, 
-      #{label,jdbcType=BIT}, #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}
-      )
+    insert into note_info (id, phone, note_title, 
+      note_text, label, create_time, 
+      modify_time)
+    values (#{id,jdbcType=BIGINT}, #{phone,jdbcType=INTEGER}, #{noteTitle,jdbcType=CHAR}, 
+      #{noteText,jdbcType=VARCHAR}, #{label,jdbcType=BIT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{modifyTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="cn.buu.note.entity.NoteDao">
     insert into note_info
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
+      </if>
+      <if test="phone != null">
+        phone,
       </if>
       <if test="noteTitle != null">
         note_title,
@@ -71,6 +76,9 @@
       <if test="id != null">
         #{id,jdbcType=BIGINT},
       </if>
+      <if test="phone != null">
+        #{phone,jdbcType=INTEGER},
+      </if>
       <if test="noteTitle != null">
         #{noteTitle,jdbcType=CHAR},
       </if>
@@ -91,6 +99,9 @@
   <update id="updateByPrimaryKeySelective" parameterType="cn.buu.note.entity.NoteDao">
     update note_info
     <set>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=INTEGER},
+      </if>
       <if test="noteTitle != null">
         note_title = #{noteTitle,jdbcType=CHAR},
       </if>
@@ -111,7 +122,8 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="cn.buu.note.entity.NoteDao">
     update note_info
-    set note_title = #{noteTitle,jdbcType=CHAR},
+    set phone = #{phone,jdbcType=INTEGER},
+      note_title = #{noteTitle,jdbcType=CHAR},
       note_text = #{noteText,jdbcType=VARCHAR},
       label = #{label,jdbcType=BIT},
       create_time = #{createTime,jdbcType=TIMESTAMP},

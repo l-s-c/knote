@@ -12,4 +12,6 @@ public interface NoteService {
 
 	NoteDao loadNoteDesc(long id) throws Exception;
 
+	void insertNote(String title, String text, int label) throws Exception;
+
 }
