@@ -1,0 +1,34 @@
+package cn.buu.note.controller;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import cn.buu.note.common.JsonResult;
+import cn.buu.note.entity.FriendDao;
+import cn.buu.note.service.chat.ChatService;
+
+@Controller
+@RequestMapping("/chat")
+@CrossOrigin
+public class ChatController {
+	@Resource
+	private ChatService chatService;
+	/**
+	 * 加载好友
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/loadFrind")
+	@ResponseBody
+	public JsonResult loadFrind() throws Exception {
+		System.out.println("loadFrind");
+		List<FriendDao> list = chatService.loadAllFrind();
+		return new JsonResult(list);
+	}
+}

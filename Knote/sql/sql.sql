@@ -40,3 +40,15 @@ insert into note_info(note_title,note_text,label,create_time,modify_time) value(
 
 /**增加笔记表电话字段*/
 alter table note_info add column phone int(15) NOT NULL default 0 COMMENT '手机号' ;
+
+/**添加 好友关联表*/
+CREATE TABLE friend_info (
+	id bigint(20) not null AUTO_INCREMENT COMMENT '',
+	my_phone int(15) NOT NULL COMMENT '自己手机号',
+	fr_phone int(15) NOT NULL COMMENT '好友手机号',
+	remark char(15)	NULL DEFAULT '' COMMENT '备注',
+	is_first tinyint NOT NULL DEFAULT 0 COMMENT '是否置顶',
+	create_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '',
+	modify_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
+	PRIMARY KEY(id)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT charset=UTF8;

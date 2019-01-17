@@ -36,6 +36,7 @@ public class NoteController extends BaseController{
 	 @RequestMapping("/loadMyNote")
 	 @ResponseBody
 	 public JsonResult loadMyNote () throws Exception {
+		 System.out.println("loadMyNote");
 		List<NoteDao> list = noteService.loadMyNote();
 		return new JsonResult(list);
 	 }

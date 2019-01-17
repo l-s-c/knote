@@ -1,0 +1,333 @@
+2019-01-15 15:36:38,753 org.hibernate.validator.internal.util.Version [background-preinit] (Version.java:21) INFO  --> HV000001: Hibernate Validator 6.0.12.Final
+2019-01-15 15:36:38,971 cn.buu.note.App [restartedMain] (StartupInfoLogger.java:50) INFO  --> Starting App on DESKTOP-2A3ELNO with PID 15484 (D:\wksp\workspace\knote\Knote\target\classes started by lsc in D:\wksp\workspace\knote\Knote)
+2019-01-15 15:36:38,971 cn.buu.note.App [restartedMain] (SpringApplication.java:680) INFO  --> No active profile set, falling back to default profiles: default
+2019-01-15 15:36:39,091 org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext [restartedMain] (AbstractApplicationContext.java:590) INFO  --> Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@7ec71d8c: startup date [Tue Jan 15 15:36:39 CST 2019]; root of context hierarchy
+2019-01-15 15:36:41,123 org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] (RepositoryConfigurationDelegate.java:172) INFO  --> Multiple Spring Data modules found, entering strict repository configuration mode!
+2019-01-15 15:36:41,788 org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [restartedMain] (PostProcessorRegistrationDelegate.java:326) INFO  --> Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$674917b0] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-01-15 15:36:43,529 org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] (TomcatWebServer.java:91) INFO  --> Tomcat initialized with port(s): 8888 (http)
+2019-01-15 15:36:44,036 org.springframework.web.context.ContextLoader [localhost-startStop-1] (ServletWebServerApplicationContext.java:285) INFO  --> Root WebApplicationContext: initialization completed in 4955 ms
+2019-01-15 15:36:44,179 org.springframework.boot.web.servlet.ServletRegistrationBean [localhost-startStop-1] (ServletRegistrationBean.java:187) INFO  --> Servlet dispatcherServlet mapped to [/]
+2019-01-15 15:36:44,179 org.springframework.boot.web.servlet.FilterRegistrationBean [localhost-startStop-1] (AbstractFilterRegistrationBean.java:245) INFO  --> Mapping filter: 'characterEncodingFilter' to: [/*]
+2019-01-15 15:36:44,179 org.springframework.boot.web.servlet.FilterRegistrationBean [localhost-startStop-1] (AbstractFilterRegistrationBean.java:245) INFO  --> Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2019-01-15 15:36:44,179 org.springframework.boot.web.servlet.FilterRegistrationBean [localhost-startStop-1] (AbstractFilterRegistrationBean.java:245) INFO  --> Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2019-01-15 15:36:44,179 org.springframework.boot.web.servlet.FilterRegistrationBean [localhost-startStop-1] (AbstractFilterRegistrationBean.java:245) INFO  --> Mapping filter: 'requestContextFilter' to: [/*]
+2019-01-15 15:36:46,429 org.springframework.web.servlet.handler.SimpleUrlHandlerMapping [restartedMain] (AbstractUrlHandlerMapping.java:373) INFO  --> Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-01-15 15:36:47,289 org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter [restartedMain] (RequestMappingHandlerAdapter.java:588) INFO  --> Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@7ec71d8c: startup date [Tue Jan 15 15:36:39 CST 2019]; root of context hierarchy
+2019-01-15 15:36:47,499 org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [restartedMain] (AbstractHandlerMethodMapping.java:549) INFO  --> Mapped "{[/]}" onto public java.lang.String cn.buu.note.App.index()
+2019-01-15 15:36:47,508 org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [restartedMain] (AbstractHandlerMethodMapping.java:549) INFO  --> Mapped "{[/login/register]}" onto public cn.buu.note.common.JsonResult cn.buu.note.controller.LoginController.test(cn.buu.note.entity.UserDao,java.lang.String) throws java.lang.Exception
+2019-01-15 15:36:47,518 org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [restartedMain] (AbstractHandlerMethodMapping.java:549) INFO  --> Mapped "{[/login/test]}" onto public java.lang.String cn.buu.note.controller.LoginController.test(java.lang.String) throws java.lang.Exception
+2019-01-15 15:36:47,518 org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [restartedMain] (AbstractHandlerMethodMapping.java:549) INFO  --> Mapped "{[/login/activate]}" onto public cn.buu.note.common.JsonResult cn.buu.note.controller.LoginController.activate(byte[]) throws java.lang.Exception
+2019-01-15 15:36:47,518 org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [restartedMain] (AbstractHandlerMethodMapping.java:549) INFO  --> Mapped "{[/login/{phone}/checkUser]}" onto public cn.buu.note.common.JsonResult cn.buu.note.controller.LoginController.checkUser(java.lang.Integer,javax.servlet.http.HttpSession) throws java.lang.Exception
+2019-01-15 15:36:47,518 org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [restartedMain] (AbstractHandlerMethodMapping.java:549) INFO  --> Mapped "{[/login/{phone}/{pwd}/{openId}/login],methods=[GET],consumes=[application/x-www-form-urlencoded]}" onto public cn.buu.note.common.JsonResult cn.buu.note.controller.LoginController.login(java.lang.String,java.lang.String,java.lang.String) throws java.lang.Exception
+2019-01-15 15:36:47,518 org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [restartedMain] (AbstractHandlerMethodMapping.java:549) INFO  --> Mapped "{[/me/loadMsg]}" onto public cn.buu.note.common.JsonResult cn.buu.note.controller.MeController.loadMsg() throws java.lang.Exception
+2019-01-15 15:36:47,528 org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [restartedMain] (AbstractHandlerMethodMapping.java:549) INFO  --> Mapped "{[/note/{id}/loadNoteDesc]}" onto public cn.buu.note.common.JsonResult cn.buu.note.controller.NoteController.loadNoteDesc(long) throws java.lang.Exception
+2019-01-15 15:36:47,528 org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [restartedMain] (AbstractHandlerMethodMapping.java:549) INFO  --> Mapped "{[/note/loadAfterNote]}" onto public cn.buu.note.common.JsonResult cn.buu.note.controller.NoteController.loadAfterNote(java.lang.Integer,java.lang.Integer) throws java.lang.Exception
+2019-01-15 15:36:47,538 org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [restartedMain] (AbstractHandlerMethodMapping.java:549) INFO  --> Mapped "{[/note/loadMyNote]}" onto public cn.buu.note.common.JsonResult cn.buu.note.controller.NoteController.loadMyNote() throws java.lang.Exception
+2019-01-15 15:36:47,538 org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [restartedMain] (AbstractHandlerMethodMapping.java:549) INFO  --> Mapped "{[/note/loadNote]}" onto public cn.buu.note.common.JsonResult cn.buu.note.controller.NoteController.loadNote() throws java.lang.Exception
+2019-01-15 15:36:47,538 org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [restartedMain] (AbstractHandlerMethodMapping.java:549) INFO  --> Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2019-01-15 15:36:47,538 org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [restartedMain] (AbstractHandlerMethodMapping.java:549) INFO  --> Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2019-01-15 15:36:47,618 org.springframework.web.servlet.handler.SimpleUrlHandlerMapping [restartedMain] (AbstractUrlHandlerMapping.java:373) INFO  --> Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-01-15 15:36:47,678 org.springframework.web.servlet.handler.SimpleUrlHandlerMapping [restartedMain] (AbstractUrlHandlerMapping.java:373) INFO  --> Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-01-15 15:36:47,938 org.springframework.boot.autoconfigure.thymeleaf.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration [restartedMain] (ThymeleafAutoConfiguration.java:104) WARN  --> Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
+2019-01-15 15:36:47,958 org.thymeleaf.templatemode.TemplateMode [restartedMain] (TemplateMode.java:150) WARN  --> [THYMELEAF][restartedMain] Template Mode 'HTML5' is deprecated. Using Template Mode 'HTML' instead.
+2019-01-15 15:36:48,188 org.springframework.boot.autoconfigure.web.servlet.WelcomePageHandlerMapping [restartedMain] (WelcomePageHandlerMapping.java:56) INFO  --> Adding welcome page: ServletContext resource [/index.html]
+2019-01-15 15:36:49,578 org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] (OptionalLiveReloadServer.java:57) INFO  --> LiveReload server is running on port 35729
+2019-01-15 15:36:49,662 org.springframework.jmx.export.annotation.AnnotationMBeanExporter [restartedMain] (MBeanExporter.java:433) INFO  --> Registering beans for JMX exposure on startup
+2019-01-15 15:36:49,662 org.springframework.jmx.export.annotation.AnnotationMBeanExporter [restartedMain] (MBeanExporter.java:895) INFO  --> Bean with name 'dataSource' has been autodetected for JMX exposure
+2019-01-15 15:36:49,672 org.springframework.jmx.export.annotation.AnnotationMBeanExporter [restartedMain] (MBeanExporter.java:668) INFO  --> Located MBean 'dataSource': registering with JMX server as MBean [com.alibaba.druid.pool:name=dataSource,type=DruidDataSource]
+2019-01-15 15:36:49,862 org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] (TomcatWebServer.java:206) INFO  --> Tomcat started on port(s): 8888 (http) with context path ''
+2019-01-15 15:36:49,872 cn.buu.note.App [restartedMain] (StartupInfoLogger.java:59) INFO  --> Started App in 11.419 seconds (JVM running for 12.15)
+2019-01-15 15:37:11,518 org.springframework.web.servlet.DispatcherServlet [http-nio-8888-exec-10] (FrameworkServlet.java:494) INFO  --> FrameworkServlet 'dispatcherServlet': initialization started
+2019-01-15 15:37:11,578 org.springframework.web.servlet.DispatcherServlet [http-nio-8888-exec-10] (FrameworkServlet.java:509) INFO  --> FrameworkServlet 'dispatcherServlet': initialization completed in 59 ms
+2019-01-15 15:37:11,899 com.alibaba.druid.pool.DruidDataSource [http-nio-8888-exec-10] (DruidDataSource.java:889) INFO  --> {dataSource-1} inited
+2019-01-15 15:57:14,299 org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext [Thread-6] (AbstractApplicationContext.java:993) INFO  --> Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@7ec71d8c: startup date [Tue Jan 15 15:36:39 CST 2019]; root of context hierarchy
+2019-01-15 15:57:14,310 org.springframework.jmx.export.annotation.AnnotationMBeanExporter [Thread-6] (MBeanExporter.java:451) INFO  --> Unregistering JMX-exposed beans on shutdown
+2019-01-15 15:57:14,310 org.springframework.jmx.export.annotation.AnnotationMBeanExporter [Thread-6] (MBeanRegistrationSupport.java:185) INFO  --> Unregistering JMX-exposed beans
+2019-01-15 15:57:14,340 com.alibaba.druid.pool.DruidDataSource [Thread-6] (DruidDataSource.java:1658) INFO  --> {dataSource-1} closed
+2019-01-15 15:57:15,500 cn.buu.note.App [restartedMain] (StartupInfoLogger.java:50) INFO  --> Starting App on DESKTOP-2A3ELNO with PID 15484 (D:\wksp\workspace\knote\Knote\target\classes started by lsc in D:\wksp\workspace\knote\Knote)
+2019-01-15 15:57:15,501 cn.buu.note.App [restartedMain] (SpringApplication.java:680) INFO  --> No active profile set, falling back to default profiles: default
+2019-01-15 15:57:15,506 org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext [restartedMain] (AbstractApplicationContext.java:590) INFO  --> Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@67ef866a: startup date [Tue Jan 15 15:57:15 CST 2019]; root of context hierarchy
+2019-01-15 15:57:16,156 org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] (RepositoryConfigurationDelegate.java:172) INFO  --> Multiple Spring Data modules found, entering strict repository configuration mode!
+2019-01-15 15:57:16,387 org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [restartedMain] (PostProcessorRegistrationDelegate.java:326) INFO  --> Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$674917b0] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-01-15 15:57:16,642 org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] (TomcatWebServer.java:91) INFO  --> Tomcat initialized with port(s): 8888 (http)
+2019-01-15 15:57:16,745 org.springframework.web.context.ContextLoader [localhost-startStop-1] (ServletWebServerApplicationContext.java:285) INFO  --> Root WebApplicationContext: initialization completed in 1239 ms
+2019-01-15 15:57:16,782 org.springframework.boot.web.servlet.ServletRegistrationBean [localhost-startStop-1] (ServletRegistrationBean.java:187) INFO  --> Servlet dispatcherServlet mapped to [/]
+2019-01-15 15:57:16,785 org.springframework.boot.web.servlet.FilterRegistrationBean [localhost-startStop-1] (AbstractFilterRegistrationBean.java:245) INFO  --> Mapping filter: 'characterEncodingFilter' to: [/*]
+2019-01-15 15:57:16,787 org.springframework.boot.web.servlet.FilterRegistrationBean [localhost-startStop-1] (AbstractFilterRegistrationBean.java:245) INFO  --> Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2019-01-15 15:57:16,791 org.springframework.boot.web.servlet.FilterRegistrationBean [localhost-startStop-1] (AbstractFilterRegistrationBean.java:245) INFO  --> Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2019-01-15 15:57:16,793 org.springframework.boot.web.servlet.FilterRegistrationBean [localhost-startStop-1] (AbstractFilterRegistrationBean.java:245) INFO  --> Mapping filter: 'requestContextFilter' to: [/*]
+2019-01-15 15:57:17,165 org.springframework.web.servlet.handler.SimpleUrlHandlerMapping [restartedMain] (AbstractUrlHandlerMapping.java:373) INFO  --> Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-01-15 15:57:17,347 org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter [restartedMain] (RequestMappingHandlerAdapter.java:588) INFO  --> Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@67ef866a: startup date [Tue Jan 15 15:57:15 CST 2019]; root of context hierarchy
+2019-01-15 15:57:17,359 org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [restartedMain] (AbstractHandlerMethodMapping.java:549) INFO  --> Mapped "{[/]}" onto public java.lang.String cn.buu.note.App.index()
+2019-01-15 15:57:17,363 org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [restartedMain] (AbstractHandlerMethodMapping.java:549) INFO  --> Mapped "{[/login/register]}" onto public cn.buu.note.common.JsonResult cn.buu.note.controller.LoginController.test(cn.buu.note.entity.UserDao,java.lang.String) throws java.lang.Exception
+2019-01-15 15:57:17,365 org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [restartedMain] (AbstractHandlerMethodMapping.java:549) INFO  --> Mapped "{[/login/test]}" onto public java.lang.String cn.buu.note.controller.LoginController.test(java.lang.String) throws java.lang.Exception
+2019-01-15 15:57:17,366 org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [restartedMain] (AbstractHandlerMethodMapping.java:549) INFO  --> Mapped "{[/login/activate]}" onto public cn.buu.note.common.JsonResult cn.buu.note.controller.LoginController.activate(byte[]) throws java.lang.Exception
+2019-01-15 15:57:17,368 org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [restartedMain] (AbstractHandlerMethodMapping.java:549) INFO  --> Mapped "{[/login/{phone}/checkUser]}" onto public cn.buu.note.common.JsonResult cn.buu.note.controller.LoginController.checkUser(java.lang.Integer,javax.servlet.http.HttpSession) throws java.lang.Exception
+2019-01-15 15:57:17,369 org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [restartedMain] (AbstractHandlerMethodMapping.java:549) INFO  --> Mapped "{[/login/{phone}/{pwd}/{openId}/login],methods=[GET],consumes=[application/x-www-form-urlencoded]}" onto public cn.buu.note.common.JsonResult cn.buu.note.controller.LoginController.login(java.lang.String,java.lang.String,java.lang.String) throws java.lang.Exception
+2019-01-15 15:57:17,371 org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [restartedMain] (AbstractHandlerMethodMapping.java:549) INFO  --> Mapped "{[/me/loadMsg]}" onto public cn.buu.note.common.JsonResult cn.buu.note.controller.MeController.loadMsg() throws java.lang.Exception
+2019-01-15 15:57:17,375 org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [restartedMain] (AbstractHandlerMethodMapping.java:549) INFO  --> Mapped "{[/note/{id}/loadNoteDesc]}" onto public cn.buu.note.common.JsonResult cn.buu.note.controller.NoteController.loadNoteDesc(long) throws java.lang.Exception
+2019-01-15 15:57:17,378 org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [restartedMain] (AbstractHandlerMethodMapping.java:549) INFO  --> Mapped "{[/note/loadAfterNote]}" onto public cn.buu.note.common.JsonResult cn.buu.note.controller.NoteController.loadAfterNote(java.lang.Integer,java.lang.Integer) throws java.lang.Exception
+2019-01-15 15:57:17,409 org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [restartedMain] (AbstractHandlerMethodMapping.java:549) INFO  --> Mapped "{[/note/loadMyNote]}" onto public cn.buu.note.common.JsonResult cn.buu.note.controller.NoteController.loadMyNote() throws java.lang.Exception
+2019-01-15 15:57:17,412 org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [restartedMain] (AbstractHandlerMethodMapping.java:549) INFO  --> Mapped "{[/note/loadNote]}" onto public cn.buu.note.common.JsonResult cn.buu.note.controller.NoteController.loadNote() throws java.lang.Exception
+2019-01-15 15:57:17,417 org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [restartedMain] (AbstractHandlerMethodMapping.java:549) INFO  --> Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2019-01-15 15:57:17,419 org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [restartedMain] (AbstractHandlerMethodMapping.java:549) INFO  --> Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2019-01-15 15:57:17,434 org.springframework.web.servlet.handler.SimpleUrlHandlerMapping [restartedMain] (AbstractUrlHandlerMapping.java:373) INFO  --> Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-01-15 15:57:17,436 org.springframework.web.servlet.handler.SimpleUrlHandlerMapping [restartedMain] (AbstractUrlHandlerMapping.java:373) INFO  --> Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-01-15 15:57:17,503 org.springframework.boot.autoconfigure.thymeleaf.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration [restartedMain] (ThymeleafAutoConfiguration.java:104) WARN  --> Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
+2019-01-15 15:57:17,512 org.thymeleaf.templatemode.TemplateMode [restartedMain] (TemplateMode.java:150) WARN  --> [THYMELEAF][restartedMain] Template Mode 'HTML5' is deprecated. Using Template Mode 'HTML' instead.
+2019-01-15 15:57:17,526 org.springframework.boot.autoconfigure.web.servlet.WelcomePageHandlerMapping [restartedMain] (WelcomePageHandlerMapping.java:56) INFO  --> Adding welcome page: ServletContext resource [/index.html]
+2019-01-15 15:57:17,813 org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] (OptionalLiveReloadServer.java:57) INFO  --> LiveReload server is running on port 35729
+2019-01-15 15:57:17,883 org.springframework.jmx.export.annotation.AnnotationMBeanExporter [restartedMain] (MBeanExporter.java:433) INFO  --> Registering beans for JMX exposure on startup
+2019-01-15 15:57:17,885 org.springframework.jmx.export.annotation.AnnotationMBeanExporter [restartedMain] (MBeanExporter.java:895) INFO  --> Bean with name 'dataSource' has been autodetected for JMX exposure
+2019-01-15 15:57:17,892 org.springframework.jmx.export.annotation.AnnotationMBeanExporter [restartedMain] (MBeanExporter.java:668) INFO  --> Located MBean 'dataSource': registering with JMX server as MBean [com.alibaba.druid.pool:name=dataSource,type=DruidDataSource]
+2019-01-15 15:57:17,923 org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] (TomcatWebServer.java:206) INFO  --> Tomcat started on port(s): 8888 (http) with context path ''
+2019-01-15 15:57:17,948 cn.buu.note.App [restartedMain] (StartupInfoLogger.java:59) INFO  --> Started App in 2.495 seconds (JVM running for 1240.222)
+2019-01-15 15:57:17,952 org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener [restartedMain] (ConditionEvaluationDeltaLoggingListener.java:56) INFO  --> Condition evaluation unchanged
+2019-01-15 15:57:18,097 org.springframework.web.servlet.DispatcherServlet [http-nio-8888-exec-8] (FrameworkServlet.java:494) INFO  --> FrameworkServlet 'dispatcherServlet': initialization started
+2019-01-15 15:57:18,102 org.springframework.web.servlet.DispatcherServlet [http-nio-8888-exec-8] (FrameworkServlet.java:509) INFO  --> FrameworkServlet 'dispatcherServlet': initialization completed in 4 ms
+2019-01-15 15:57:18,132 com.alibaba.druid.pool.DruidDataSource [http-nio-8888-exec-8] (DruidDataSource.java:889) INFO  --> {dataSource-2} inited
+2019-01-15 16:09:28,660 org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver [http-nio-8888-exec-1] (AbstractHandlerExceptionResolver.java:194) WARN  --> Resolved exception caused by handler execution: org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'long'; nested exception is java.lang.NumberFormatException: For input string: "undefined"
+2019-01-15 17:26:05,113 com.alibaba.druid.pool.DruidDataSource [http-nio-8888-exec-3] (DruidDataSource.java:1437) ERROR --> discard connection
+com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet successfully received from the server was 49,019 milliseconds ago.  The last packet sent successfully to the server was 49,139 milliseconds ago.
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:425)
+	at com.mysql.jdbc.SQLError.createCommunicationsException(SQLError.java:989)
+	at com.mysql.jdbc.MysqlIO.send(MysqlIO.java:3746)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2509)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2680)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2501)
+	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1858)
+	at com.mysql.jdbc.PreparedStatement.execute(PreparedStatement.java:1197)
+	at com.alibaba.druid.pool.DruidPooledPreparedStatement.execute(DruidPooledPreparedStatement.java:494)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.query(PreparedStatementHandler.java:63)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.query(RoutingStatementHandler.java:79)
+	at org.apache.ibatis.executor.SimpleExecutor.doQuery(SimpleExecutor.java:63)
+	at org.apache.ibatis.executor.BaseExecutor.queryFromDatabase(BaseExecutor.java:324)
+	at org.apache.ibatis.executor.BaseExecutor.query(BaseExecutor.java:156)
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:109)
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:83)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:148)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:141)
+	at sun.reflect.GeneratedMethodAccessor86.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:433)
+	at com.sun.proxy.$Proxy69.selectList(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.selectList(SqlSessionTemplate.java:230)
+	at org.apache.ibatis.binding.MapperMethod.executeForMany(MapperMethod.java:137)
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:75)
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:59)
+	at com.sun.proxy.$Proxy90.selectByCreateUser(Unknown Source)
+	at cn.buu.note.service.note.impl.NoteServiceImpl.loadMyNote(NoteServiceImpl.java:46)
+	at cn.buu.note.controller.NoteController.loadMyNote(NoteController.java:40)
+	at sun.reflect.GeneratedMethodAccessor94.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:209)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:136)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:102)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:891)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:797)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:991)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:925)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:974)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:877)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:661)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:851)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:742)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.HttpPutFormContentFilter.doFilterInternal(HttpPutFormContentFilter.java:109)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:198)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:493)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:81)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:800)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:806)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1498)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.net.SocketException: Connection reset by peer: socket write error
+	at java.net.SocketOutputStream.socketWrite0(Native Method)
+	at java.net.SocketOutputStream.socketWrite(Unknown Source)
+	at java.net.SocketOutputStream.write(Unknown Source)
+	at java.io.BufferedOutputStream.flushBuffer(Unknown Source)
+	at java.io.BufferedOutputStream.flush(Unknown Source)
+	at com.mysql.jdbc.MysqlIO.send(MysqlIO.java:3728)
+	... 80 more
+2019-01-15 17:26:05,318 org.springframework.beans.factory.xml.XmlBeanDefinitionReader [http-nio-8888-exec-3] (XmlBeanDefinitionReader.java:317) INFO  --> Loading XML bean definitions from class path resource [org/springframework/jdbc/support/sql-error-codes.xml]
+2019-01-15 17:26:05,679 org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver [http-nio-8888-exec-3] (AbstractHandlerExceptionResolver.java:194) WARN  --> Resolved exception caused by handler execution: cn.buu.note.exception.CustomException
+2019-01-15 17:26:05,793 com.alibaba.druid.pool.DruidDataSource [http-nio-8888-exec-6] (DruidDataSource.java:1437) ERROR --> discard connection
+com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet successfully received from the server was 49,998 milliseconds ago.  The last packet sent successfully to the server was 50,135 milliseconds ago.
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:425)
+	at com.mysql.jdbc.SQLError.createCommunicationsException(SQLError.java:989)
+	at com.mysql.jdbc.MysqlIO.send(MysqlIO.java:3746)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2509)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2680)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2501)
+	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1858)
+	at com.mysql.jdbc.PreparedStatement.execute(PreparedStatement.java:1197)
+	at com.alibaba.druid.pool.DruidPooledPreparedStatement.execute(DruidPooledPreparedStatement.java:494)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.query(PreparedStatementHandler.java:63)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.query(RoutingStatementHandler.java:79)
+	at org.apache.ibatis.executor.SimpleExecutor.doQuery(SimpleExecutor.java:63)
+	at org.apache.ibatis.executor.BaseExecutor.queryFromDatabase(BaseExecutor.java:324)
+	at org.apache.ibatis.executor.BaseExecutor.query(BaseExecutor.java:156)
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:109)
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:83)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:148)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:141)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectOne(DefaultSqlSession.java:77)
+	at sun.reflect.GeneratedMethodAccessor95.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:433)
+	at com.sun.proxy.$Proxy69.selectOne(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.selectOne(SqlSessionTemplate.java:166)
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:82)
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:59)
+	at com.sun.proxy.$Proxy89.selectUserByPhone(Unknown Source)
+	at cn.buu.note.service.me.impl.MeServiceIml.loadMsg(MeServiceIml.java:20)
+	at cn.buu.note.controller.MeController.loadMsg(MeController.java:28)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:209)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:136)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:102)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:891)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:797)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:991)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:925)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:974)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:866)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:635)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:851)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:742)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.HttpPutFormContentFilter.doFilterInternal(HttpPutFormContentFilter.java:109)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:198)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:493)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:81)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:800)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:806)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1498)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.net.SocketException: Connection reset by peer: socket write error
+	at java.net.SocketOutputStream.socketWrite0(Native Method)
+	at java.net.SocketOutputStream.socketWrite(Unknown Source)
+	at java.net.SocketOutputStream.write(Unknown Source)
+	at java.io.BufferedOutputStream.flushBuffer(Unknown Source)
+	at java.io.BufferedOutputStream.flush(Unknown Source)
+	at com.mysql.jdbc.MysqlIO.send(MysqlIO.java:3728)
+	... 81 more
+2019-01-15 17:26:05,805 org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver [http-nio-8888-exec-6] (AbstractHandlerExceptionResolver.java:194) WARN  --> Resolved exception caused by handler execution: cn.buu.note.exception.CustomException
+2019-01-15 17:28:23,783 org.hibernate.validator.internal.util.Version [background-preinit] (Version.java:21) INFO  --> HV000001: Hibernate Validator 6.0.12.Final
+2019-01-15 17:28:24,100 cn.buu.note.App [restartedMain] (StartupInfoLogger.java:50) INFO  --> Starting App on DESKTOP-2A3ELNO with PID 16804 (D:\wksp\workspace\knote\Knote\target\classes started by lsc in D:\wksp\workspace\knote\Knote)
+2019-01-15 17:28:24,106 cn.buu.note.App [restartedMain] (SpringApplication.java:680) INFO  --> No active profile set, falling back to default profiles: default
+2019-01-15 17:28:24,245 org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext [restartedMain] (AbstractApplicationContext.java:590) INFO  --> Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@6326f8c9: startup date [Tue Jan 15 17:28:24 CST 2019]; root of context hierarchy
+2019-01-15 17:28:26,037 org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] (RepositoryConfigurationDelegate.java:172) INFO  --> Multiple Spring Data modules found, entering strict repository configuration mode!
+2019-01-15 17:28:26,799 org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [restartedMain] (PostProcessorRegistrationDelegate.java:326) INFO  --> Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$350e5584] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-01-15 17:28:28,481 org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] (TomcatWebServer.java:91) INFO  --> Tomcat initialized with port(s): 8888 (http)
+2019-01-15 17:28:28,800 org.springframework.web.context.ContextLoader [localhost-startStop-1] (ServletWebServerApplicationContext.java:285) INFO  --> Root WebApplicationContext: initialization completed in 4559 ms
+2019-01-15 17:28:28,920 org.springframework.boot.web.servlet.ServletRegistrationBean [localhost-startStop-1] (ServletRegistrationBean.java:187) INFO  --> Servlet dispatcherServlet mapped to [/]
+2019-01-15 17:28:28,927 org.springframework.boot.web.servlet.FilterRegistrationBean [localhost-startStop-1] (AbstractFilterRegistrationBean.java:245) INFO  --> Mapping filter: 'characterEncodingFilter' to: [/*]
+2019-01-15 17:28:28,930 org.springframework.boot.web.servlet.FilterRegistrationBean [localhost-startStop-1] (AbstractFilterRegistrationBean.java:245) INFO  --> Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2019-01-15 17:28:28,932 org.springframework.boot.web.servlet.FilterRegistrationBean [localhost-startStop-1] (AbstractFilterRegistrationBean.java:245) INFO  --> Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2019-01-15 17:28:28,933 org.springframework.boot.web.servlet.FilterRegistrationBean [localhost-startStop-1] (AbstractFilterRegistrationBean.java:245) INFO  --> Mapping filter: 'requestContextFilter' to: [/*]
+2019-01-15 17:28:30,822 org.springframework.web.servlet.handler.SimpleUrlHandlerMapping [restartedMain] (AbstractUrlHandlerMapping.java:373) INFO  --> Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-01-15 17:28:31,495 org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter [restartedMain] (RequestMappingHandlerAdapter.java:588) INFO  --> Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@6326f8c9: startup date [Tue Jan 15 17:28:24 CST 2019]; root of context hierarchy
+2019-01-15 17:28:31,615 org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [restartedMain] (AbstractHandlerMethodMapping.java:549) INFO  --> Mapped "{[/]}" onto public java.lang.String cn.buu.note.App.index()
+2019-01-15 17:28:31,627 org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [restartedMain] (AbstractHandlerMethodMapping.java:549) INFO  --> Mapped "{[/login/register]}" onto public cn.buu.note.common.JsonResult cn.buu.note.controller.LoginController.test(cn.buu.note.entity.UserDao,java.lang.String) throws java.lang.Exception
+2019-01-15 17:28:31,632 org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [restartedMain] (AbstractHandlerMethodMapping.java:549) INFO  --> Mapped "{[/login/test]}" onto public java.lang.String cn.buu.note.controller.LoginController.test(java.lang.String) throws java.lang.Exception
+2019-01-15 17:28:31,633 org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [restartedMain] (AbstractHandlerMethodMapping.java:549) INFO  --> Mapped "{[/login/activate]}" onto public cn.buu.note.common.JsonResult cn.buu.note.controller.LoginController.activate(byte[]) throws java.lang.Exception
+2019-01-15 17:28:31,635 org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [restartedMain] (AbstractHandlerMethodMapping.java:549) INFO  --> Mapped "{[/login/{phone}/{pwd}/{openId}/login],methods=[GET],consumes=[application/x-www-form-urlencoded]}" onto public cn.buu.note.common.JsonResult cn.buu.note.controller.LoginController.login(java.lang.String,java.lang.String,java.lang.String) throws java.lang.Exception
+2019-01-15 17:28:31,637 org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [restartedMain] (AbstractHandlerMethodMapping.java:549) INFO  --> Mapped "{[/login/{phone}/checkUser]}" onto public cn.buu.note.common.JsonResult cn.buu.note.controller.LoginController.checkUser(java.lang.Integer,javax.servlet.http.HttpSession) throws java.lang.Exception
+2019-01-15 17:28:31,639 org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [restartedMain] (AbstractHandlerMethodMapping.java:549) INFO  --> Mapped "{[/me/loadMsg]}" onto public cn.buu.note.common.JsonResult cn.buu.note.controller.MeController.loadMsg() throws java.lang.Exception
+2019-01-15 17:28:31,653 org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [restartedMain] (AbstractHandlerMethodMapping.java:549) INFO  --> Mapped "{[/note/loadNote]}" onto public cn.buu.note.common.JsonResult cn.buu.note.controller.NoteController.loadNote() throws java.lang.Exception
+2019-01-15 17:28:31,655 org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [restartedMain] (AbstractHandlerMethodMapping.java:549) INFO  --> Mapped "{[/note/loadAfterNote]}" onto public cn.buu.note.common.JsonResult cn.buu.note.controller.NoteController.loadAfterNote(java.lang.Integer,java.lang.Integer) throws java.lang.Exception
+2019-01-15 17:28:31,656 org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [restartedMain] (AbstractHandlerMethodMapping.java:549) INFO  --> Mapped "{[/note/{id}/loadNoteDesc]}" onto public cn.buu.note.common.JsonResult cn.buu.note.controller.NoteController.loadNoteDesc(long) throws java.lang.Exception
+2019-01-15 17:28:31,657 org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [restartedMain] (AbstractHandlerMethodMapping.java:549) INFO  --> Mapped "{[/note/loadMyNote]}" onto public cn.buu.note.common.JsonResult cn.buu.note.controller.NoteController.loadMyNote() throws java.lang.Exception
+2019-01-15 17:28:31,662 org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [restartedMain] (AbstractHandlerMethodMapping.java:549) INFO  --> Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2019-01-15 17:28:31,665 org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [restartedMain] (AbstractHandlerMethodMapping.java:549) INFO  --> Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2019-01-15 17:28:31,721 org.springframework.web.servlet.handler.SimpleUrlHandlerMapping [restartedMain] (AbstractUrlHandlerMapping.java:373) INFO  --> Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-01-15 17:28:31,721 org.springframework.web.servlet.handler.SimpleUrlHandlerMapping [restartedMain] (AbstractUrlHandlerMapping.java:373) INFO  --> Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-01-15 17:28:31,880 org.springframework.boot.autoconfigure.thymeleaf.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration [restartedMain] (ThymeleafAutoConfiguration.java:104) WARN  --> Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
+2019-01-15 17:28:31,896 org.thymeleaf.templatemode.TemplateMode [restartedMain] (TemplateMode.java:150) WARN  --> [THYMELEAF][restartedMain] Template Mode 'HTML5' is deprecated. Using Template Mode 'HTML' instead.
+2019-01-15 17:28:32,023 org.springframework.boot.autoconfigure.web.servlet.WelcomePageHandlerMapping [restartedMain] (WelcomePageHandlerMapping.java:56) INFO  --> Adding welcome page: ServletContext resource [/index.html]
+2019-01-15 17:28:32,596 org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] (OptionalLiveReloadServer.java:57) INFO  --> LiveReload server is running on port 35729
+2019-01-15 17:28:32,674 org.springframework.jmx.export.annotation.AnnotationMBeanExporter [restartedMain] (MBeanExporter.java:433) INFO  --> Registering beans for JMX exposure on startup
+2019-01-15 17:28:32,676 org.springframework.jmx.export.annotation.AnnotationMBeanExporter [restartedMain] (MBeanExporter.java:895) INFO  --> Bean with name 'dataSource' has been autodetected for JMX exposure
+2019-01-15 17:28:32,685 org.springframework.jmx.export.annotation.AnnotationMBeanExporter [restartedMain] (MBeanExporter.java:668) INFO  --> Located MBean 'dataSource': registering with JMX server as MBean [com.alibaba.druid.pool:name=dataSource,type=DruidDataSource]
+2019-01-15 17:28:32,787 org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] (TomcatWebServer.java:206) INFO  --> Tomcat started on port(s): 8888 (http) with context path ''
+2019-01-15 17:28:32,794 cn.buu.note.App [restartedMain] (StartupInfoLogger.java:59) INFO  --> Started App in 9.447 seconds (JVM running for 10.331)
+2019-01-15 17:29:08,249 org.springframework.web.servlet.DispatcherServlet [http-nio-8888-exec-1] (FrameworkServlet.java:494) INFO  --> FrameworkServlet 'dispatcherServlet': initialization started
+2019-01-15 17:29:08,280 org.springframework.web.servlet.DispatcherServlet [http-nio-8888-exec-1] (FrameworkServlet.java:509) INFO  --> FrameworkServlet 'dispatcherServlet': initialization completed in 30 ms
+2019-01-15 17:29:08,442 com.alibaba.druid.pool.DruidDataSource [http-nio-8888-exec-1] (DruidDataSource.java:889) INFO  --> {dataSource-1} inited
