@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../css/mui.min.css" />
+
+		<style>
+			#head{
+	
+			 }
+			 #code{
+					float: right;
+			 }
+			 #my{
+			 	background-color: #FFFFFF;
+			 }
+			 #phone{
+			 	position: absolute;
+			    top: 9%;
+			    left: 9%;
+			    font-size: xx-large;
+			 }
+			 #imageList{
+			 	float: left;
+			    border: solid;
+			    height: 326px;
+			    width: 19%;
+			    /* margin-right: 157px; */
+			    /* margin-left: 103px; */
+			    margin: 3%;
+			 }
+		</style>
+	</head>
+	<body>
+					
+	<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">底部选项卡-div模式</h1>
+		</header>
+		<input />
+			<input />
+				<input />
+				<p>1</p>
+		<div id="tabbar-with-map" class="">
+			<div id="head">
+			 <div class="mui-content-padded" id="my" onclick="plus.webview.open('personMsg.html', 'new', {}, 'slide-in-right', 200);">
+		       <!-- <button type="button" class="mui-btn mui-btn-block" ><p id="userName">12</p></button>-->
+		        <img src="../images/logo.png" id="head"/>
+		        <p id="phone">12346</p>
+		        <img src="../images/ma.png" id="code"/>
+		     </div>			
+			</div>
+	<!--			<ul class="mui-table-view">
+				<li class="" id="ku">
+					<a class="mui-navigate-right">
+						新消息通知
+					</a>
+				</li>
+				
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right">
+						隐私
+					</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right">
+						通用
+					</a>
+				</li>
+		</ul>-->
+		<div style="overflow: hidden; background-color: #FFFFFF;">
+			<p id="imageList">1</p>
+			<p id="imageList">2</p>
+			<p id="imageList">3</p>
+			<p id="imageList">4</p>
+		</div>
+		
+			<ul class="mui-table-view" style="margin-top: 25px;">
+				<li class="mui-table-view-cell">
+					<a style="text-align: center;color: #FF3B30;">
+						退出登录
+					</a>
+				</li>
+			</ul>
+			</div>
+	</body>
+	<script type="text/javascript" src="../js/jquery-2.1.0.js" ></script>
+	<script type="text/javascript" src="../js/json.js" ></script>
+	<script type="text/javascript" src="../js/mui.min.js" ></script>
+	<script>
+		
+		var me = {
+			url:{
+				loadMsg:function(){
+					return ip+"me/loadMsg";
+				}
+			},
+			loadMsg:function(){
+				var url = me.url.loadMsg();
+				$.get(url,function(res){
+					if(res.code==1){
+						//回填个人信息
+						console.log(res);
+						$('#phone').html(res.data.phone);
+						$('#head').src = res.data.headPath;
+					}
+				});
+			}
+		};
+		var ip ;
+		$(function(){
+			ip = getIP();
+			me.loadMsg();
+		});
+	</script>
+</html>

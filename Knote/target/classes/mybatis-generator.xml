@@ -47,14 +47,19 @@
             enableDeleteByExample="false" enableSelectByExample="false"
             selectByExampleQueryId="false"></table> -->
             
-           <table tableName="note_info" domainObjectName="NoteDao" 
+<!--            <table tableName="note_info" domainObjectName="NoteDao" 
 	        enableCountByExample="false" enableUpdateByExample="false"
 	        enableDeleteByExample="false" enableSelectByExample="false"
-	        selectByExampleQueryId="false"></table> 
+	        selectByExampleQueryId="false"></table>  -->
 
 <!-- 	<table tableName="friend_info" domainObjectName="FriendDao" 
 	        enableCountByExample="false" enableUpdateByExample="false"
 	        enableDeleteByExample="false" enableSelectByExample="false"
 	        selectByExampleQueryId="false"></table>  -->
+	        
+	       <table tableName="remind_info" domainObjectName="remindDao" 
+	        enableCountByExample="false" enableUpdateByExample="false"
+	        enableDeleteByExample="false" enableSelectByExample="false"
+	        selectByExampleQueryId="false"></table> 
     </context>
 </generatorConfiguration>

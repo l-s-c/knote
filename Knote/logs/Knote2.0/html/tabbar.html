@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../css/reset.css"> <!-- CSS reset -->
+		<link rel="stylesheet" href="../css/style.css"> <!-- Resource style -->
+					<!--标准mui.css-->
+		<link rel="stylesheet" href="../css/mui.min.css">
+	
+
+		<style>
+			
+			.title{
+				margin: 20px 15px 10px;
+				color: #6d6d72;
+				font-size: 15px;
+			}
+			
+			.oa-contact-cell.mui-table .mui-table-cell {
+				padding: 11px 0;
+				vertical-align: middle;
+			}
+			
+			.oa-contact-cell {
+				position: relative;
+				margin: -11px 0;
+			}
+	
+			.oa-contact-avatar {
+				width: 75px;
+			}
+			.oa-contact-avatar img {
+				border-radius: 50%;
+			}
+			.oa-contact-content {
+				width: 100%;
+			}
+			.oa-contact-name {
+				margin-right: 20px;
+			}
+			.oa-contact-name, oa-contact-position {
+				float: left;
+			}
+					 #code{
+					float: right;
+			 }
+			 #my{
+			 	background-color: #FFFFFF;
+			 }
+			 #phone{
+			 	position: absolute;
+			    top: 9%;
+			    left: 9%;
+			    font-size: xx-large;
+			 }
+			 #imageList{
+			 	float: left;
+			    border: solid;
+			    height: 326px;
+			    width: 19%;
+			    /* margin-right: 157px; */
+			    /* margin-left: 103px; */
+			    margin: 3%;
+			 }
+			html,
+			body {
+				background-color: #efeff4;
+			}
+			
+			.title {
+				padding: 20px 15px 10px;
+				color: #6d6d72;
+				font-size: 15px;
+				background-color: #fff;
+			}
+					
+
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<h1 class="mui-title">底部选项卡-div模式</h1>
+			<a class="cd-bouncy-nav-trigger" href="#0" id="addMenu" style="display: none;"><span class="mui-icon mui-icon-plus"></span></a>
+		</header>
+		<nav class="mui-bar mui-bar-tab" id="nav">
+			<a class="mui-tab-item mui-active" href="#tabbar">
+				<span class="mui-icon mui-icon-home"></span>
+				<span class="mui-tab-label">首页</span>
+			</a>
+			<a class="mui-tab-item" href="#tabbar-with-chat"  id="noteA">
+				<span class="mui-icon mui-icon-email"><span class="mui-badge">9</span></span>
+				<span class="mui-tab-label">笔记</span>
+			</a>
+			<a class="mui-tab-item" href="#tabbar-with-contact" id="phoneA">
+				<span class="mui-icon mui-icon-contact"></span>
+				<span class="mui-tab-label">通讯录</span>
+			</a>
+			<a class="mui-tab-item" href="#tabbar-with-map" id="meA">
+				<span class="mui-icon mui-icon-gear"></span>
+				<span class="mui-tab-label">我</span>
+			</a>
+		</nav>
+		<div class="mui-content">
+			<div id="tabbar" class="mui-control-content mui-active">
+				
+			</div>
+			<!--個人筆記-->
+			<div id="tabbar-with-chat" class="mui-control-content">
+					<div id="allMyNote">
+			
+			
+					</div>
+
+					<div class="cd-bouncy-nav-modal">
+						<nav>
+							<ul class="cd-bouncy-nav">
+								<li><a href="#">智能笔记</a></li>
+								<li><a href="#" id="custom">自定义笔记</a></li>
+								<li><a href="#" id="reminder">备忘录</a></li>
+							</ul>
+						</nav>
+						<a href="#0" class="cd-close">Close modal</a>
+					</div>
+				
+			</div>
+			<div id="tabbar-with-contact" class="mui-control-content">
+				<div class="title" style="display: none;"> </div>
+				<ul class="mui-table-view mui-table-view-striped mui-table-view-condensed" id="addPeople">
+				<li class="mui-table-view-cell" id="[phone]" >
+					<div class="mui-slider-cell">
+						<div class="oa-contact-cell mui-table">
+							<div class="oa-contact-avatar mui-table-cell">
+								<img src="../images/60x60.gif" />
+							</div>
+							<div class="oa-contact-content mui-table-cell">
+								<div class="mui-clearfix">
+									<h4 class="oa-contact-name">[name]</h4>
+									<span class="oa-contact-position mui-h6">[remark]</span>
+								</div>
+								<p class="oa-contact-email mui-h6">
+									[phone]
+								</p>
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+			</div>
+				<!--我的-->
+			<div id="tabbar-with-map" class="mui-control-content">
+			<div id="head">
+			 <div class="mui-content-padded" id="my" onclick="plus.webview.open('personMsg.html', 'new', {}, 'slide-in-right', 200);">
+		        <img src="../images/logo.png" id="head"/>
+		        <p id="phone">12346</p>
+		        <img src="../images/ma.png" id="code"/>
+		     </div>			
+			</div>
+		<div style="overflow: hidden; background-color: #FFFFFF;">
+			<p id="imageList">1</p>
+			<p id="imageList">2</p>
+			<p id="imageList">3</p>
+			<p id="imageList">4</p>
+		</div>
+		
+			<ul class="mui-table-view" style="margin-top: 25px;">
+				<li class="mui-table-view-cell">
+					<a style="text-align: center;color: #FF3B30;">
+						退出登录
+					</a>
+				</li>
+			</ul>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../js/jquery-2.1.0.js" ></script>
+	<script type="text/javascript" src="../js/json.js" ></script>
+	<script type="text/javascript" src="../js/mui.min.js" ></script>
+	<script type="text/javascript" src="../js/tabbar.js" ></script>
+	<script type="text/javascript" src="../js/main.js" ></script>
+	<script>
+		$('#tabbar').load('tab-webview-subpage-chat.html');
+		$('#addMenu').click(function(){
+			$('#nav').hide();
+			$('#addMenu').hide();
+		});
+		$('#noteA').on("tap",function(){
+			$('#addMenu').show();
+		});
+		$('#phoneA').on("tap",function(){
+			$('#addMenu').hide();
+		});
+		$('#meA').on("tap",function(){
+			$('#addMenu').hide();
+		});
+		$('#custom').on("click",function(){
+			plus.webview.open('customNote.html', 'new', {}, 'slide-in-right', 200);
+		})
+		$('#reminder').on("click",function(){
+			plus.webview.open('reminder.html', 'new', {}, 'slide-in-right', 200);
+		})
+	</script>
+	<script>
+function scaned(t, r, f){
+	console.log("t:"+t);
+	console.log("r:"+r);
+	//扫码登录
+	
+}
+	</script>
+	
+</html>

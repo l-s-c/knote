@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import cn.buu.note.common.BaseController;
 import cn.buu.note.common.JsonResult;
 import cn.buu.note.entity.NoteDao;
+import cn.buu.note.entity.remindDao;
 import cn.buu.note.service.note.NoteService;
 
 @Controller
@@ -21,6 +22,14 @@ import cn.buu.note.service.note.NoteService;
 public class NoteController extends BaseController{
 	 @Resource
 	 private NoteService noteService;
+	 
+	 @RequestMapping("/saveReminder")
+	 @ResponseBody
+	 public JsonResult saveReminder(remindDao remind) throws Exception{
+		 System.out.println("remind:"+remind);
+		 noteService.insertReminder(remind);
+		 return new JsonResult();
+	 }
 	 
 	 /**
 	  * 保存筆記

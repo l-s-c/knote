@@ -52,3 +52,18 @@ CREATE TABLE friend_info (
 	modify_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
 	PRIMARY KEY(id)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT charset=UTF8;
+
+
+/**备忘录表*/
+CREATE TABLE remind_info(
+	id bigint(20) NOT NULL AUTO_INCREMENT COMMENT '',
+	phone int(15) NOT NULL COMMENT '手机号',
+ 	text  varchar(100) NOT NULL DEFAULT '' COMMENT '备忘录内容',
+ 	label tinyint(1) NULL DEFAULT 0 COMMENT '标签',
+	cron varchar(20)  NULL DEFAULT '' COMMENT '提醒表达式',
+	start_time varchar(20) NULL DEFAULT '' COMMENT '开始时间',
+	end_time varchar(20) NULL DEFAULT '' COMMENT '结束时间',
+	rate tinyint NOT NULL DEFAULT 0 COMMENT '重复提醒频率',
+	PRIMARY KEY(id)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=UTF8;
+alter table remind_info modify column cron varchar(100) NULL DEFAULT '' COMMENT '提醒表达式';

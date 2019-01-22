@@ -1,0 +1,226 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="stylesheet" href="../css/mui.css" />
+
+
+<style type="text/css">
+body{
+	padding: 0px 10px 0px 10px;
+	color:#333333;
+}
+#alert{
+	height: 250px; 
+	width: 400px;
+	position: absolute;
+    top: 40%;
+    left: 25%;
+    border: solid;
+    background-color: #CCCCCC;
+}
+.inputfile {
+            opacity: 0;
+        }
+</style>
+
+</head>
+<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" onclick="customNote.saveNote();"></a>
+			<h1 class="mui-title">自定义笔记</h1>
+		</header>
+<br />
+<br />
+	<textarea id='title' style='width:100%; height:40px; margin-top:10px;' placeholder="标题" required="required"></textarea>
+	<input type="hidden" id="label" value="1"/>
+	<input type="hidden" id="hiText" value=""/>
+	<input type="hidden" id="hiy" value=""/>
+	
+<br />
+<div id="btn">
+	<button class="mui-icon mui-icon-image" id="img" onclick="$('#alert').css('display','block');"></button>
+
+	<button class="mui-icon mui-icon-undo" id="back" onclick="ctrlZ();"></button>
+	<button class="mui-icon mui-icon-redo" id="next" onclick="ctrlY();"></button>
+	<button class="mui-icon mui-icon-list" id="number" onclick="customNote.sort();"></button>
+	<button class="mui-icon mui-icon-checkmarkempty" style="float: right;" id="save" onclick="customNote.saveNote();"></button>
+	<button class="mui-icon mui-icon-trash" style="float: right;" id="delete" onclick="customNote.clearHtml();"></button>
+</div>
+
+<div class="textarea" contenteditable="true" id="text" style="background-color: #FFFFFF;">
+		
+</div>
+
+<div id="alert" style="display: none;">
+<form id="upload" method="post" enctype="multipart/form-data" onsubmit="">
+		 <input id="file" multiple class="file" name="pictures" data-upload-url="http://192.168.1.10:8888/upload" onchange="changepic(this);" type="file"><br>
+   		 <img src="" id="show" width="200">
+   		 <input type="button" value="ok" onclick="customNote.submitForm();"/>
+	</form>
+</div>
+<!--引入 jquery.js-->
+<script type="text/javascript" src="../js/jquery-2.1.0.js" ></script>
+<script src="../js/mui.min.js"></script>
+<script type="text/javascript" src="../js/json.js" ></script>
+<script type="text/javascript" src="../js/stack.js" ></script>
+<script type="text/javascript">
+	var ip;
+	var isInputZh = true; 		// 输入框输入拼音开关  false 时表示没有拼音
+	var seq = 0;            		// 格式化序号
+	var title = $('#title');
+	var text = $('#text');
+	var label = $('#label');
+	var stackZ = new ArrayStack();
+	var stackY = new ArrayStack();
+	
+	$(function(){
+		ip = getIP();
+		//var $editor = $('#txtDiv').wangEditor();
+	});
+	var customNote = {
+		URL:{
+			saveNote:function(){
+				return ip+"note/saveNote";
+			},
+			submitForm:function(){
+				return ip+"upload";
+			}
+		},
+		//加载内存中保存的上次编辑内容
+		loadLocalStroage:function(){
+			var t1 = localStorage.getItem("title");
+			if(t1){
+				title.val(t1);
+			}
+			var t2 = localStorage.getItem("text");	
+			if(t2){
+				text.val(t2);
+			}
+		},
+		//保存
+		saveNote:function(){
+			var t1 = title.val();
+			var t2 = text.html();
+			var url = customNote.URL.saveNote();
+			var params = {
+				title:t1,
+				text:t2,
+				label:label.val()
+			};
+			$.post(url,params,function(res){
+				
+			});
+		},
+		//清空頁面
+		clearHtml:function(){
+			//title.val("");
+			text.html("");
+		},
+		//排序，为每行增加序号
+		sort:function(){
+			var t = $('#text').html().trim();
+			var tt = t.replace(new RegExp("<div>","gm"),"<div> ◉ ");
+			text.html("◉ "+tt);
+		},
+		//表单上传图片
+		submitForm:function(){
+		var form = document.getElementById('upload'),
+        formData = new FormData(form);
+    $.ajax({
+        url:customNote.URL.submitForm(),
+        type:"post",
+        data:formData,
+        processData:false,
+        contentType:false,
+        done: function (res) {
+            alert('finish:' + res);
+        },
+        success:function(res){
+            if(res.code==1){
+            	text.append("<img src='"+res.msg+"' />");
+                $('#alert').css("display","none");
+            }
+            console.log(res);
+        }
+    });
+		}
+	};
+	//监听文本变化
+//	document.getElementById('text').addEventListener("change",function(){
+		text.on("input  propertychange",function(){
+		setTimeout(function(){
+			if(isInputZh){
+			return;
+		}
+		var t = text.html();
+		var ht = $('#hiText').val();
+		if(ht){
+			stackZ.push(ht);
+			$('#hiText').val(t);
+		}else{
+			$('#hiText').val(t);
+		}
+		},0)
+		});
+
+		//});
+	//输入框输入文字  oninput事件不记录拼音
+	document.getElementById('text').addEventListener('compositionstart', function (e) {
+	  isInputZh = true;
+	}, false);
+	document.getElementById('text').addEventListener('compositionend', function (e) {
+ 	 isInputZh = false;
+	}, false);
+	//ctrl + z
+	function ctrlZ(){
+		var p =stackZ.pop();
+		if(p){
+			text.html(p);
+			stackY.push(p);
+		}
+
+	}
+	//ctrl + y
+	function ctrlY(){
+		var p =stackY.pop();
+	//	console.log("p:"+p)			//TODO
+		if(p){
+			if(p==text.html()){
+				ctrlY();
+			}else{
+				text.html(p);
+				stackZ.push(p);
+			}
+		}else{
+			text.html($('#hiText').val());
+		}
+	}
+
+</script>
+<script>
+	    function changepic(obj) {
+        //console.log(obj.files[0]);//这里可以获取上传文件的name
+        var newsrc=getObjectURL(obj.files[0]);
+        document.getElementById('show').src=newsrc;
+    }
+    //建立一個可存取到該file的url
+    function getObjectURL(file) { 
+        var url = null ;
+        // 下面函数执行的效果是一样的，只是需要针对不同的浏览器执行不同的 js 函数而已
+        if (window.createObjectURL!=undefined) { // basic
+            url = window.createObjectURL(file) ;
+        } else if (window.URL!=undefined) { // mozilla(firefox)
+            url = window.URL.createObjectURL(file) ;
+        } else if (window.webkitURL!=undefined) { // webkit or chrome
+            url = window.webkitURL.createObjectURL(file) ;
+        }
+        return url ;
+    }
+
+</script>
+</body>
+</html>

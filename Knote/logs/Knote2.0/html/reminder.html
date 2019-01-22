@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<style>
+			#remindText{
+				background-color: #FFFFFF;
+			    height: 142px;
+			    border-style: ridge;
+			    border-color: #09c9f9;
+			}
+			#color{
+				width: 10%;
+				height: 35px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<h1 class="mui-title">内容设置</h1>
+		<button style="float: right; margin-top:8px;" id="saveRemind" onclick="reminder.saveReminder();">保存</button>
+	</header>
+	<br />
+	<br />
+	<div id="remindText" contenteditable="true">
+		
+	</div>
+	<div class="">
+		<button id="color" style="background-color: #000000;"></button>
+		<button id="color" style="background-color: red;"></button>
+		<button id="color" style="background-color: deepskyblue;"></button>
+		<button id="color" style="background-color: green;"></button>
+	</div>
+			<div class="mui-content">
+			<div class="mui-card">
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell">
+						指定时间提醒我
+						<div class="mui-switch mui-switch-blue mui-switch-mini" id="M_Toggle">
+							<div class="mui-switch-handle"></div>
+						</div>
+					</li>
+					<div  id="remindTime" style="display: none;">
+						<li class="mui-table-view-cell  mui-left">
+							<span>提醒时间</span><input id="startTime" type="datetime-local">
+						</li>
+						<li class="mui-table-view-cell  mui-left">
+							<span>重复提醒</span>
+							<input name="radio" checked="checked" type="radio" value="0">不重复
+							<input name="radio" type="radio" value="1">每1天
+							<input name="radio" type="radio" value="2">每1周
+							<input name="radio" type="radio" value="3">每1月
+							<input name="radio" type="radio" value="4">每1季度
+							<input name="radio" type="radio" value="5">每1年
+						</li>
+						<li class="mui-table-view-cell  mui-left">
+							<span>重复结束</span><input id="endTime" type="datetime-local">
+						</li>
+					</div>
+
+
+				</ul>
+			</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript" src="../js/jquery-2.1.0.js" ></script>
+		<script type="text/javascript" src="../js/json.js" ></script>
+		<script type="text/javascript">
+			var ip;
+			$(function(){
+				ip = getIP();
+			});
+			var reminder = {
+				URL:{
+					saveReminder:function(){
+						return ip+"note/saveReminder";	
+					}
+				},
+				//保存备忘录
+				saveReminder:function(){
+					var url = reminder.URL.saveReminder();
+					var remindText = $('#remindText').html();     //备忘录内容
+					var startTime = $('#startTime').val();		//开始提醒时间
+					var endTime = $('#endTime').val();			//提醒结束时间
+					var rate = $('input[name="radio"]:checked').val();	//重复间隔单选框
+					var params  = {
+						text:remindText,
+						startTime:startTime,
+						endTime:endTime,
+						rate:rate
+					};
+					$.post(url,params,function(res){
+						if(res.code==1){
+							mui.alert("保存成功")
+						}
+					});
+				}
+			};
+			mui.init();
+			document.getElementById("M_Toggle").addEventListener('toggle',function (e) {
+				var isActive = e.detail.isActive;
+				console.log(isActive);
+				if(isActive){
+					$('#remindTime').css('display','');
+				}else{
+					$('#remindTime').css('display','none');
+				}
+			});
+		</script>
+	</body>
+
+</html>
