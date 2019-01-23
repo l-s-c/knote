@@ -17,74 +17,95 @@ public class remindDao {
 
     private Byte rate;
 
+    private String jobName;
     
-    @Override
-	public String toString() {
-		return "remindDao [id=" + id + ", phone=" + phone + ", text=" + text + ", label=" + label + ", cron=" + cron
-				+ ", startTime=" + startTime + ", endTime=" + endTime + ", rate=" + rate + "]";
-	}
+    private String triggerName;
 
 	public Long getId() {
-        return id;
-    }
+		return id;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public Integer getPhone() {
-        return phone;
-    }
+	public Integer getPhone() {
+		return phone;
+	}
 
-    public void setPhone(Integer phone) {
-        this.phone = phone;
-    }
+	public void setPhone(Integer phone) {
+		this.phone = phone;
+	}
 
-    public String getText() {
-        return text;
-    }
+	public String getText() {
+		return text;
+	}
 
-    public void setText(String text) {
-        this.text = text == null ? null : text.trim();
-    }
+	public void setText(String text) {
+		this.text = text;
+	}
 
-    public Integer getLabel() {
-        return label;
-    }
+	public Integer getLabel() {
+		return label;
+	}
 
-    public void setLabel(Integer label) {
-        this.label = label;
-    }
+	public void setLabel(Integer label) {
+		this.label = label;
+	}
 
-    public String getCron() {
-        return cron;
-    }
+	public String getCron() {
+		return cron;
+	}
 
-    public void setCron(String cron) {
-        this.cron = cron == null ? null : cron.trim();
-    }
+	public void setCron(String cron) {
+		this.cron = cron;
+	}
 
-    public String getStartTime() {
-        return startTime;
-    }
+	public String getStartTime() {
+		return startTime;
+	}
 
-    public void setStartTime(String startTime) {
-        this.startTime = startTime == null ? null : startTime.trim();
-    }
+	public void setStartTime(String startTime) {
+		this.startTime = startTime;
+	}
 
-    public String getEndTime() {
-        return endTime;
-    }
+	public String getEndTime() {
+		return endTime;
+	}
 
-    public void setEndTime(String endTime) {
-        this.endTime = endTime == null ? null : endTime.trim();
-    }
+	public void setEndTime(String endTime) {
+		this.endTime = endTime;
+	}
 
-    public Byte getRate() {
-        return rate;
-    }
+	public Byte getRate() {
+		return rate;
+	}
 
-    public void setRate(Byte rate) {
-        this.rate = rate;
-    }
+	public void setRate(Byte rate) {
+		this.rate = rate;
+	}
+
+	public String getJobName() {
+		return jobName;
+	}
+
+	public void setJobName(String jobName) {
+		this.jobName = jobName;
+	}
+
+	public String getTriggerName() {
+		return triggerName;
+	}
+
+	public void setTriggerName(String triggerName) {
+		this.triggerName = triggerName;
+	}
+
+	@Override
+	public String toString() {
+		return "remindDao [id=" + id + ", phone=" + phone + ", text=" + text + ", label=" + label + ", cron=" + cron
+				+ ", startTime=" + startTime + ", endTime=" + endTime + ", rate=" + rate + ", jobName=" + jobName
+				+ ", triggerName=" + triggerName + "]";
+	}
+   
 }

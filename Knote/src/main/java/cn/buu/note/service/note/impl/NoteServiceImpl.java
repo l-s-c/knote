@@ -19,12 +19,16 @@ import cn.buu.note.exception.CustomException;
 import cn.buu.note.exception.ErrorEnum;
 import cn.buu.note.service.note.NoteService;
 import cn.buu.note.utils.CronUtils;
+import cn.buu.note.utils.UUIDUtils;
+import cn.buu.note.utils.quartz.MyScheduler;
 @Service
 public class NoteServiceImpl implements NoteService {
 	@Resource
 	private NoteDaoMapper noteDaoMapper;
 	@Resource
 	private remindDaoMapper remindDaoMapper;
+	@Resource
+	private MyScheduler myScheduler;			//定时任务操作类
 	@Resource
 	HttpSession session;
 	@Override
@@ -109,23 +113,53 @@ public class NoteServiceImpl implements NoteService {
 		}
 		//设置标签---备忘录
 		remind.setLabel(2);
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		try {
-			remind.setStartTime(sdf.format(sdf.parse(remind.getStartTime().replace("T", " ")+":00")));
-			remind.setEndTime(sdf.format(sdf.parse(remind.getEndTime().replace("T", " ")+":00")));
-			//根据时间和频率获取cron表达式
-			String cron = CronUtils.getCron(sdf.parse(remind.getStartTime()),remind.getRate());
-			remind.setCron(cron);
-		} catch (ParseException e) {
-			e.printStackTrace();
+		
+		System.out.println(remind);
+		if(remind.getStartTime().equals("")||remind.getStartTime().length()==0) {
+			//不用提醒
+			//保存
+			try {
+				remindDaoMapper.insertSelective(remind);
+			}catch(Exception e) {
+				e.printStackTrace();
+				throw new CustomException(ErrorEnum.DB_CONNECT_ERROR);
+			}
+		}else {
+			//格式化时间
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			try {
+				remind.setStartTime(sdf.format(sdf.parse(remind.getStartTime().replace("T", " ")+":00")));
+				if(remind.getEndTime().equals("")||remind.getEndTime().length()==0) {
+					remind.setEndTime(null);
+				}else {
+					remind.setEndTime(sdf.format(sdf.parse(remind.getEndTime().replace("T", " ")+":00")));
+				}
+				//根据时间和频率获取cron表达式
+				String cron = CronUtils.getCron(sdf.parse(remind.getStartTime()),remind.getRate());
+				remind.setCron(cron);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			//设置提醒
+			//为提醒的定时任务起名
+			//String jobName = UUIDUtils.getUUID()+phone.toString().substring(9);
+			String jobName = "job"+UUIDUtils.getUUID()+phone.toString();
+			System.out.println("jobName:"+jobName);
+			String triggerName = "trigger"+UUIDUtils.getUUID();
+			System.out.println("triggerName:"+triggerName);
+			remind.setJobName(jobName);
+			remind.setTriggerName(triggerName);
+			//保存
+			try {
+				remindDaoMapper.insertSelective(remind);
+			}catch(Exception e) {
+				e.printStackTrace();
+				throw new CustomException(ErrorEnum.DB_CONNECT_ERROR);
+			}
+			//设置定时任务
+			myScheduler.setQuartz(jobName,remind.getText(), triggerName, sdf.parse(remind.getStartTime()),remind.getEndTime()==null?null:sdf.parse(remind.getEndTime()), remind.getCron());
 		}
-		//保存
-		try {
-			remindDaoMapper.insertSelective(remind);
-		}catch(Exception e) {
-			e.printStackTrace();
-			throw new CustomException(ErrorEnum.DB_CONNECT_ERROR);
-		}
+
 	}
 
 }

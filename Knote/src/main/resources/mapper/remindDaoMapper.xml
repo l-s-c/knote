@@ -10,9 +10,11 @@
     <result column="start_time" jdbcType="VARCHAR" property="startTime" />
     <result column="end_time" jdbcType="VARCHAR" property="endTime" />
     <result column="rate" jdbcType="TINYINT" property="rate" />
+    <result column="job_name" jdbcType="VARCHAR" property="jobName" />
+    <result column="trigger_name" jdbcType="VARCHAR" property="triggerName" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, phone, text, label, cron, start_time, end_time, rate
+    id, phone, text, label, cron, start_time, end_time, rate, job_name, trigger_name
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
@@ -27,10 +29,12 @@
   <insert id="insert" parameterType="cn.buu.note.entity.remindDao">
     insert into remind_info (id, phone, text, 
       label, cron, start_time, 
-      end_time, rate)
+      end_time, rate, job_name, 
+      trigger_name)
     values (#{id,jdbcType=BIGINT}, #{phone,jdbcType=INTEGER}, #{text,jdbcType=VARCHAR}, 
       #{label,jdbcType=BIT}, #{cron,jdbcType=VARCHAR}, #{startTime,jdbcType=VARCHAR}, 
-      #{endTime,jdbcType=VARCHAR}, #{rate,jdbcType=TINYINT})
+      #{endTime,jdbcType=VARCHAR}, #{rate,jdbcType=TINYINT}, #{jobName,jdbcType=VARCHAR}, 
+      #{triggerName,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="cn.buu.note.entity.remindDao">
     insert into remind_info
@@ -59,6 +63,12 @@
       <if test="rate != null">
         rate,
       </if>
+      <if test="jobName != null">
+        job_name,
+      </if>
+      <if test="triggerName != null">
+        trigger_name,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -84,6 +94,12 @@
       </if>
       <if test="rate != null">
         #{rate,jdbcType=TINYINT},
+      </if>
+      <if test="jobName != null">
+        #{jobName,jdbcType=VARCHAR},
+      </if>
+      <if test="triggerName != null">
+        #{triggerName,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -111,6 +127,12 @@
       <if test="rate != null">
         rate = #{rate,jdbcType=TINYINT},
       </if>
+      <if test="jobName != null">
+        job_name = #{jobName,jdbcType=VARCHAR},
+      </if>
+      <if test="triggerName != null">
+        trigger_name = #{triggerName,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -122,7 +144,9 @@
       cron = #{cron,jdbcType=VARCHAR},
       start_time = #{startTime,jdbcType=VARCHAR},
       end_time = #{endTime,jdbcType=VARCHAR},
-      rate = #{rate,jdbcType=TINYINT}
+      rate = #{rate,jdbcType=TINYINT},
+      job_name = #{jobName,jdbcType=VARCHAR},
+      trigger_name = #{triggerName,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

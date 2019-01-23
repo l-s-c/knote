@@ -66,4 +66,9 @@ CREATE TABLE remind_info(
 	rate tinyint NOT NULL DEFAULT 0 COMMENT '重复提醒频率',
 	PRIMARY KEY(id)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=UTF8;
+/*修改字段长度*/
 alter table remind_info modify column cron varchar(100) NULL DEFAULT '' COMMENT '提醒表达式';
+/*添加字段*/
+alter table remind_info add column job_name varchar(100) NULL DEFAULT '' COMMENT '提醒任务名';
+alter table remind_info add column trigger_name varchar(100) NULL DEFAULT '' COMMENT '触发器名称';
+alter table remind_info add column is_finished tinyint(1) NOT NULL DEFAULT 0 COMMENT '是否完成';
