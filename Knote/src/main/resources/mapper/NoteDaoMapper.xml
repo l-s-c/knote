@@ -23,8 +23,10 @@
     
     <select id="selectByLimit" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
-    <include refid="Base_Column_List" />
-    from note_info
+    n.*
+    ,d.name as labelDesc
+    from note_info n
+    left join dict d on d.code = n.label and d.data_code = 'note'
     limit #{prefix},#{suffix}
   	</select>
   
@@ -126,7 +128,7 @@
       note_title = #{noteTitle,jdbcType=CHAR},
       note_text = #{noteText,jdbcType=VARCHAR},
       label = #{label,jdbcType=BIT},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
+    <!--   create_time = #{createTime,jdbcType=TIMESTAMP}, -->
       modify_time = #{modifyTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>

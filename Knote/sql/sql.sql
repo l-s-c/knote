@@ -72,3 +72,18 @@ alter table remind_info modify column cron varchar(100) NULL DEFAULT '' COMMENT 
 alter table remind_info add column job_name varchar(100) NULL DEFAULT '' COMMENT '提醒任务名';
 alter table remind_info add column trigger_name varchar(100) NULL DEFAULT '' COMMENT '触发器名称';
 alter table remind_info add column is_finished tinyint(1) NOT NULL DEFAULT 0 COMMENT '是否完成';
+
+/*字典表*/
+CREATE TABLE dict (
+	id bigint(20) NOT NULL AUTO_INCREMENT COMMENT '',
+	code varchar(10) NOT NULL  COMMENT '代码',
+	name varchar(50) NOT NULL  COMMENT '描述',
+	data_code varchar(30) NOT NULL  COMMENT '模块名' ,
+	create_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '',
+	modify_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
+	PRIMARY KEY(id)
+)ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=UTF8;
+/*插入笔记类型字典*/
+INSERT INTO dict (code,name,data_code,create_time,modify_time) VALUES(1,'自定义笔记','note',NOW(),NOW());
+INSERT INTO dict (code,name,data_code,create_time,modify_time) VALUES(2,'智能笔记','note',NOW(),NOW());
+INSERT INTO dict (code,name,data_code,create_time,modify_time) VALUES(3,'备忘录','note',NOW(),NOW());

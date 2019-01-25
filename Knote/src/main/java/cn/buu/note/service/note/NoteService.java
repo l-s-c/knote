@@ -17,4 +17,12 @@ public interface NoteService {
 
 	void insertReminder(remindDao remind) throws Exception;
 
+	boolean analyzeBase64(String base64) throws Exception;
+
+	remindDao loadReminderDesc(long id) throws Exception;
+
+	void updateReminder(remindDao remind) throws Exception;
+
+	void updateNote(NoteDao note) throws Exception;
+
 }
