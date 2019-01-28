@@ -87,3 +87,24 @@ CREATE TABLE dict (
 INSERT INTO dict (code,name,data_code,create_time,modify_time) VALUES(1,'自定义笔记','note',NOW(),NOW());
 INSERT INTO dict (code,name,data_code,create_time,modify_time) VALUES(2,'智能笔记','note',NOW(),NOW());
 INSERT INTO dict (code,name,data_code,create_time,modify_time) VALUES(3,'备忘录','note',NOW(),NOW());
+/*用户评论笔记表*/
+CREATE TABLE post_info(
+	id bigint(20) AUTO_INCREMENT COMMENT '自增id',
+	phone int(15) NOT NULL COMMENT '手机号',
+	note_id bigint(20) NOT NULL COMMENT '笔记id',
+	post varchar(100) NOT NULL COMMENT '评论内容',
+	create_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+	modify_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
+	PRIMARY KEY(id)
+)ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=UTF8;
+/**针对评论的回复与被回复表*/
+CREATE TABLE post_ag_info(
+	id bigint(20) AUTO_INCREMENT COMMENT '自增id',
+	post_id bigint(20) NOT NULL COMMENT '评论id',
+	other_phone int(15) NOT NULL COMMENT '手机号',
+	post varchar(100) NOT NULL COMMENT '评论内容',
+	is_read tinyint(1) NOT NULL DEFAULT 0 COMMENT '是否已读 1代表已读，0代表未读',
+	create_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+	modify_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
+	PRIMARY KEY(id)
+)ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=UTF8;

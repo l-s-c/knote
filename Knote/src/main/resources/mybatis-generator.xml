@@ -57,7 +57,16 @@
 	        enableDeleteByExample="false" enableSelectByExample="false"
 	        selectByExampleQueryId="false"></table>  -->
 	        
-	       <table tableName="remind_info" domainObjectName="remindDao" 
+	      <!--  <table tableName="remind_info" domainObjectName="remindDao" 
+	        enableCountByExample="false" enableUpdateByExample="false"
+	        enableDeleteByExample="false" enableSelectByExample="false"
+	        selectByExampleQueryId="false"></table>  -->
+	        
+	         <table tableName="post_info" domainObjectName="PostDao" 
+	        enableCountByExample="false" enableUpdateByExample="false"
+	        enableDeleteByExample="false" enableSelectByExample="false"
+	        selectByExampleQueryId="false"></table> 
+	         <table tableName="post_ag_info" domainObjectName="PostAgain" 
 	        enableCountByExample="false" enableUpdateByExample="false"
 	        enableDeleteByExample="false" enableSelectByExample="false"
 	        selectByExampleQueryId="false"></table> 

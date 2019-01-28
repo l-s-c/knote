@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.buu.note.dao.PostAgainMapper">
+  <resultMap id="BaseResultMap" type="cn.buu.note.entity.PostAgain">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="post_id" jdbcType="BIGINT" property="postId" />
+    <result column="other_phone" jdbcType="INTEGER" property="otherPhone" />
+    <result column="post" jdbcType="VARCHAR" property="post" />
+    <result column="is_read" jdbcType="BIT" property="isRead" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, post_id, other_phone, post, is_read, create_time, modify_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from post_ag_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from post_ag_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  
+   <delete id="deleteByPostId" parameterType="java.lang.Long">
+    delete from post_ag_info
+    where post_id = #{postId,jdbcType=BIGINT}
+  </delete>
+  
+  <insert id="insert" parameterType="cn.buu.note.entity.PostAgain">
+    insert into post_ag_info (id, post_id, other_phone, 
+      post, is_read, create_time, 
+      modify_time)
+    values (#{id,jdbcType=BIGINT}, #{postId,jdbcType=BIGINT}, #{otherPhone,jdbcType=INTEGER}, 
+      #{post,jdbcType=VARCHAR}, #{isRead,jdbcType=BIT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{modifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.buu.note.entity.PostAgain">
+    insert into post_ag_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="postId != null">
+        post_id,
+      </if>
+      <if test="otherPhone != null">
+        other_phone,
+      </if>
+      <if test="post != null">
+        post,
+      </if>
+      <if test="isRead != null">
+        is_read,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="postId != null">
+        #{postId,jdbcType=BIGINT},
+      </if>
+      <if test="otherPhone != null">
+        #{otherPhone,jdbcType=INTEGER},
+      </if>
+      <if test="post != null">
+        #{post,jdbcType=VARCHAR},
+      </if>
+      <if test="isRead != null">
+        #{isRead,jdbcType=BIT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.buu.note.entity.PostAgain">
+    update post_ag_info
+    <set>
+      <if test="postId != null">
+        post_id = #{postId,jdbcType=BIGINT},
+      </if>
+      <if test="otherPhone != null">
+        other_phone = #{otherPhone,jdbcType=INTEGER},
+      </if>
+      <if test="post != null">
+        post = #{post,jdbcType=VARCHAR},
+      </if>
+      <if test="isRead != null">
+        is_read = #{isRead,jdbcType=BIT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.buu.note.entity.PostAgain">
+    update post_ag_info
+    set post_id = #{postId,jdbcType=BIGINT},
+      other_phone = #{otherPhone,jdbcType=INTEGER},
+      post = #{post,jdbcType=VARCHAR},
+      is_read = #{isRead,jdbcType=BIT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

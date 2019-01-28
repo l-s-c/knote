@@ -27,9 +27,9 @@
     where open_id = #{openId,jdbcType=VARCHAR}
   </select>
   
-   <select id="selectUserByPhone" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+   <select id="selectUserByPhone" parameterType="java.lang.Integer" resultType="cn.buu.note.entity.UserDao">
     select 
-    <include refid="Base_Column_List" />
+  	id, phone,open_id as openId, head_path as headPath
     from user_info
     where phone =#{phone,jdbcType=INTEGER}
   </select>
