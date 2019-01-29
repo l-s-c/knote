@@ -41,10 +41,27 @@ public class LoginController extends BaseController{
 			return "";
 			
 		}
+		/**
+		 * 获取当前登录用户电话号码
+		 * @param session
+		 * @return
+		 * @throws Exception
+		 */
+		@RequestMapping("/getUserPhone")
+		@ResponseBody
+		public JsonResult getUserPhone(HttpSession session) throws Exception {
+			session.setAttribute("phone", 666);
+			Object phone = session.getAttribute("phone");
+			return new JsonResult(phone);
+		}
 		
-		
-		
-		
+		/**
+		 *
+		 * @param phone
+		 * @param session
+		 * @return
+		 * @throws Exception
+		 */
 		@RequestMapping("/{phone}/checkUser")
 		@ResponseBody
 		public JsonResult checkUser(@PathVariable Integer phone,HttpSession session) throws Exception {

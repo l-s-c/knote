@@ -32,10 +32,17 @@ public class Main {
 		a += b;
 		System.out.println(a);*/
 		// dispathServlet  handlerMapping  controller  ModelAndView  ViewResolver
-		String d = handlerStr();
-		System.out.println(d);
+		/*String d = handlerStr();
+		System.out.println(d);*/
 	/*	String s  =  "4慕课end网";
 		System.out.println(s.indexOf("end"));*/
+		
+		String str = "回复123:663<input id=\"hiPostId\" type=\"hidden\" value=\"37\"><input id=\"hiOtherPhone\" type=\"hidden\" value=\"123\">";
+		
+		int index =str.indexOf("<");
+		
+		System.out.println(index);
+		System.out.println(str.substring(0, index));
 	}
 	public static String handlerStr() {
 		String noteText  = "";

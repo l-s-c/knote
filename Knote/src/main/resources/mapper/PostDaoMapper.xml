@@ -25,6 +25,16 @@
     from post_info
   </select>
   
+  <select id="selectPostByNoteId" resultType="cn.buu.note.entity.PostResult" >
+    select 
+    p.*,u.head_path as headPath,pa.id as isHave
+    from post_info p 
+    left join user_info u on u.phone = p.phone
+    left join post_ag_info pa on pa.post_id = p.id
+    where note_id = #{noteId}
+    group by p.id
+  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from post_info
     where id = #{id,jdbcType=BIGINT}

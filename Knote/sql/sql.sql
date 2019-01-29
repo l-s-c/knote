@@ -108,3 +108,5 @@ CREATE TABLE post_ag_info(
 	modify_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
 	PRIMARY KEY(id)
 )ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=UTF8;
+/*添加发送回复人字段*/
+alter table post_ag_info add column send_phone int(15) NOT NULL COMMENT '发送内容的电话';

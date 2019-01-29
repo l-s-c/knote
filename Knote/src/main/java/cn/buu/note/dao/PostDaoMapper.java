@@ -1,6 +1,9 @@
 package cn.buu.note.dao;
 
+import java.util.List;
+
 import cn.buu.note.entity.PostDao;
+import cn.buu.note.entity.PostResult;
 
 public interface PostDaoMapper {
     int deleteByPrimaryKey(Long id);
@@ -16,4 +19,6 @@ public interface PostDaoMapper {
     int updateByPrimaryKey(PostDao record);
 
 	Long selectMaxId();
+
+	List<PostResult> selectPostByNoteId(Long noteId);
 }

@@ -1,12 +1,16 @@
 package cn.buu.note.service.post.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
 import cn.buu.note.dao.PostAgainMapper;
 import cn.buu.note.dao.PostDaoMapper;
+import cn.buu.note.entity.PostAgain;
 import cn.buu.note.entity.PostDao;
+import cn.buu.note.entity.PostResult;
 import cn.buu.note.exception.CustomException;
 import cn.buu.note.exception.ErrorEnum;
 import cn.buu.note.service.post.PostService;
@@ -47,6 +51,36 @@ public class PostServiceImpl implements PostService{
 			throw new CustomException(ErrorEnum.DB_CONNECT_ERROR);
 		}
 		
+	}
+	@Override
+	public void reply(PostAgain postAgain) throws Exception {
+		try {
+			postAgainMapper.insertSelective(postAgain);
+		}catch(Exception e) {
+			e.printStackTrace();
+			throw new CustomException(ErrorEnum.DB_CONNECT_ERROR);
+		}
+	}
+	@Override
+	public List<PostResult> loadPost(Long id) throws Exception {
+		try {
+			List<PostResult> list = postDaoMapper.selectPostByNoteId(id);
+			return list;
+		}catch(Exception e) {
+			e.printStackTrace();
+			throw new CustomException(ErrorEnum.DB_CONNECT_ERROR);
+		}
+		
+	}
+	@Override
+	public List<PostAgain> loadReplyByPostId(Long postId) throws Exception {
+		try {
+			List<PostAgain> list = postAgainMapper.loadReplyByPostId(postId);
+			return list;
+		}catch(Exception e) {
+			e.printStackTrace();
+			throw new CustomException(ErrorEnum.DB_CONNECT_ERROR);
+		}
 	}
 
 }

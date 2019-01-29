@@ -62,10 +62,10 @@
 	        enableDeleteByExample="false" enableSelectByExample="false"
 	        selectByExampleQueryId="false"></table>  -->
 	        
-	         <table tableName="post_info" domainObjectName="PostDao" 
+	  <!--        <table tableName="post_info" domainObjectName="PostDao" 
 	        enableCountByExample="false" enableUpdateByExample="false"
 	        enableDeleteByExample="false" enableSelectByExample="false"
-	        selectByExampleQueryId="false"></table> 
+	        selectByExampleQueryId="false"></table>  -->
 	         <table tableName="post_ag_info" domainObjectName="PostAgain" 
 	        enableCountByExample="false" enableUpdateByExample="false"
 	        enableDeleteByExample="false" enableSelectByExample="false"

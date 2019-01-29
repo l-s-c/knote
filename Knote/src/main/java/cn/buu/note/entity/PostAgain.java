@@ -5,71 +5,92 @@ import java.util.Date;
 public class PostAgain {
     private Long id;
 
-    private Long postId;
+	private Long postId;
 
-    private Integer otherPhone;
+	private Integer otherPhone;
 
-    private String post;
+	private String post;
 
-    private Integer isRead;
+	private Boolean isRead;
 
-    private Date createTime;
+	private Date createTime;
 
-    private Date modifyTime;
+	private Date modifyTime;
 
-    public Long getId() {
-        return id;
-    }
+	private Integer sendPhone;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	
 
-    public Long getPostId() {
-        return postId;
-    }
+	@Override
+	public String toString() {
+		return "PostAgain [id=" + id + ", postId=" + postId + ", otherPhone=" + otherPhone + ", post=" + post
+				+ ", isRead=" + isRead + ", createTime=" + createTime + ", modifyTime=" + modifyTime + ", sendPhone="
+				+ sendPhone + "]";
+	}
 
-    public void setPostId(Long postId) {
-        this.postId = postId;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public Integer getOtherPhone() {
-        return otherPhone;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public void setOtherPhone(Integer otherPhone) {
-        this.otherPhone = otherPhone;
-    }
+	public Long getPostId() {
+		return postId;
+	}
 
-    public String getPost() {
-        return post;
-    }
+	public void setPostId(Long postId) {
+		this.postId = postId;
+	}
 
-    public void setPost(String post) {
-        this.post = post == null ? null : post.trim();
-    }
+	public Integer getOtherPhone() {
+		return otherPhone;
+	}
 
-    public Integer getIsRead() {
-        return isRead;
-    }
+	public void setOtherPhone(Integer otherPhone) {
+		this.otherPhone = otherPhone;
+	}
 
-    public void setIsRead(Integer isRead) {
-        this.isRead = isRead;
-    }
+	public String getPost() {
+		return post;
+	}
 
-    public Date getCreateTime() {
-        return createTime;
-    }
+	public void setPost(String post) {
+		this.post = post == null ? null : post.trim();
+	}
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
+	public Boolean getIsRead() {
+		return isRead;
+	}
 
-    public Date getModifyTime() {
-        return modifyTime;
-    }
+	public void setIsRead(Boolean isRead) {
+		this.isRead = isRead;
+	}
 
-    public void setModifyTime(Date modifyTime) {
-        this.modifyTime = modifyTime;
-    }
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+
+	public Date getModifyTime() {
+		return modifyTime;
+	}
+
+	public void setModifyTime(Date modifyTime) {
+		this.modifyTime = modifyTime;
+	}
+
+	public Integer getSendPhone() {
+		return sendPhone;
+	}
+
+	public void setSendPhone(Integer sendPhone) {
+		this.sendPhone = sendPhone;
+	}
+
+
 }
