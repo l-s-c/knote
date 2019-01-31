@@ -82,5 +82,14 @@ public class PostServiceImpl implements PostService{
 			throw new CustomException(ErrorEnum.DB_CONNECT_ERROR);
 		}
 	}
+	@Override
+	public void delPostAgFromDb(String id) throws Exception{
+		try {
+			postAgainMapper.deleteByPrimaryKey(Long.parseLong(id));
+		}catch(Exception e) {
+			e.printStackTrace();
+			throw new CustomException(ErrorEnum.DB_CONNECT_ERROR);
+		}
+	}
 
 }

@@ -18,4 +18,6 @@ public interface PostService {
 
 	List<PostAgain> loadReplyByPostId(Long postId) throws Exception;
 
+	void delPostAgFromDb(String id) throws Exception;
+
 }

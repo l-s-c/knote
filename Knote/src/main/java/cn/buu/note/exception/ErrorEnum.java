@@ -9,7 +9,9 @@ public enum ErrorEnum {
 	EMAIL_ERROR(501,"邮件发送失败"),
 	REGISTER_ERROR(601,"注册失败"),
 	USER_EXIT_ERROR(701,"用户已存在"),
+	USER_LOSE_ERROR(702,"用户失效"),
 	ANALYZE_ERROR(801,"图片识别错误，请检查图片"),
+	
 	;
 	
 

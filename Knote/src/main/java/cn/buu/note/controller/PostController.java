@@ -97,4 +97,16 @@ public class PostController extends BaseController{
 			postService.delPostFromDb(id);
 			return new JsonResult();
 		}
+		/**
+		 * 删除楼层子评论
+		 * @param id	post_ag_info 表的唯一id
+		 * @return
+		 * @throws Exception
+		 */
+		@RequestMapping("/delPostAgFromDb")
+		@ResponseBody
+		public JsonResult delPostAgFromDb(String id) throws Exception {
+			postService.delPostAgFromDb(id);
+			return new JsonResult();
+		}
 }

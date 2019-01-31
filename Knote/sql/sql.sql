@@ -110,3 +110,12 @@ CREATE TABLE post_ag_info(
 )ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=UTF8;
 /*添加发送回复人字段*/
 alter table post_ag_info add column send_phone int(15) NOT NULL COMMENT '发送内容的电话';
+/**收藏*/
+CREATE TABLE like_info (
+	id bigint(20) AUTO_INCREMENT COMMENT '自增id',
+	phone int(15) NOT NULL COMMENT '手机号',
+	note_id bigint(20) NOT NULL  COMMENT '笔记Id',
+	create_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+	modify_time  timestamp 	NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
+	PRIMARY KEY(id)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=UTF8;

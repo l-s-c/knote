@@ -66,9 +66,13 @@
 	        enableCountByExample="false" enableUpdateByExample="false"
 	        enableDeleteByExample="false" enableSelectByExample="false"
 	        selectByExampleQueryId="false"></table>  -->
-	         <table tableName="post_ag_info" domainObjectName="PostAgain" 
+	    <!--      <table tableName="post_ag_info" domainObjectName="PostAgain" 
 	        enableCountByExample="false" enableUpdateByExample="false"
 	        enableDeleteByExample="false" enableSelectByExample="false"
-	        selectByExampleQueryId="false"></table> 
+	        selectByExampleQueryId="false"></table> --> 
+	             <table tableName="like_info" domainObjectName="LikeDao" 
+	        enableCountByExample="false" enableUpdateByExample="false"
+	        enableDeleteByExample="false" enableSelectByExample="false"
+	        selectByExampleQueryId="false"></table>
     </context>
 </generatorConfiguration>
