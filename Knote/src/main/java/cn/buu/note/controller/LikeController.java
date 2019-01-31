@@ -1,5 +1,7 @@
 package cn.buu.note.controller;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.apache.log4j.Logger;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.buu.note.common.BaseController;
 import cn.buu.note.common.JsonResult;
+import cn.buu.note.entity.NoteDao;
 import cn.buu.note.service.like.LikeService;
 
 @Controller
@@ -57,5 +60,16 @@ public class LikeController extends BaseController{
 			boolean b = likeService.getLike(noteId);
 			return new JsonResult(b);
 		}
-
+		/**
+		 * 我的收藏--加载收藏笔记
+		 * @return
+		 * @throws Exception
+		 */
+		@RequestMapping("/loadLikeNote")
+		@ResponseBody
+		public JsonResult loadLikeNote() throws Exception {
+			List<NoteDao> list = likeService.loadLikeNote();
+			return new JsonResult(list);
+			
+		}
 }

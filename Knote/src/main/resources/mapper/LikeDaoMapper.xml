@@ -26,6 +26,25 @@
     where phone = #{phone,jdbcType=INTEGER} and note_id = #{noteId,jdbcType=BIGINT}
   </select>
   
+     <select id="loadLikeNote"  resultType="cn.buu.note.entity.NoteDao">
+	    SELECT
+			n.id AS id,
+			n.phone,
+			n.note_title AS noteTitle,
+			n.note_text AS noteNext,
+			n.label,
+			n.create_time AS createTime,
+			n.modify_time AS modifyTime,
+			d.NAME AS labelDesc 
+		FROM
+			like_info l
+			LEFT JOIN note_info n ON n.id = l.note_id
+			LEFT JOIN dict d ON d.CODE = n.label 
+			AND d.data_code = 'note' 
+		WHERE
+			l.phone = #{phone,jdbcType=INTEGER}
+  	 </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from like_info
     where id = #{id,jdbcType=BIGINT}

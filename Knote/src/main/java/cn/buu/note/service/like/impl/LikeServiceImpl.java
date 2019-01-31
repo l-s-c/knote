@@ -1,12 +1,16 @@
 package cn.buu.note.service.like.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
 
 import cn.buu.note.dao.LikeDaoMapper;
+import cn.buu.note.dao.NoteDaoMapper;
 import cn.buu.note.entity.LikeDao;
+import cn.buu.note.entity.NoteDao;
 import cn.buu.note.exception.CustomException;
 import cn.buu.note.exception.ErrorEnum;
 import cn.buu.note.service.like.LikeService;
@@ -77,6 +81,26 @@ public class LikeServiceImpl implements LikeService{
 			return false;
 		}
 		return false;
+	}
+	@Override
+	public List<NoteDao> loadLikeNote() throws Exception {
+		Integer phone  ;
+		List<NoteDao> list = null;
+		try {
+			session.setAttribute("phone", 123);
+			phone =	Integer.parseInt(session.getAttribute("phone").toString());
+		}catch(Exception e) {
+			e.printStackTrace();
+			throw new CustomException(ErrorEnum.USER_LOSE_ERROR);
+		}
+		
+		try {
+			list = likeDaoMapper.loadLikeNote(phone);
+		}catch(Exception e) {
+			e.printStackTrace();
+			throw new CustomException(ErrorEnum.DB_CONNECT_ERROR);
+		}
+		return list;
 	}
 
 }

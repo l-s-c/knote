@@ -31,9 +31,11 @@
   	</select>
   
     <select id="selectByCreateUser" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from note_info
+     select 
+    n.*
+    ,d.name as labelDesc
+    from note_info n
+    left join dict d on d.code = n.label and d.data_code = 'note'
     where phone = #{phone}
   	</select>
   

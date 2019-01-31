@@ -16,6 +16,24 @@ public class NoteDao {
 	private Date createTime;
 
 	private Date modifyTime;
+	
+	private String labelDesc;
+	
+
+	@Override
+	public String toString() {
+		return "NoteDao [id=" + id + ", phone=" + phone + ", noteTitle=" + noteTitle + ", noteText=" + noteText
+				+ ", label=" + label + ", createTime=" + createTime + ", modifyTime=" + modifyTime + ", labelDesc="
+				+ labelDesc + "]";
+	}
+
+	public String getLabelDesc() {
+		return labelDesc;
+	}
+
+	public void setLabelDesc(String labelDesc) {
+		this.labelDesc = labelDesc;
+	}
 
 	public Long getId() {
 		return id;
