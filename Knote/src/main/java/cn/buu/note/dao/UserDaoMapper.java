@@ -20,4 +20,6 @@ public interface UserDaoMapper {
 	UserDao selectUserByPhone(Integer phone);
 
 	boolean ifAclitvate(Integer parseInt);
+
+	/*UserDao getUserByPhone(Integer phone);*/
 }

@@ -92,5 +92,11 @@ public class LoginServiceImpl implements LoginService{
 		boolean b = userDaoMapper.ifAclitvate(Integer.parseInt(phone));
 		return b;
 	}
+	@Override
+	public UserDao getUserByPhone(Integer phone) {
+		UserDao user = new UserDao();
+		user = userDaoMapper.selectUserByPhone(phone);
+		return user;
+	}
 
 }

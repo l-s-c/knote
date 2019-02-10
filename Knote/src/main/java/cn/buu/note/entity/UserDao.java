@@ -20,7 +20,7 @@ public class UserDao implements Serializable{
 	
 	private String headPath;
 
-
+	private String remark;		//备注
 
 	@Override
 	public String toString() {

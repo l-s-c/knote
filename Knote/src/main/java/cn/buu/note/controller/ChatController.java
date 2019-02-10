@@ -32,11 +32,11 @@ public class ChatController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping("/loadFrind")
+	@RequestMapping("/loadFrind") 
 	@ResponseBody
-	public JsonResult loadFrind() throws Exception {
+	public JsonResult loadFrind(Integer phone) throws Exception {
 		System.out.println("loadFrind");
-		List<FriendDao> list = chatService.loadAllFrind();
+		List<FriendDao> list = chatService.loadShowFrind(phone);
 		return new JsonResult(list);
 	}
 }

@@ -33,5 +33,18 @@ public class ChatServiceImpl implements ChatService{
 		}
 		return list;
 	}
+	@Override
+	public List<FriendDao> loadShowFrind(Integer myPhone) throws Exception {
+		List<FriendDao> list = null;
+		System.out.println("myphone:"+myPhone);
+		try {
+			list = friendDaoMapper.selectShowByMyPhone(myPhone);
+			System.out.println("list:"+list);
+		}catch(Exception e) {
+			e.printStackTrace();
+			throw new CustomException(ErrorEnum.DB_CONNECT_ERROR);
+		}
+		return list;
+	}
 
 }

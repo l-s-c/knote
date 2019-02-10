@@ -34,6 +34,7 @@
     where phone =#{phone,jdbcType=INTEGER}
   </select>
   
+  
     <select id="ifAclitvate" parameterType="java.lang.Integer" resultType="java.lang.Boolean">
     select 
     if(is_aclivate,'true','false')

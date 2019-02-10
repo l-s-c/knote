@@ -8,4 +8,6 @@ public interface ChatService {
 
 	List<FriendDao> loadAllFrind() throws Exception;
 
+	List<FriendDao> loadShowFrind(Integer phone) throws Exception;
+
 }

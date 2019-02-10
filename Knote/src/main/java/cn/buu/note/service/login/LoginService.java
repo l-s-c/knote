@@ -24,4 +24,6 @@ public interface LoginService {
 
 	boolean ifAclitave(String phone);
 
+	UserDao getUserByPhone(Integer phone);
+
 }

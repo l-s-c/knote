@@ -13,6 +13,18 @@
         <version>2.0.5.RELEASE</version>
     </parent>
     <dependencies>
+    	<!-- apach 工具类 -->
+  		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.4</version>
+		</dependency>
+    	<!-- netty-all -->
+		<dependency>
+		    <groupId>io.netty</groupId>
+		    <artifactId>netty-all</artifactId>
+		    <version>4.1.25.Final</version>
+		</dependency>
        <!-- JavaMail -->
         <dependency >
             <groupId >javax.mail </groupId >

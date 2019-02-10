@@ -17,4 +17,6 @@ public interface FriendDaoMapper {
     int updateByPrimaryKeySelective(FriendDao record);
 
     int updateByPrimaryKey(FriendDao record);
+
+	List<FriendDao> selectShowByMyPhone(Integer myPhone);
 }

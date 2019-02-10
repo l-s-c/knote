@@ -41,6 +41,29 @@ public class LoginController extends BaseController{
 			return "";
 			
 		}
+		
+		/**
+		 * 获取当前用户对象
+		 * @param session
+		 * @return
+		 * @throws Exception
+		 */
+		@RequestMapping("/setUserStorage")
+		@ResponseBody
+		public JsonResult setUserStorage(HttpSession session) throws Exception {
+			Integer phone ;
+			UserDao user = null;
+			try {
+				 phone = Integer.parseInt(session.getAttribute("phone").toString());
+				 user = loginService.getUserByPhone(phone);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+			
+			System.out.println("setUserStorage:"+user);
+			return new JsonResult(user);
+		}
+		
 		/**
 		 * 获取当前登录用户电话号码
 		 * @param session
@@ -118,7 +141,7 @@ public class LoginController extends BaseController{
 		 */
 		@RequestMapping(value="/{phone}/{pwd}/{openId}/login",method= {RequestMethod.GET},consumes= {CONTENT_TYPE_FORMED})
 		@ResponseBody
-		public JsonResult login(@PathVariable String phone,@PathVariable String pwd,@PathVariable String openId) throws Exception {
+		public JsonResult login(HttpSession session , @PathVariable String phone,@PathVariable String pwd,@PathVariable String openId) throws Exception {
 				logger.info("login:"+phone+" , "+pwd+" , "+openId);
 				if(openId.equals("0000")) {
 					boolean b = loginService.checkUser(phone,pwd);
@@ -126,6 +149,7 @@ public class LoginController extends BaseController{
 						b = loginService.ifAclitave(phone);
 						if(b) {
 							//登陆成功
+							session.setAttribute("phone", phone);
 							return new JsonResult();
 						}else {
 							throw new CustomException(ErrorEnum.ILL_PARAMETER_ERROR,"用户未激活");
@@ -141,6 +165,7 @@ public class LoginController extends BaseController{
 						return new JsonResult(2,"第一次微信登录");
 					}else {
 						//登陆成功
+						session.setAttribute("phone", phone);
 						return new JsonResult();
 					}
 				}

@@ -27,6 +27,13 @@
     where my_phone = #{myPhone,jdbcType=INTEGER}
   </select>
   
+   <select id="selectShowByMyPhone" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from friend_info
+    where my_phone = #{myPhone,jdbcType=INTEGER} and is_first = 1
+  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from friend_info
     where id = #{id,jdbcType=BIGINT}

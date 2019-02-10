@@ -1,7 +1,12 @@
 eclipse.preferences.version=1
 encoding//src/main/java=UTF-8
+encoding//src/main/java/cn/buu/note/netty/websocket=ISO-8859-1
+encoding//src/main/java/cn/buu/note/netty/websocket/ChatMsg.java=UTF-8
+encoding//src/main/java/cn/buu/note/netty/websocket/DataContent.java=UTF-8
+encoding//src/main/java/cn/buu/note/netty/websocket/wsHandler.java=UTF-8
+encoding//src/main/java/cn/buu/note/netty/websocket/wsServer.java=UTF-8
+encoding//src/main/java/cn/buu/note/netty/websocket/wsServerInitializer.java=UTF-8
 encoding//src/main/java/cn/buu/note/utils/MailUtils.java=UTF-8
-encoding//src/main/java/cn/buu/note/webSocket/WebSocket.java=UTF-8
 encoding//src/main/resources=UTF-8
 encoding//src/main/resources/log4j.properties=UTF-8
 encoding/<project>=UTF-8

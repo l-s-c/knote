@@ -47,7 +47,7 @@ CREATE TABLE friend_info (
 	my_phone int(15) NOT NULL COMMENT '自己手机号',
 	fr_phone int(15) NOT NULL COMMENT '好友手机号',
 	remark char(15)	NULL DEFAULT '' COMMENT '备注',
-	is_first tinyint NOT NULL DEFAULT 0 COMMENT '是否置顶',
+	is_first tinyint NOT NULL DEFAULT 0 COMMENT '是否展示在聊天页面',
 	create_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '',
 	modify_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
 	PRIMARY KEY(id)
