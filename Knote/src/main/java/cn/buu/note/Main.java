@@ -6,9 +6,21 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import com.baidu.aip.ocr.AipOcr;
+/*class th  implements Runnable{
+	@Override
+	public void run() {
+		System.out.println("hello world");
+	}
+	
+}*/
 
 public class Main {
+	
+
 	public static void main(String[] args) throws Exception {
+		/*th th = new th();
+		Thread t = new Thread(th);
+		t*/
 /*		File file = new File("");
 		FileInputStream fis = new FileInputStream(file);
 		InputStreamReader isr = new InputStreamReader(fis);
@@ -37,12 +49,14 @@ public class Main {
 	/*	String s  =  "4慕课end网";
 		System.out.println(s.indexOf("end"));*/
 		
-		String str = "回复123:663<input id=\"hiPostId\" type=\"hidden\" value=\"37\"><input id=\"hiOtherPhone\" type=\"hidden\" value=\"123\">";
+	/*	String str = "回复123:663<input id=\"hiPostId\" type=\"hidden\" value=\"37\"><input id=\"hiOtherPhone\" type=\"hidden\" value=\"123\">";
 		
 		int index =str.indexOf("<");
 		
 		System.out.println(index);
-		System.out.println(str.substring(0, index));
+		System.out.println(str.substring(0, index));*/
+		
+		
 	}
 	public static String handlerStr() {
 		String noteText  = "";
