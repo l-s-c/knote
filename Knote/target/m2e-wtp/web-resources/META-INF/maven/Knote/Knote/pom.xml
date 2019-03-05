@@ -164,6 +164,13 @@
     					</configurationFile>
     				</configuration>
     			</plugin>
+	    		<plugin>
+	                <groupId>org.springframework.boot</groupId>
+	                <artifactId>spring-boot-maven-plugin</artifactId>
+	                <configuration>
+	                    <mainClass>cn.buu.note.App</mainClass>
+	                </configuration>
+	            </plugin>
     		</plugins>
     	</pluginManagement>
     </build>
