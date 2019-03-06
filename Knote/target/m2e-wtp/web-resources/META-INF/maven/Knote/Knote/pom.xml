@@ -4,6 +4,12 @@
   <artifactId>Knote</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
+   <repositories>
+    <repository>
+        <id>getui-nexus</id>
+        <url>http://mvn.gt.igexin.com/nexus/content/repositories/releases/</url>
+    </repository>
+ 	</repositories>
   
   
   	<!-- 父仓库 -->
@@ -13,6 +19,13 @@
         <version>2.0.5.RELEASE</version>
     </parent>
     <dependencies>
+    <!-- 个推 -->
+    <dependency>
+	    <groupId>com.gexin.platform</groupId>
+	    <artifactId>gexin-rp-sdk-http</artifactId>
+	    <version>4.1.0.1</version>
+	</dependency>
+    
     	<!-- apach 工具类 -->
   		<dependency>
 			<groupId>org.apache.commons</groupId>

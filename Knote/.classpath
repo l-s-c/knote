@@ -27,9 +27,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
-		<accessrules>
-			<accessrule kind="accessible" pattern="**"/>
-		</accessrules>
 	</classpathentry>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/aip-java-sdk-4.8.0.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/json-20160810.jar"/>
