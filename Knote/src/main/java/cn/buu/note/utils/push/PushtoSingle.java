@@ -72,8 +72,8 @@ public class PushtoSingle {
         template.setChannelLevel(4);
         Style0 style = new Style0();
         // 设置通知栏标题与内容
-        style.setTitle("请输入通知栏标题");
-        style.setText("请输入通知栏内容");
+        style.setTitle("lsc");
+        style.setText("text");
         // 配置通知栏图标
         style.setLogo("icon.png");
         // 配置通知栏网络图标

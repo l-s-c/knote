@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import cn.buu.note.utils.AppPush;
+import cn.buu.note.utils.push.AppPush;
 import cn.buu.note.utils.push.PushtoSingle;
 
 
@@ -25,7 +25,7 @@ public class App{
 	public String index() throws Exception {
 try {
 	ps.push("5dd87d313e37716caf840f00c2ec7688");
-	ap.push("zgc", "chou", "http://www.bao.com");
+	//ap.push("zgc", "chou", "http://www.baidu.com");
 } catch (Exception e) {
 	e.printStackTrace();
 }	
