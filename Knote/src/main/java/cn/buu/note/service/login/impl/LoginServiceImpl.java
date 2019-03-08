@@ -98,5 +98,13 @@ public class LoginServiceImpl implements LoginService{
 		user = userDaoMapper.selectUserByPhone(phone);
 		return user;
 	}
+	@Override
+	public void updataCID(Integer phone,String openId) {
+		try {
+			userDaoMapper.updateCID(phone,openId);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 }

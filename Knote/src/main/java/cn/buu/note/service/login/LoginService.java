@@ -26,4 +26,6 @@ public interface LoginService {
 
 	UserDao getUserByPhone(Integer phone);
 
+	void updataCID(Integer phone, String openId);
+
 }

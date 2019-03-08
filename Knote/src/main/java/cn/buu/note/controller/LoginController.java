@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.buu.note.common.BaseController;
 import cn.buu.note.common.JsonResult;
+import cn.buu.note.dao.RedisOperator;
 import cn.buu.note.entity.UserDao;
 import cn.buu.note.exception.CustomException;
 import cn.buu.note.exception.ErrorEnum;
@@ -25,11 +27,14 @@ import cn.buu.note.service.login.LoginService;
 
 @Controller
 @RequestMapping("/login")
-@CrossOrigin       //处理跨域请求
+@CrossOrigin(allowCredentials="true",allowedHeaders="*")     //处理跨域请求
 public class LoginController extends BaseController{
 	private static Logger logger = Logger.getLogger(LoginController.class);
 		@Resource
 		private LoginService loginService;
+		
+		@Resource
+		private RedisOperator redisOperator;
 
 		Map data = new HashMap();
 		@RequestMapping("/test")
@@ -50,11 +55,13 @@ public class LoginController extends BaseController{
 		 */
 		@RequestMapping("/setUserStorage")
 		@ResponseBody
-		public JsonResult setUserStorage(HttpSession session) throws Exception {
+		public JsonResult setUserStorage(HttpServletRequest request) throws Exception {
 			Integer phone ;
 			UserDao user = null;
 			try {
-				 phone = Integer.parseInt(session.getAttribute("phone").toString());
+				String sessionId =  request.getSession().getId();
+				String p = redisOperator.get(sessionId);
+				 phone = Integer.parseInt(p);
 				 user = loginService.getUserByPhone(phone);
 			}catch(Exception e) {
 				e.printStackTrace();
@@ -73,8 +80,7 @@ public class LoginController extends BaseController{
 		@RequestMapping("/getUserPhone")
 		@ResponseBody
 		public JsonResult getUserPhone(HttpSession session) throws Exception {
-			session.setAttribute("phone", 666);
-			Object phone = session.getAttribute("phone");
+			Object phone = redisOperator.get(session.getId());
 			return new JsonResult(phone);
 		}
 		
@@ -125,6 +131,8 @@ public class LoginController extends BaseController{
 			if(email==null&&email.isEmpty()) {						//邮箱正则
 				throw new CustomException(ErrorEnum.ILL_PARAMETER_ERROR,"邮箱格式错误");
 			}
+			//是否注册过
+			
 			//保存用户
 			loginService.saveUser(userDao);
 			//发送邮箱激活码
@@ -135,21 +143,32 @@ public class LoginController extends BaseController{
 		 * 登录
 		 * @param phone
 		 * @param pwd
-		 * @param openId
+		 * @param openId.
 		 * @return
 		 * @throws Exception
 		 */
 		@RequestMapping(value="/{phone}/{pwd}/{openId}/login",method= {RequestMethod.GET},consumes= {CONTENT_TYPE_FORMED})
 		@ResponseBody
-		public JsonResult login(HttpSession session , @PathVariable String phone,@PathVariable String pwd,@PathVariable String openId) throws Exception {
+		public JsonResult login(HttpServletRequest request , @PathVariable String phone,@PathVariable String pwd,@PathVariable String openId) throws Exception {
+				openId="15245sdgdsf55sadda";
 				logger.info("login:"+phone+" , "+pwd+" , "+openId);
-				if(openId.equals("0000")) {
+				//if(openId.equals("0000")) {
 					boolean b = loginService.checkUser(phone,pwd);
 					if(b) {
 						b = loginService.ifAclitave(phone);
 						if(b) {
 							//登陆成功
-							session.setAttribute("phone", phone);
+							//session.setAttribute("phone", phone);
+							String sessionId = request.getSession().getId();
+							redisOperator.set(sessionId, phone);
+							//更新cid
+							try {
+								if(!openId.equals("")&&openId.length()>0) {
+									loginService.updataCID(Integer.parseInt(phone),openId);
+								}
+							}catch(Exception e) {
+								e.printStackTrace();
+							}
 							return new JsonResult();
 						}else {
 							throw new CustomException(ErrorEnum.ILL_PARAMETER_ERROR,"用户未激活");
@@ -158,16 +177,5 @@ public class LoginController extends BaseController{
 					}else {
 						throw new CustomException(ErrorEnum.ILL_PARAMETER_ERROR,"用户名或密码错误");
 					}
-				}else {
-					UserDao userDao = loginService.selUserByOpenId(openId);
-					if(userDao==null) {
-						//第一次用微信登录
-						return new JsonResult(2,"第一次微信登录");
-					}else {
-						//登陆成功
-						session.setAttribute("phone", phone);
-						return new JsonResult();
-					}
-				}
 		}
 }

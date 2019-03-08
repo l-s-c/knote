@@ -1,5 +1,7 @@
 package cn.buu.note.dao;
 
+import org.apache.ibatis.annotations.Param;
+
 import cn.buu.note.entity.UserDao;
 
 public interface UserDaoMapper {
@@ -20,6 +22,8 @@ public interface UserDaoMapper {
 	UserDao selectUserByPhone(Integer phone);
 
 	boolean ifAclitvate(Integer parseInt);
+
+	void updateCID(@Param("phone") Integer phone, @Param("openId")String openId);
 
 	/*UserDao getUserByPhone(Integer phone);*/
 }

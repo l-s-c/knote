@@ -128,4 +128,11 @@
       modify_time = #{modifyTime,jdbcType=TIMESTAMP}
     where phone =#{phone,jdbcType=INTEGER}
   </update>
+  
+    <update id="updateCID">
+    update user_info
+    set 
+    open_id = #{openId,jdbcType=VARCHAR}
+    where phone =#{phone,jdbcType=INTEGER}
+  </update>
 </mapper>
