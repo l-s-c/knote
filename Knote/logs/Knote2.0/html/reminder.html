@@ -24,13 +24,16 @@
 		<header class="mui-bar mui-bar-nav">
 		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 		<h1 class="mui-title">内容设置</h1>
-		<button style="float: right; margin-top:8px;" id="saveRemind" onclick="reminder.saveReminder();">保存</button>
-	</header>
+		
+		<img src="../images/save.png" style="float: right; margin-top:8px;height: 30px;" id="saveRemind" onclick="reminder.saveReminder();"></img>
+		
+		</header>
 	<br />
 	<br />
 	<div id="remindText" contenteditable="true">
 		
 	</div>
+	<input type="hidden" name="id" id="hiId" value="" />
 	<div class="">
 		<button id="color" style="background-color: #000000;"></button>
 		<button id="color" style="background-color: red;"></button>
@@ -75,21 +78,67 @@
 			var ip;
 			$(function(){
 				ip = getIP();
+				var id = reminder.oneValues();
+				reminder.loadReminderDesc(id);
 			});
 			var reminder = {
 				URL:{
 					saveReminder:function(){
 						return ip+"note/saveReminder";	
+					},
+					loadReminderDesc:function(id){
+						return ip+"note/"+id+"/loadReminderDesc";
 					}
+				},
+								 //接收一个值
+				oneValues:function(){
+						var result;
+						var url=window.location.search; //获取url中"?"符后的字串  
+						if(url.indexOf("?")!=-1){
+						result = url.substr(url.indexOf("=")+1);
+						}
+						return result;
+				},
+				//查询笔记详细内容
+				loadReminderDesc:function(id){
+					var url = reminder.URL.loadReminderDesc(id);
+					$.get(url,function(res){
+						console.log(res);
+						if(res.code==1){
+							//回填数据
+							if(res.data){
+								reminder.addReminder(res.data);
+							}
+						}
+					});
+				},
+				//根据备忘录对象回填数据
+				addReminder:function(data){
+					$('#hiId').val(data.id);
+					$('#remindText').html(data.text);         //备忘录内容
+					if(data.startTime){
+						//开启提醒
+						$('#M_Toggle').addClass("mui-active");
+						$('#remindTime').css('display','');
+						$('#startTime').val(reminder.formatDate(data.startTime));
+						$('#endTime').val(reminder.formatDate(data.endTime));
+						$('input[value='+data.rate+']').attr("checked",true);
+					}
+				},
+				//格式化时间方便页面赋值
+				formatDate:function(datetime){
+					return datetime.replace(" ","T");
 				},
 				//保存备忘录
 				saveReminder:function(){
 					var url = reminder.URL.saveReminder();
+					var id = $('#hiId').val();
 					var remindText = $('#remindText').html();     //备忘录内容
 					var startTime = $('#startTime').val();		//开始提醒时间
 					var endTime = $('#endTime').val();			//提醒结束时间
 					var rate = $('input[name="radio"]:checked').val();	//重复间隔单选框
 					var params  = {
+						id:id,
 						text:remindText,
 						startTime:startTime,
 						endTime:endTime,
@@ -98,6 +147,8 @@
 					$.post(url,params,function(res){
 						if(res.code==1){
 							mui.alert("保存成功")
+						}else{
+							mui.alert(res.msg);
 						}
 					});
 				}
@@ -109,6 +160,8 @@
 				if(isActive){
 					$('#remindTime').css('display','');
 				}else{
+					$('#startTime').val("");
+					$('#endTime').val("");
 					$('#remindTime').css('display','none');
 				}
 			});

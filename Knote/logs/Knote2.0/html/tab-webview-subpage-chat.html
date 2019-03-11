@@ -3,7 +3,6 @@
 
 	<head>
 		<meta charset="utf-8">
-		<title>Hello MUI</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -30,10 +29,11 @@
 
 	<body>
 		<header class="mui-bar mui-bar-nav">
-			<h1 class="mui-title">浏览笔记页</h1>
-			<button style="float: right;" onclick="clicked('barcode_scan.html',true,true)">扫哟</button>
+			<h1 class="mui-title">首3</h1>
+			<span style="float: right;" onclick="clicked('barcode_scan.html',true,true)"><img style="width: 44px;height: 44px;" src="../images/sao.png" /></span>
+			
 		</header>
-		<div id="pullrefresh" class="mui-content mui-scroll-wrapper">
+		<div id="pullrefresh" class="mui-content mui-scroll-wrapper" style="height: 680px;">
 			<div class="mui-scroll">
 		
 			<div id="allNote">
@@ -55,6 +55,8 @@
 		<script src="../js/mui.min.js"></script>
 		<script type="text/javascript" src="../js/jquery-2.1.0.js" ></script>
 		<script type="text/javascript" src="../js/json.js" ></script>
+		<script type="text/javascript" src="../js/note.js" ></script>
+		<script type="text/javascript" src="../js/tabbar.js" ></script>
 		<script>
 			var ip;					//ip地址
 			var flag = false;		//下来加载参数，为true代表没有新内容了
@@ -68,38 +70,26 @@
 						return ip+"note/loadAfterNote";
 					}
 				},
-				//跳转页面
-				tranceForm:function(id){
-				//	window.open("noteDesc.html?id="+id);
-				plus.webview.open('noteDesc.html?id='+id, 'new', {}, 'slide-in-right', 200);
-				},
 				//随机加载页面20条数据
 				loadNote:function (){
 					var url = seeNote.URL.loadNote();
-					$.get(url,function(res){
-						console.log(res);
-						if(res.code==1){
-							seeNote.addNote(res.data);
-						}else{
-							alert(res.msg);
+					$.ajax({
+						url:url,
+						xhrFields:{
+						    withCredentials:true
+						},
+						success:function(res){
+							if(res.code==1){
+								commonNote.addNote(res.data);
+							}else{
+								alert(res.msg);
+							}
+						},
+						error:function(){
+							//跳转errorPage
 						}
+					
 					});
-				},
-				//界面初始数据
-				addNote:function(data){
-					var div = '	<div class="panel panel-default" id="[id]" onclick="seeNote.tranceForm(this.id);">'
-						+	'	<div class="panel-body">'
-						+	'	[title]'
-						+	'	</div>'
-						+	'	<div class="panel-footer"><span>[lable]</span></div>'
-						+	'	</div>';
-					$('#allNote').empty();
-					for(var i=0;i<data.length;i++){
-						var d = div.replace("[id]",data[i].id)
-								   .replace("[title]",data[i].noteTitle)
-								   .replace("[lable]",data[i].label);
-						$('#allNote').append(d);
-					}
 				},
 				//下拉加载追加数据
 				loadAfterNote:function (prefix,suffix){
@@ -108,12 +98,24 @@
 						prefix : prefix,
 						suffix : suffix
 					};
-					$.post(url,params,function(res){
-						console.log(res);
-						if(res.code==1){
-							seeNote.addAfterNote(res.data);
-						}else{
-							alert(res.msg);
+					$.ajax({
+						type:"post",
+						url:url,
+						data:params,
+						async:true,
+						xhrFields:{
+						    withCredentials:true
+						},
+						success:function(res){
+							console.log(res);
+							if(res.code==1){
+								seeNote.addAfterNote(res.data);
+							}else{
+								alert(res.msg);
+							}
+						},
+						error:function(){
+							
 						}
 					});
 				},
@@ -128,9 +130,9 @@
 						var div = document.createElement('div');
 						div.className = 'panel panel-default';
 						div.innerHTML = 
-						'<div class="panel-body" id="'+data[i].id+'">'
-						+data[i].noteTitle+'</div><div class="panel-footer"><span>'
-						+data[i].label+'</span></div>';
+						'<div onclick="index.chooseNoteDesc('+data[i].label+','+data[i].id+');" class="panel-body" id="'+data[i].id+'">'
+						+data[i].noteTitle+'</div><div class="panel-footer"><span style="font-size: 10px;"><img style="height:25px;" src="../images/label.png" />'
+						+data[i].labelDesc+'</span></div>';
 						table.appendChild(div);
 					}
 				}
@@ -143,10 +145,10 @@
 				swipeBack: false,
 				pullRefresh: {
 					container: '#pullrefresh',
-					down: {
+				/*	down: {
 						style:'circle',
 						callback: pulldownRefresh
-					},
+					},*/
 					up: {
 						contentrefresh: '正在加载...',
 						callback: pullupRefresh
@@ -158,6 +160,7 @@
 			 */
 			function pulldownRefresh() { 
 				//查询
+				
 				setTimeout(function() {
 				/*	var table = document.getElementById('allNote');
 					var cells = document.body.querySelectorAll('.panel panel-default');
@@ -172,10 +175,17 @@
 					mui('#pullrefresh').pullRefresh().endPulldownToRefresh(); //refresh completed
 					mui.toast('下拉刷新成功');*/
 					seeNote.loadNote();
+					//加载个人信息
+					me.loadMsg();
+					//加载个人笔记
+					index.loadMyNote();
+					//加载好友
+					//chat.loadFrind();
 					mui('#pullrefresh').pullRefresh().endPulldownToRefresh(); 
 					mui.toast('刷新成功');
+					
 				}, 1000);
-			}
+			}	
 			/**
 			 * 上拉加载具体业务实现
 			 */

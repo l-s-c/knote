@@ -1,0 +1,446 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../css/header.css" />
+		<link rel="stylesheet" type="text/css" href="../css/chat.css" />
+		<style>
+			html,
+			body {
+				height: 100%;
+			}
+			
+			.mui-content {
+				height: 100%;
+				overflow: auto;
+			}
+			
+			.red-point{
+	          position: relative;
+	        }
+	
+	        .red-point::before{
+	          content: " ";
+	          border: 5px solid #C9394A;/*设置红色*/
+	          border-radius:5px;/*设置圆角*/
+	          position: absolute;
+	          z-index: 3000;
+	          right: 0%;
+	          margin-right: -10px;
+	          margin-top: 0px;
+	        }
+		</style>
+	</head>
+
+	<body>
+		<!--<header class="mui-bar mui-bar-nav" id="phead">
+			<span><img style="height: 44px;" src="../images/close.png" onclick="chat.backFirstTapper();"></span>
+		    <h1 class="mui-title"><b id="chatting-nickname">通讯录</b></h1>
+		</header>-->
+		<div>
+		</div>
+		<div class="mui-content" id="chatlist">
+			<ul class="mui-table-view" id="ul_friend_request_list" style="margin-bottom: 10px;">
+				
+				<li class="mui-table-view-cell mui-media" id="[phone]" onclick="chat.tranceform(this.id);">
+					<div class="mui-slider-right mui-disabled">
+						<a class="mui-btn mui-btn-red" id="[phone]" onclick="delChat(this.id);">删除</a>
+					</div>
+		            <div class="mui-slider-handle mui-media-body">
+			            <img class="mui-media-object mui-pull-left" src="image/face-default-cat.png"/>
+			            	<span class="red-point">[remark]</span>
+			            <p class="mui-ellipsis">这里是聊天内容...</p>
+		            </div>
+			    </li>
+			    
+			</ul>
+		</div>
+		
+		
+	<!--单页面，聊天页-->	
+		<div contextmenu="return false;" id="chatting" style="display: none;">
+
+		<!--<header class="mui-bar mui-bar-nav title" style="position: fixed;">
+			<a class="mui-icon mui-icon-left-nav mui-pull-left title-color" onclick="chat.backChatList();"></a>
+			<h1 class="mui-title title-color"><b id="chatting-nickname"></b></h1>
+		</header>-->
+
+		<div id="msg-outter" class="mui-content">
+			<div id='msg'>
+				
+				<div class="friend_lists">
+					<div class="header_img">
+						<img src="image/face-default-cat.png" width="40px" height="40px" />
+					</div>
+					<div class="msg-wrapper right">
+						<p class="msg-left-white">晚上过来吃饭？</p>
+					</div>
+				</div>
+
+				<div class="me_lists">
+					<div class="header_img">
+						<img src="image/face-default-cat.png" width="40px" height="40px" />
+					</div>
+					<div class="msg-wrapper left">
+						<p class="msg-right-green">好的，没问题！时间地点？</p>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		
+		<footer>
+			<div class="footer-center">
+				<textarea id='msg-text' type="text" class='input-text'></textarea>
+			</div>
+			<label for="" class="footer-right">
+				<button type="button" class="mui-btn mui-btn-gray" id="send">发送</button>
+			</label>
+		</footer>
+	</div>
+		
+		
+		<script type="text/javascript" src="../js/jquery-2.1.0.js" ></script>
+		<script type="text/javascript" src="../js/json.js" ></script>
+		<script type="text/javascript" src="../js/app.js" ></script>
+			<script type="application/javascript">
+				var ip ;
+				$(function(){
+					ip = getIP();
+					CHAT.init();
+					chat.loadFrind();
+				});
+		// 构建聊天业务CHAT
+			window.CHAT = {
+				nettyServerUrl:"ws://10.11.64.198:8088/ws",
+				socket: null,
+				init: function() {
+					if (window.WebSocket) {
+						
+						// 如果当前的状态已经连接，那就不需要重复初始化websocket
+						if (CHAT.socket != null 
+							&& CHAT.socket != undefined 
+							&& CHAT.socket.readyState == WebSocket.OPEN) {
+							return false;
+						}
+						
+						CHAT.socket = new WebSocket(CHAT.nettyServerUrl);
+						CHAT.socket.onopen = CHAT.wsopen,
+						CHAT.socket.onclose = CHAT.wsclose,
+						CHAT.socket.onerror = CHAT.wserror,
+						CHAT.socket.onmessage = CHAT.wsmessage;
+					} else {
+						alert("手机设备过旧，请升级手机设备...");
+					}
+				},
+				chat: function(msg) {
+					
+					// 如果当前websocket的状态是已打开，则直接发送， 否则重连
+					if (CHAT.socket != null 
+							&& CHAT.socket != undefined  
+							&& CHAT.socket.readyState == WebSocket.OPEN) {
+							CHAT.socket.send(msg);
+					} else {
+						// 重连websocket
+						CHAT.init();
+						setTimeout("CHAT.reChat('" + msg + "')", "1000");
+					}
+					
+				},
+				reChat: function(msg) {
+					console.log("消息重新发送...");
+					CHAT.socket.send(msg);
+				},
+				wsopen: function() {
+					console.log("websocket连接已建立...");
+					var me = app.getUserGlobalInfo();
+					// 构建ChatMsg
+					var chatMsg = new app.ChatMsg(me.phone, null, null, null);
+					// 构建DataContent
+					var dataContent = new app.DataContent(app.CONNECT, chatMsg, null);
+					// 发送websocket
+					CHAT.chat(JSON.stringify(dataContent));
+					
+					// 每次连接之后，获取用户的未读未签收消息列表
+					//fetchUnReadMsg();
+					
+					// 定时发送心跳
+					//setInterval("CHAT.keepalive()", 10000);
+				},
+				wsmessage: function(e) {
+					console.log("接受到消息：" + e.data);
+					console.log("json:"+JSON.parse(e.data));
+					receiveMsg(JSON.parse(e.data).msg);
+				},
+				wsclose: function() {
+					console.log("连接关闭...");
+				},
+				wserror: function() {
+					console.log("发生错误...");
+				}
+				
+			};
+			
+			
+var chat = {
+	URL:{
+		loadFrind:function(){
+			return ip+"chat/loadFrind";
+		}
+	},
+	//初始加载，展示页好友
+	loadFrind:function(){
+		var url = chat.URL.loadFrind();
+		$.ajax({
+			type:"post",
+			url:url,
+			async:true,
+			xhrFields:{
+				withCredentials:true
+			},
+			success:function(res){
+				if(res.code==1){
+					chat.addFrind(res.data);
+				}else if(res.code==702){
+					alert("登录失效，请重新登录");
+				}
+				
+			},
+			error:function(){
+				
+			}
+		});
+	},
+	//将个人好友回填界面
+	addFrind:function(data){
+	 var li  = '<li class="mui-table-view-cell mui-media" >'
+			+	'	<div class="mui-slider-right mui-disabled">'
+			+	'		<a class="mui-btn mui-btn-red" id="[phone]" onclick="delChat(this.id);">删除</a>'
+			+	'	</div>'
+		    +   '    <div class="mui-slider-handle mui-media-body"  onclick=\'chat.tranceform([data]);\'>'
+			+    '        <img class="mui-media-object mui-pull-left" src="images/K.png"/>'
+			+    '        	<span class="red-point">[remark]</span>'
+			+    '        <p class="mui-ellipsis">这里是聊天内容...</p>'
+		    +    '    </div>'
+			+    '</li>';
+		$('#ul_friend_request_list').empty();
+		for(var count = 0;count<data.length;count++){
+			var l = li.replace("[data]",JSON.stringify(data[count]))
+					  .replace("[phone]",data[count].frPhone)
+					  .replace("[remark]",data[count].remark);
+			$('#ul_friend_request_list').append(l);
+		}
+	},
+	//跳转到聊天窗口
+	tranceform:function(data){
+		document.getElementById('chatlist').style.display = 'none';
+		document.getElementById('chatting').style.display = '';
+		$('#nav').hide();
+		$('#closeMenu').show();
+		chatReady(data);
+	},
+	backChatList:function(){
+		document.getElementById('chatlist').style.display = '';
+		document.getElementById('chatting').style.display = 'none';
+		$('#closeMenu').hide();
+		$('#nav').show();
+		$('.mui-title').text("通讯录");
+	},
+	backFirstTapper:function(){
+		mui.back();
+	}
+};
+			
+			
+			
+			
+			</script>	
+			
+			<script>
+				
+				// 获取上一个页面传入的好友属性值
+				var friendUserId;
+				var friendNickname;
+				var friendFaceImage;
+				function chatReady(data){
+					// 获取我自己的用户信息					
+					var me = app.getUserGlobalInfo();
+					//console.log("datajson:"+JSON.stringify(data));
+					friendUserId = data.frPhone;
+					friendNickname = data.frPhone;
+					//friendFaceImage = data.headPath;
+					// 标题改为朋友的昵称
+					$('.mui-title').text(friendNickname);
+					//document.getElementById("chatting-nickname").innerHTML = "123";
+					
+					
+					// 渲染初始化的聊天记录HTML
+					//initChatHistory();
+					
+					var areaMsgList = document.getElementById("msg");
+					// 设置聊天记录进入页面的时候自动滚动到最后一条
+					areaMsgList.scrollTop = areaMsgList.scrollHeight + areaMsgList.offsetHeight;
+					
+					// 获取dom控件
+					var msg_text = document.getElementById("msg-text");
+					var send = document.getElementById("send");
+					
+					// 监听用户输入，使得send按钮变色
+					msg_text.addEventListener("input", function(){
+						var msg_text_val = msg_text.value;
+						if (msg_text_val.length > 0) {
+							send.setAttribute("class", "mui-btn-green");
+						} else {
+							send.setAttribute("class", "mui-btn-gray");
+						}
+					});
+					
+					// 对当前的窗口监听resize事件
+					window.addEventListener("resize", function(){
+						resizeScreen();
+						document.getElementById("msg-outter").style.paddingBottom = "5px";
+					});
+		
+					// 发送消息按钮的事件绑定
+					send.addEventListener("tap", function(){
+						
+						// 发送之前判断网络的状态
+						var connectionStatus = plus.networkinfo.getCurrentType();
+						if (connectionStatus == 0 || connectionStatus == 1) {
+							app.showToast("请打开网络连接...", "error");
+							return;
+						}
+						
+						// 获取消息内容
+						var msg_text_val = msg_text.value;
+						
+						// 判断消息内容，如果长度等于0，则return
+						if (msg_text_val.length === 0) {
+							return;
+						}
+						
+						// 发送消息, 渲染消息的html到msg div之下
+						sendMsg("image/face-default-cat.png", msg_text_val);
+						
+						resizeScreen();
+						
+						// 情况消息文本框中的内容
+						msg_text.value = "";
+						// 发送消息完毕之后，把发送按钮的颜色改为灰白色
+						send.setAttribute("class", "mui-btn-gray");
+						
+						// 构建ChatMsg
+						var chatMsg = new app.ChatMsg(me.phone, friendUserId, msg_text_val, null);
+						// 构建DataContent
+						var dataContent = new app.DataContent(app.CHAT, chatMsg, null);
+						
+						// 调用websocket 发送消息到netty后端
+						CHAT.chat(JSON.stringify(dataContent));
+						
+						// 保存聊天历史记录到本地缓存
+						app.saveUserChatHistory(me.phone, friendUserId, msg_text_val, 1);
+						app.saveUserChatSnapshot(me.phone, friendUserId, msg_text_val, true);
+						//receiveMsg("模拟接受消息~~~~~~");
+					});
+				}
+				
+				// 接受消息
+				function receiveMsg(msg) {
+					
+					var msgHtml = '<div class="friend_lists">' +
+										'<div class="header_img">' +
+											'<img src="' + app.imgServerUrl + friendFaceImage + '" width="40px" height="40px" />' +
+										'</div>' +
+										'<div class="msg-wrapper right">' +
+											'<p class="msg-left-white">' + msg + '</p>' +
+										'</div>' +
+								  '</div>'; 
+					
+					var msg_list = document.getElementById("msg");
+					msg_list.insertAdjacentHTML("beforeend", msgHtml);
+					
+					playReceiveMsgSound();
+				}
+				
+				// 发送消息
+				function sendMsg(faceImg, msg) {
+					
+					var msgHtml = '<div class="me_lists">' +
+									'<div class="header_img">' +
+										'<img src="' + faceImg + '" width="40px" height="40px" />' +
+									'</div>' +
+									'<div class="msg-wrapper left">' +
+										'<p class="msg-right-green">' + msg + '</p>' +
+									'</div>' +
+								  '</div>';
+					var msg_list = document.getElementById("msg");
+					msg_list.insertAdjacentHTML("beforeend", msgHtml);
+					
+					playSendMsgSound();
+				}
+				
+				// 播放发送消息的铃声
+				function playSendMsgSound() {
+					var audioPlayer = plus.audio.createPlayer("/mp3/send.mp3");
+					audioPlayer.play();
+				}
+				
+				// 播放接受消息的铃声
+				function playReceiveMsgSound() {
+					var audioPlayer = plus.audio.createPlayer("/mp3/di_didi.mp3");
+					audioPlayer.play();
+				}
+				
+				// 重新调整聊天窗口
+				function resizeScreen() {
+					var areaMsgList = document.getElementById("msg");
+					// 设置聊天记录进入页面的时候自动滚动到最后一条
+					areaMsgList.scrollTop = areaMsgList.scrollHeight + areaMsgList.offsetHeight;
+				};
+				
+//			}(mui, document));
+			
+			// 初始化用户的聊天记录
+			function initChatHistory() {
+				var msg_list = document.getElementById("msg");
+				
+				var me = app.getUserGlobalInfo();
+				var myId = me.phone;
+				var myFaceImg = me.headPath;
+
+				var chatHistoryList = app.getUserChatHistory(myId, friendUserId);
+				
+				var togetherHTML = "";
+				
+				for (var i = 0 ; i < chatHistoryList.length ; i ++) {
+					var singleMsg = chatHistoryList[i];
+					if (singleMsg.flag == 1) {
+						togetherHTML += '<div class="me_lists">' +
+									'<div class="header_img">' +
+										'<img src="' + app.imgServerUrl + myFaceImg + '" width="40px" height="40px" />' +
+									'</div>' +
+									'<div class="msg-wrapper left">' +
+										'<p class="msg-right-green">' + singleMsg.msg + '</p>' +
+									'</div>' +
+								  '</div>';
+					} else {
+						togetherHTML += '<div class="friend_lists">' +
+										'<div class="header_img">' +
+											'<img src="' + app.imgServerUrl + friendFaceImage + '" width="40px" height="40px" />' +
+										'</div>' +
+										'<div class="msg-wrapper right">' +
+											'<p class="msg-left-white">' + singleMsg.msg + '</p>' +
+										'</div>' +
+								  '</div>';
+					}
+				}
+				msg_list.innerHTML = togetherHTML;
+			}
+
+			</script>
+	</body>
+</html>

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Service;
 
 import cn.buu.note.dao.FriendDaoMapper;
+import cn.buu.note.dao.RedisOperator;
 import cn.buu.note.entity.FriendDao;
 import cn.buu.note.exception.CustomException;
 import cn.buu.note.exception.ErrorEnum;
@@ -18,6 +19,8 @@ public class ChatServiceImpl implements ChatService{
 	private FriendDaoMapper friendDaoMapper;
 	@Resource
 	private HttpSession session;
+	@Resource
+	private RedisOperator redisOperator;
 	@Override
 	public List<FriendDao> loadAllFrind() throws Exception {
 		List<FriendDao> list = null;
@@ -34,8 +37,15 @@ public class ChatServiceImpl implements ChatService{
 		return list;
 	}
 	@Override
-	public List<FriendDao> loadShowFrind(Integer myPhone) throws Exception {
+	public List<FriendDao> loadShowFrind() throws Exception {
 		List<FriendDao> list = null;
+		Integer myPhone = null;
+		try {
+			myPhone = Integer.parseInt(redisOperator.get(session.getId()));
+		}catch(Exception e) {
+			e.printStackTrace();
+			throw new CustomException(ErrorEnum.USER_LOSE_ERROR);
+		}
 		System.out.println("myphone:"+myPhone);
 		try {
 			list = friendDaoMapper.selectShowByMyPhone(myPhone);

@@ -111,12 +111,10 @@
 	</form>
 	<p id="errorMsg"></p>
 	<div class="mui-content-padded">
-		<button id='login' class="mui-btn mui-btn-block mui-btn-primary">登录</button>
-		<button type="button" class="mui-btn mui-btn-block mui-btn-primary">确认</button>
-
+		<button id='login' class="mui-btn mui-btn-block mui-btn-primary" onclick="loginSub();">登录</button>
 		<div class="link-area"><a id='reg' href="reg.html">注册账号</a> <span class="spliter">|</span> <a id='forgetPassword' href="html/forget_password.html?type=1">忘记密码</a>
 		</div>
-	
+	CID:<input id="cid" />
 	</div>
 	<div class="mui-content-padded oauth-area">
 
@@ -133,17 +131,81 @@
 <script src="../js/jquery-2.1.0.js"></script>
 <script src="../js/mui.min.js"></script>
 <script type="text/javascript" src="../js/json.js" ></script>
+<script type="text/javascript" src="../js/app.js" ></script>
 <script>
 			var ip;
-			$(function(){
+			//ip = "http://10.11.64.198:8888/";
+			var cid ;
+			mui.plusReady(function(){
+				 cid = plus.push.getClientInfo().clientid
+				$('#cid').val(cid);							
 				ip = getIP();
-				$('.mui-content-padded').on('click','#login',loginSub);
+			//	$('.mui-content-padded').on('click','#login',loginSub);
+				var me = app.getUserGlobalInfo();
+				//plus.storage.removeItem("userInfo");
+				//console.log("me:"+me.phone);
+				/*if(me){
+					window.location.href="tabbar.html";
+				}*/
+				//自动登录,记录缓存
+				login.loginAutomatic(me.phone);
 			});
 			var login = {
 					url:{
-						login:function(phone,pwd,openId){
-							return ip+"login/"+phone+"/"+pwd+"/"+openId+"/login";
+						login:function(){
+							return ip+"login/login";
+						},
+						setUserStorage:function(){
+							return ip+"login/setUserStorage";
+						},
+						loginAutomatic:function(){
+							return ip+"login/loginAutomatic";
 						}
+					},
+					//登陆后设置用户缓存
+					setUserStorage:function(){
+						var url = login.url.setUserStorage();
+						
+						$.ajax({
+							type:"get",
+							url:login.url.setUserStorage(),
+							async:true,
+							xhrFields:{
+						    withCredentials:true
+							},
+							success:function(res){
+								if(res.code==1){
+								app.setUserGlobalInfo(res.data);
+								window.location.href="tabbar.html";
+							}else{
+								alert(res.msg);
+							}
+							}
+						});
+					},
+					//自动登录
+					loginAutomatic:function(phone){
+						var url = login.url.loginAutomatic();
+						var params = {
+							phone:phone
+						};
+						$.ajax({
+							type:"post",
+							url:url,
+							async:true,
+							data:params,
+							dataType:"json",
+							success:function(res){
+								if(res.code==1){
+									window.location.href="tabbar.html";
+								}else{
+									alert(res.msg);
+								}
+							},
+							error:function(){
+								
+							}
+						});
 					}
 			}
 			
@@ -167,29 +229,39 @@ function createLocalPushMsg(){
 			function loginSub(){
 				var phone = $('#account').val();
 				var pwd = $('#password').val();
+			
 				if(!phone||!pwd){
 					alert("账号或密码不允许为空");
 					return ;
 				}
-				var openId = "0000";
-				var url =  login.url.login(phone,pwd,openId);
-
+				var openId = cid;
+				var url =  login.url.login();
+				console.log(url)
+				var params = {
+					phone:phone,
+					pwd:pwd,
+					openId:openId
+				};
 			  $.ajax({
-				type:"get",
-				contentType:"application/x-www-form-urlencoded",
-				url:url,
-				data:{},
+				type:"post",
+				url:url,	
+				data:params,
 				dataType:"json",
+				async:true,
+				xhrFields:{
+				    withCredentials:true
+				},				
 				success:function(res){
 					console.log(res);
 					if(res.code==1){
-						window.location.href="tabbar.html";
+						//查询用户对象，保存到内存
+						login.setUserStorage();
 					}else{
 						alert("失败："+res.msg);
 					}
 				},
 				error:function(res){
-					alert("发送失败-发生错误："+res.responseText);
+					alert("发生错误："+res.msg);
 				}
 			});
 			}

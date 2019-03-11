@@ -19,7 +19,7 @@ import cn.buu.note.service.note.NoteService;
 
 @Controller
 @RequestMapping("/note")
-@CrossOrigin
+@CrossOrigin(allowCredentials="true",allowedHeaders="*") 
 public class NoteController extends BaseController{
 	 @Resource
 	 private NoteService noteService;

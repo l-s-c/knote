@@ -8,123 +8,218 @@
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 		<!--标准mui.css-->
 		<link rel="stylesheet" href="../css/mui.min.css">
-				<script type="text/javascript" src="../js/common.js" ></script>
-		<!--App自定义的css-->
-		<!-- <link rel="stylesheet" type="text/css" href="../css/app.css" /> -->
-		<style>
-			h5 {
-				margin: 5px 7px;
+	<style>
+			.head {
+				height: 40px;
 			}
-			#addsel{
-				width: 115px;
-			    position: absolute;
-			    right: 0px;
+			#head {
+				line-height: 40px;
 			}
-		
-		</style>
+			.head-img {
+				width: 40px;
+				height: 40px;
+			}
+			#head-img1 {
+				position: absolute;
+				bottom: 10px;
+				right: 40px;
+				width: 40px;
+				height: 40px;
+			}
+			#sq{
+				border-radius: 16px;
+			    border-top-right-radius: 16px;
+			    border-top-left-radius: 16px;
+			    background-color: #FFFFFF;
+			    width: 44%;
+			    height: 444px;
+			    display: none;
+			    position: fixed;
+			    top: 20%;
+			    left: 30%;
+			    z-index: 1111;
+			}
+			#cover{ 
+			    position:fixed;left:0px;top:0px;
+			    background:rgba(92, 73, 73, 0.37);
+			    width:100%;  /*宽度设置为100%，这样才能使隐藏背景层覆盖原页面*/
+			    height:100%;
+			    filter:alpha(opacity=60);  /*设置透明度为60%*/
+			    opacity:0.6;  /*非IE浏览器下设置透明度为60%*/
+			    display:none; 
+			    z-Index:999;  
+			}
+	</style>
 	</head>
 
 	<body>
-		<header class="mui-bar mui-bar-nav">
-			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-			<h1 class="mui-title">个人信息</h1>
-	
-		</header>
-		<div class="mui-content">
-			<div class="mui-content-padded" style="margin: 5px;">
 
-				<form class="mui-input-group">
-					
-								<div id="head">
-			 <div class="mui-content-padded" id="my" >
-		       <!-- <button type="button" class="mui-btn mui-btn-block" ><p id="userName">12</p></button>-->
-		        <img src="../images/logo.png" id="head" onclick="plus.webview.open('img.html', 'new', {}, 'slide-in-right', 200);"/>
-		     </div>			
+				<!--单页面-->
+				<div id="account" class="mui-page">
+			<div class="mui-navbar-inner mui-bar mui-bar-nav">
+				<button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
+					<span class="mui-icon mui-icon-left-nav"></span>我
+				</button>
+				<h1 class="mui-center mui-title">账号</h1>
 			</div>
-					
-						<div class="mui-input-row">
-						<label>手机号</label>
-						<input type="text" class="mui-input-numbox" placeholder="" id="phone">
+			<div class="mui-page-content">
+				<div class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<ul class="mui-table-view">
+							<br />
+							<br />
+							<li class="mui-table-view-cell">
+								<a id="head" class="mui-navigate-right">头像
+								<span class="mui-pull-right head">
+									<img class="head-img mui-action-preview" id="head-img1" src="images/60x60.gif"/>
+								</span>
+							</a>
+							</li>
+				
+						</ul>
+						<ul class="mui-table-view">
+							
+							<li class="mui-table-view-cell">
+								<a>手机号<span class="mui-pull-right" id="phone"></span></a>
+							</li>
+							<li class="mui-table-view-cell">
+								<a onclick="me.showCode();">二维码<span class="mui-pull-right"><img style="height:18px;" src="../images/twiceCode.png" /></span></a>
+							</li>
+						</ul>
 					</div>
-
-						<div class="mui-input-row">
-						<label>code</label>
-						<input type="text" class="mui-input-numbox"  id="lunch">
-					</div>
-	
-					<div class="mui-button-row">
-						<button type="button" class="mui-btn mui-btn-primary" onclick="savePersonMsg();">确认</button>&nbsp;&nbsp;
-						<button type="button" class="mui-btn mui-btn-danger" onclick="reload();">重置</button>
-					</div>
-					<input type="file"  style="float: right;"/>
-				</form>
-
+				</div>
 			</div>
-
 		</div>
 
+		    <!--遮罩层-->
+    <div id="cover"></div>
+    <!--弹窗-->
+		<div id="sq">
+			<p style="background-color: #000000; border-top-right-radius: 16px;border-top-left-radius: 16px;position: absolute;height: 8%;width: 100%;top: -20px;">
+				<a class="mui-icon mui-icon-left-nav mui-pull-left" onclick="$('#sq').hide();$('#cover').hide();"></a>
+				<br />
+				<br />
+				<br />
+				<br />
+				<div style="margin: 25px;">
+						<div id="code">
+			
+						</div>
+				</div>
+			
+			</p>
+		</div>
 		<script src="../js/mui.min.js"></script>
-		<script type="text/javascript" src="../js/immersed.js" ></script>		
 		<script type="text/javascript" src="../js/jquery-2.1.0.js" ></script>
 		<script type="text/javascript" src="../js/json.js" ></script>
+		<script type="text/javascript" src="../js/jquary.qrcode.js" ></script>
 		<script>
 			var ip ;
 			$(function(){
-				showPersonMsg();
-			});
-			/**
-			 * 展示个人基本信息
-			 */
-			function showPersonMsg(){
 				ip = getIP();
-				var url = ip+"login/showPersonMsg.do";
-				var userId="<%=session.getAttribute('userId')%>"; 
-				var params = {
-					userId:userId
-				};
-				$.post(url,function(res){
-					if(res.state==1){
-						console.log(res.data);
-						addPersonMsg(res.data);
+				me.loadMsg();
+			});
+			var me = {
+			url:{
+				loadMsg:function(){
+					return ip+"me/loadMsg";
+				}
+			},
+			loadMsg:function(){
+				var url = me.url.loadMsg();
+				$.get(url,function(res){
+					if(res.code==1){
+						//回填个人信息
+						$('#phone').html(res.data.phone);
+						$('#head-img1').attr("src",res.data.headPath);
 					}
 				});
-			}
-			/**
-			 * 添加信息到页面
-			 */
-			function addPersonMsg(data){
-				$('#userName').val(data[0].userName);
-				$('#phone').val(data[0].phone);
-				$('#breakfast').val(data[0].breakfast);
-				$('#lunch').val(data[0].lunch);
-				$('#dinner').val(data[0].dinner);
-			}
-			
-			
-			/**
-			 * 保存修改信息
-			 */
-			function savePersonMsg(){
-				var userName = $('#userName').val();
-				var phone = $('#phone').val();
-				var breakfast = $('#breakfast').val();
-				var lunch = $('#lunch').val();
-				var dinner = $('#dinner').val();
-				var url = ip+"login/savePersonMsg.do";
-				var params = {
-					userName:userName,
-					phone:phone,
-					breakfast:breakfast,
-					lunch:lunch,
-					dinner:dinner
-				};
-				$.post(url,params,function(res){
-					if(res.state==1){
-						//更新成功
-						alert("ok");
-					}
+			},
+			//展示个人二维码
+			showCode:function(){
+				$('#sq').show();
+				$('#cover').show();
+				var phone = $('#phone').text();
+				$("#code").empty();
+				$("#code").qrcode({ 
+				    render: "table", //table方式 
+				    width: 400, //宽度 
+				    height:400, //高度 
+				    text: "friend:"+phone //任意内容 
 				});
 			}
+		};
+
+
+		//更换头像
+		mui(".mui-table-view-cell").on("tap", "#head", function(e) {
+			if(mui.os.plus){
+				var a = [{
+					title: "拍照"
+				}, {
+					title: "从手机相册选择"
+				}];
+				plus.nativeUI.actionSheet({
+					title: "修改头像",
+					cancel: "取消",
+					buttons: a
+				}, function(b) {
+					switch (b.index) {
+						case 0:
+							break;
+						case 1:
+							getImage();
+							break;
+						case 2:
+							galleryImg();
+							break;
+						default:
+							break
+					}
+				})	
+			}
+			
+		});
+		
+		    		// 拍照获取图片  
+				function getImage () {  
+				    var c = plus.camera.getCamera();  
+				    c.captureImage(function(e) {  
+				        plus.io.resolveLocalFileSystemURL(e, function(entry) {  
+				            var imgSrc = entry.toLocalURL() + "?version=" + new Date().getTime(); //拿到图片路径  
+				           	  setHtml(imgSrc);  
+				        }, function(e) {  
+				            console.log("读取拍照文件错误：" + e.message);  
+				        });  
+				    }, function(s) {  
+				        console.log("error" + s);  
+				    }, {  
+				        filename: "_doc/camera/"  
+				    })  
+				}
+				// 从相册中选择图片   
+				function galleryImg (){  
+					    plus.gallery.pick( function(e){  
+					        for(var i in e.files){  
+					            var fileSrc = e.files[i]  
+					            setHtml(fileSrc);  
+					        }   
+					    }, function ( e ) {  
+					        console.log( "取消选择图片" );  
+					    },{  
+					        filter: "image",  
+					        multiple: true,  
+					        maximum: 1,  								//最大张数
+					        system: false,  
+					        onmaxed: function() {  
+					            plus.nativeUI.alert('只能选择1张图片');  
+					        }  
+					    });  
+				} 
+				//更换背景图 （被编辑的图片）
+				function setHtml(fileSrc){
+					$('#head-img1').attr("src",fileSrc);		  	
+				}
 		</script>
 	</body>
 

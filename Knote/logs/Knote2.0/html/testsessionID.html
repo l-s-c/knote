@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<div>
+			<button onclick="ajaxtest();"></button>
+			
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript" src="../js/jquery-2.1.0.js" ></script>
+		<script type="text/javascript">
+			
+			
+				function ajaxtest(){
+				var url = "http://10.11.64.198:8888/t";
+				$.ajax({
+				    url: url,
+				    type: 'POST',
+				    async:true,
+				    xhrFields:{
+				        withCredentials:true
+				    },
+				    success: function(respon){
+				        
+				    },
+				    error: function(){
+				        alert('服务器发生错误！');
+				    }
+				});
+			}
+		</script>
+	</body>
+
+</html>

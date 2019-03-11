@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import cn.buu.note.dao.RedisOperator;
 import cn.buu.note.utils.push.AppPush;
 import cn.buu.note.utils.push.PushtoSingle;
 
@@ -28,11 +29,13 @@ public class App{
 	private PushtoSingle ps;
 	@Resource
 	private AppPush ap;
-	
+	@Resource
+	private RedisOperator ro;
 	
 	@RequestMapping("/t")
 	@ResponseBody
 	public List t(HttpSession session) throws Exception {
+		ro.set("s", "s");
 		System.out.println("sesssionIDtest:"+session.getId());
 		return new ArrayList();
 	}
@@ -46,8 +49,8 @@ public class App{
 		
 		
 try {
-	//ps.push("5dd87d313e37716caf840f00c2ec7688");
-	//ap.push("zgc", "chou", "http://www.baidu.com");
+//	ps.push("eb69e766e5e982e8f49e518e77bd2e28");
+//	ap.push("zgc", "chou", "http://www.baidu.com");
 } catch (Exception e) {
 	e.printStackTrace();
 }	

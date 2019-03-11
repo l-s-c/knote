@@ -3,15 +3,14 @@
 
 	<head>
 		<meta charset="utf-8">
-		<title>Hello MUI</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 		<link rel="stylesheet" href="../css/reset.css"> <!-- CSS reset -->
 		<link rel="stylesheet" href="../css/style.css"> <!-- Resource style -->
-					<!--标准mui.css-->
+		<!--标准mui.css-->
 		<link rel="stylesheet" href="../css/mui.min.css">
-	
+		<link rel="stylesheet" href="../css/meNine.css" />
 
 		<style>
 			
@@ -46,18 +45,21 @@
 			.oa-contact-name, oa-contact-position {
 				float: left;
 			}
-					 #code{
+			#code{
 					float: right;
+					width: 27px;
+				    margin-top: 60px;
+				    margin-right: 29px;
 			 }
 			 #my{
 			 	background-color: #FFFFFF;
 			 }
-			 #phone{
+		/*	 #phone{
 			 	position: absolute;
 			    top: 9%;
-			    left: 9%;
+			    left: 15%;
 			    font-size: xx-large;
-			 }
+			 }*/
 			 #imageList{
 			 	float: left;
 			    border: solid;
@@ -79,22 +81,40 @@
 				background-color: #fff;
 			}
 					
-
+			.mui-views,
+			.mui-view,
+			.mui-pages,
+			.mui-page,
+			.mui-page-content {
+				position: absolute;
+				left: 0;
+				right: 0;
+				top: 0;
+				bottom: 0;
+				width: 100%;
+				height: 100%;
+				background-color: #efeff4;
+			}
+			.mui-pages {
+				top: 46px;
+				height: auto;
+			}
 		</style>
 	</head>
 
 	<body>
 		<header class="mui-bar mui-bar-nav">
-			<h1 class="mui-title">底部选项卡-div模式</h1>
+			<h1 class="mui-title">个人笔记</h1>
 			<a class="cd-bouncy-nav-trigger" href="#0" id="addMenu" style="display: none;"><span class="mui-icon mui-icon-plus"></span></a>
+			<a class="cd-bouncy-nav-trigger" href="#0" id="closeMenu" style="display: none;" onclick="chat.backChatList();"><span><img style="height: 44px;" src="../images/close.png"/></span></a>
 		</header>
 		<nav class="mui-bar mui-bar-tab" id="nav">
-			<a class="mui-tab-item mui-active" href="#tabbar">
-				<span class="mui-icon mui-icon-home"></span>
+			<a class="mui-tab-item mui-active" href="#tabbar" id="indexA">
+				<span class="mui-icon mui-icon-home"><span class="mui-badge">9</span></span>
 				<span class="mui-tab-label">首页</span>
 			</a>
 			<a class="mui-tab-item" href="#tabbar-with-chat"  id="noteA">
-				<span class="mui-icon mui-icon-email"><span class="mui-badge">9</span></span>
+				<span class="mui-icon mui-icon-email"></span>
 				<span class="mui-tab-label">笔记</span>
 			</a>
 			<a class="mui-tab-item" href="#tabbar-with-contact" id="phoneA">
@@ -112,6 +132,7 @@
 			</div>
 			<!--個人筆記-->
 			<div id="tabbar-with-chat" class="mui-control-content">
+				
 					<div id="allMyNote">
 			
 			
@@ -120,7 +141,7 @@
 					<div class="cd-bouncy-nav-modal">
 						<nav>
 							<ul class="cd-bouncy-nav">
-								<li><a href="#">智能笔记</a></li>
+								<li><a href="#" id="smart">智能笔记</a></li>
 								<li><a href="#" id="custom">自定义笔记</a></li>
 								<li><a href="#" id="reminder">备忘录</a></li>
 							</ul>
@@ -130,73 +151,86 @@
 				
 			</div>
 			<div id="tabbar-with-contact" class="mui-control-content">
-				<div class="title" style="display: none;"> </div>
-				<ul class="mui-table-view mui-table-view-striped mui-table-view-condensed" id="addPeople">
-				<li class="mui-table-view-cell" id="[phone]" >
-					<div class="mui-slider-cell">
-						<div class="oa-contact-cell mui-table">
-							<div class="oa-contact-avatar mui-table-cell">
-								<img src="../images/60x60.gif" />
-							</div>
-							<div class="oa-contact-content mui-table-cell">
-								<div class="mui-clearfix">
-									<h4 class="oa-contact-name">[name]</h4>
-									<span class="oa-contact-position mui-h6">[remark]</span>
-								</div>
-								<p class="oa-contact-email mui-h6">
-									[phone]
-								</p>
-							</div>
-						</div>
-					</div>
-				</li>
-			</ul>
-			</div>
+				<!--注入HTML-->
+<!--				<iframe name="content_frame" marginwidth=0 marginheight=0 width=100% height=30 src="imooc-chatlist.html" frameborder=0 style="height: 600px;"></iframe>
+-->			</div>
 				<!--我的-->
 			<div id="tabbar-with-map" class="mui-control-content">
 			<div id="head">
-			 <div class="mui-content-padded" id="my" onclick="plus.webview.open('personMsg.html', 'new', {}, 'slide-in-right', 200);">
+			<!-- <div class="mui-content-padded" id="my" onclick="plus.webview.open('personMsg.html', 'new', {}, 'slide-in-right', 200);">
 		        <img src="../images/logo.png" id="head"/>
 		        <p id="phone">12346</p>
-		        <img src="../images/ma.png" id="code"/>
-		     </div>			
+		        <img src="../images/twiceCode.png" id="code"/>
+		     </div>	-->
+		     
+		     <ul class="mui-table-view mui-table-view-chevron">
+				<li class="mui-table-view-cell mui-media">
+					<a class="mui-navigate-right" href="#" onclick="plus.webview.open('personMsg.html', 'new', {}, 'slide-in-right', 200);">
+						<img class="mui-media-object mui-pull-left head-img" id="head-img" src="images/60x60.gif">
+						    <div class="mui-media-body">
+								<p class='mui-ellipsis' id="phone"></p>
+							</div>
+					</a>
+				</li>
+			</ul>
 			</div>
-		<div style="overflow: hidden; background-color: #FFFFFF;">
-			<p id="imageList">1</p>
-			<p id="imageList">2</p>
-			<p id="imageList">3</p>
-			<p id="imageList">4</p>
+		<div>
+			<ul class="mainmenu">
+				<li><a href="#" onclick="plus.webview.open('myLike.html', 'new', {}, 'slide-in-right', 200);"><b><img src="../images/heart.png" /></b><span>我的收藏</span></a></li>
+				<li><a href="#" onclick="plus.webview.open('../index.html', 'new', {}, 'slide-in-right', 200);"><b><img src="../images/follow.png" /></b><span>我的关注</span></a></li>
+				<li><a href="#" onclick="plus.webview.open('setting.html', 'new', {}, 'slide-in-right', 200);"><b><img src="../images/setting.png" /></b><span>设置</span></a></li>
+			<!--	<li><a href="#" ><b><img src="images/tb04.png" /></b><span>成功案例</span></a></li>
+				<li><a href="#" ><b><img src="images/tb05.png" /></b><span>下载中心</span></a></li>
+				<li><a href="#" ><b><img src="images/tb06.png" /></b><span>团队介绍</span></a></li>
+				<li><a href="#" ><b><img src="images/tb06.png" /></b><span>人才招聘</span></a></li>
+				<li><a href="#" ><b><img src="images/tb07.png" /></b><span>联系我们</span></a></li>
+				<li><a href="#" ><b><img src="images/tb08.png" /></b><span>在线留言</span></a></li> -->    	 
+			</ul>
+
 		</div>
-		
 			<ul class="mui-table-view" style="margin-top: 25px;">
 				<li class="mui-table-view-cell">
-					<a style="text-align: center;color: #FF3B30;">
+					<a style="text-align: center;color: #FF3B30;" onclick="logonOut();">
 						退出登录
 					</a>
 				</li>
 			</ul>
 			</div>
 		</div>
+
 	</body>
 	<script type="text/javascript" src="../js/jquery-2.1.0.js" ></script>
 	<script type="text/javascript" src="../js/json.js" ></script>
 	<script type="text/javascript" src="../js/mui.min.js" ></script>
+	<script type="text/javascript" src="../js/note.js" ></script>
 	<script type="text/javascript" src="../js/tabbar.js" ></script>
 	<script type="text/javascript" src="../js/main.js" ></script>
+	<script type="text/javascript" src="../js/app.js" ></script>
 	<script>
-		$('#tabbar').load('tab-webview-subpage-chat.html');
+		$(function(){
+			$('#tabbar').load('tab-webview-subpage-chat.html');
+			$('#tabbar-with-contact').load('imooc-chatlist.html');
+		})
+		
 		$('#addMenu').click(function(){
 			$('#nav').hide();
 			$('#addMenu').hide();
 		});
+		$('#indexA').on("tap",function(){
+			$('.mui-title').text("首页");
+		});
 		$('#noteA').on("tap",function(){
 			$('#addMenu').show();
+			$('.mui-title').text("个人笔记");
 		});
 		$('#phoneA').on("tap",function(){
 			$('#addMenu').hide();
+			$('.mui-title').text("通讯录");
+			
 		});
 		$('#meA').on("tap",function(){
 			$('#addMenu').hide();
+			$('.mui-title').text("我");
 		});
 		$('#custom').on("click",function(){
 			plus.webview.open('customNote.html', 'new', {}, 'slide-in-right', 200);
@@ -204,6 +238,13 @@
 		$('#reminder').on("click",function(){
 			plus.webview.open('reminder.html', 'new', {}, 'slide-in-right', 200);
 		})
+		$('#smart').on("click",function(){
+			plus.webview.open('smart.html', 'new', {}, 'slide-in-right', 200);
+		});
+		function logonOut(){
+			//plus.storage.removeItem("userInfo");
+			window.location.href="index.html";
+		}
 	</script>
 	<script>
 function scaned(t, r, f){
@@ -213,5 +254,4 @@ function scaned(t, r, f){
 	
 }
 	</script>
-	
 </html>

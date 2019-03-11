@@ -14,6 +14,7 @@ import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
 import cn.buu.note.dao.NoteDaoMapper;
+import cn.buu.note.dao.RedisOperator;
 import cn.buu.note.dao.remindDaoMapper;
 import cn.buu.note.entity.NoteDao;
 import cn.buu.note.entity.remindDao;
@@ -34,6 +35,8 @@ public class NoteServiceImpl implements NoteService {
 	private MyScheduler myScheduler;			//定时任务操作类
 	@Resource
 	HttpSession session;
+	@Resource
+	private RedisOperator redisOperator;
 	@Override
 	public List<NoteDao> loadNote(Integer prefix, Integer suffix) throws Exception {
 		List<NoteDao> list = new ArrayList<>();
@@ -49,11 +52,11 @@ public class NoteServiceImpl implements NoteService {
 	}
 	@Override
 	public List<NoteDao> loadMyNote() throws Exception {
-		session.setAttribute("phone",123);
+		
 		List<NoteDao> list = new ArrayList<>();
 		Integer phone = null;
 		try {
-			 phone =Integer.parseInt(session.getAttribute("phone").toString());
+			 phone =Integer.parseInt(redisOperator.get(session.getId()));
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -78,13 +81,13 @@ public class NoteServiceImpl implements NoteService {
 	}
 	@Override
 	public void insertNote(String noteTitle, String noteText,int label) throws Exception {
-		session.setAttribute("phone",123);
 		List<NoteDao> list = new ArrayList<>();
 		Integer phone = null;
 		try {
-			 phone =Integer.parseInt(session.getAttribute("phone").toString());
+			 phone =Integer.parseInt(redisOperator.get(session.getId()));
 		}catch(Exception e) {
 			e.printStackTrace();
+			throw new CustomException(ErrorEnum.USER_LOSE_ERROR);
 		}
 		NoteDao note = new NoteDao();
 		note.setNoteTitle(noteTitle);
@@ -106,10 +109,9 @@ public class NoteServiceImpl implements NoteService {
 	 */
 	@Override
 	public void insertReminder(remindDao remind) throws Exception {
-		session.setAttribute("phone",123);				//session
 		Integer phone = null;
 		try {
-			 phone =Integer.parseInt(session.getAttribute("phone").toString());
+			 phone =Integer.parseInt(redisOperator.get(session.getId()));
 			 remind.setPhone(phone);
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -281,14 +283,14 @@ public class NoteServiceImpl implements NoteService {
 	}
 	@Override
 	public void updateReminder(remindDao remind) throws Exception {
-		session.setAttribute("phone",123);				//session
 		Integer phone = null;
 		try {
-			 phone =Integer.parseInt(session.getAttribute("phone").toString());
+			 phone =Integer.parseInt(redisOperator.get(session.getId()));
 			 remind.setPhone(phone);
 			 remind.setLabel(2);
 		}catch(Exception e) {
 			e.printStackTrace();
+			throw new CustomException(ErrorEnum.USER_LOSE_ERROR);
 		}
 		try {
 			remindDaoMapper.updateByPrimaryKey(remind);
@@ -299,13 +301,13 @@ public class NoteServiceImpl implements NoteService {
 	}
 	@Override
 	public void updateNote(NoteDao note) throws Exception {
-		session.setAttribute("phone","123");
 		Integer phone = null;
 		try {
-			 phone =Integer.parseInt(session.getAttribute("phone").toString()==null?"123":session.getAttribute("phone").toString());
+			 phone =Integer.parseInt(redisOperator.get(session.getId()));
 			 note.setPhone(phone);
 		}catch(Exception e) {
 			e.printStackTrace();
+			throw new CustomException(ErrorEnum.USER_LOSE_ERROR);
 		}
 		try {
 			noteDaoMapper.updateByPrimaryKey(note);

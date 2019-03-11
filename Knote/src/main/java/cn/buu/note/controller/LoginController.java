@@ -147,10 +147,13 @@ public class LoginController extends BaseController{
 		 * @return
 		 * @throws Exception
 		 */
-		@RequestMapping(value="/{phone}/{pwd}/{openId}/login",method= {RequestMethod.GET},consumes= {CONTENT_TYPE_FORMED})
+		@RequestMapping("/login")
 		@ResponseBody
-		public JsonResult login(HttpServletRequest request , @PathVariable String phone,@PathVariable String pwd,@PathVariable String openId) throws Exception {
-				openId="15245sdgdsf55sadda";
+		public JsonResult login(HttpServletRequest request ,UserDao user) throws Exception {
+			
+				String openId= user.getOpenId();
+				String phone = user.getPhone().toString();
+				String pwd = user.getPwd();
 				logger.info("login:"+phone+" , "+pwd+" , "+openId);
 				//if(openId.equals("0000")) {
 					boolean b = loginService.checkUser(phone,pwd);
@@ -177,5 +180,18 @@ public class LoginController extends BaseController{
 					}else {
 						throw new CustomException(ErrorEnum.ILL_PARAMETER_ERROR,"用户名或密码错误");
 					}
+		}
+		
+		/**
+		 * 自动登录记录session
+		 * @param phone
+		 * @param session
+		 * @return
+		 */
+		@RequestMapping("/loginAutomatic")
+		@ResponseBody
+		public JsonResult loginAutomatic(Integer phone,HttpSession session) {
+			redisOperator.set(session.getId(),phone.toString());
+			return new JsonResult();
 		}
 }

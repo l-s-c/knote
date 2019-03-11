@@ -1,1 +1,21 @@
-null
+{
+  "html/index.html": {
+    "refer": [
+      "html/tabbar.html"
+    ],
+    "resources": []
+  },
+  "html/myLike.html": {
+    "refer": [
+      "html/customNote.html"
+    ],
+    "resources": []
+  },
+  "html/tabbar.html": {
+    "refer": [
+      "html/myLike.html",
+      "html/customNote.html"
+    ],
+    "resources": []
+  }
+}

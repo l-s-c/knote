@@ -40,7 +40,7 @@ public class AppPush {
         template.setAppkey(appKey);
         template.setTitle(title);
         template.setText(text);
-        template.setUrl("http://getui.com");
+        template.setUrl(openUrl);
 
         List<String> appIds = new ArrayList<String>();
         appIds.add(appId);
