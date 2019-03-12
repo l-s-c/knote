@@ -25,5 +25,7 @@ public interface UserDaoMapper {
 
 	void updateCID(@Param("phone") Integer phone, @Param("openId")String openId);
 
+	String getCidPhone(Integer phone);
+
 	/*UserDao getUserByPhone(Integer phone);*/
 }

@@ -28,4 +28,6 @@ public interface LoginService {
 
 	void updataCID(Integer phone, String openId);
 
+	String getCidPhone(Integer phone) throws Exception;
+
 }

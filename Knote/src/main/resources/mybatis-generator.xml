@@ -70,7 +70,12 @@
 	        enableCountByExample="false" enableUpdateByExample="false"
 	        enableDeleteByExample="false" enableSelectByExample="false"
 	        selectByExampleQueryId="false"></table> --> 
-	             <table tableName="like_info" domainObjectName="LikeDao" 
+	             <!-- <table tableName="like_info" domainObjectName="LikeDao" 
+	        enableCountByExample="false" enableUpdateByExample="false"
+	        enableDeleteByExample="false" enableSelectByExample="false"
+	        selectByExampleQueryId="false"></table> -->
+	        
+	        <table tableName="chat_log" domainObjectName="ChatLog" 
 	        enableCountByExample="false" enableUpdateByExample="false"
 	        enableDeleteByExample="false" enableSelectByExample="false"
 	        selectByExampleQueryId="false"></table>

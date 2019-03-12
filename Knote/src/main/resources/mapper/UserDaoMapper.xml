@@ -20,6 +20,14 @@
     where phone = #{phone,jdbcType=INTEGER}
   </select>
   
+    <select id="getCidPhone" parameterType="java.lang.Long" >
+    select 
+    open_id as cid
+    from user_info
+    where phone = #{phone,jdbcType=INTEGER}
+  </select>
+  
+  
     <select id="selectByOpenId" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

@@ -80,7 +80,6 @@ public class LoginServiceImpl implements LoginService{
 	public void checkUser(Integer phone) throws Exception {
 		if(phone==null) {
 			throw new CustomException(ErrorEnum.USER_EXIT_ERROR);
-
 		}
 		UserDao userDao = userDaoMapper.selectUserByPhone(phone);
 		if(userDao!=null) {
@@ -105,6 +104,17 @@ public class LoginServiceImpl implements LoginService{
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
+	}
+	@Override
+	public String getCidPhone(Integer phone) throws Exception {
+		String cid = null;
+		try {
+		    cid = userDaoMapper.getCidPhone(phone);
+		}catch(Exception e) {
+			e.printStackTrace();
+			throw new CustomException(ErrorEnum.DB_CONNECT_ERROR);
+		}
+		return cid;
 	}
 
 }

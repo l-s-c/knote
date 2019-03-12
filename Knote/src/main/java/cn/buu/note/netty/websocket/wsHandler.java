@@ -6,11 +6,16 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.context.annotation.Import;
 
 import cn.buu.note.enums.MsgActionEnum;
 import cn.buu.note.service.chat.ChatService;
+import cn.buu.note.service.chat.impl.ChatServiceImpl;
+import cn.buu.note.service.login.LoginService;
+import cn.buu.note.service.login.impl.LoginServiceImpl;
 import cn.buu.note.utils.JsonUtils;
 import cn.buu.note.utils.SpringUtil;
+import cn.buu.note.utils.push.PushtoSingle;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
@@ -24,6 +29,7 @@ import io.netty.util.concurrent.GlobalEventExecutor;
  * @author ABC
  *
  */
+@Import(SpringUtil.class)
 public class wsHandler extends SimpleChannelInboundHandler<TextWebSocketFrame>{
 	private static ChannelGroup users 
 				   = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
@@ -53,14 +59,16 @@ public class wsHandler extends SimpleChannelInboundHandler<TextWebSocketFrame>{
 					String receiverId = chatMsg.getReceiverId();
 					String senderId = chatMsg.getSenderId();
 					//保存到DB  未读状态
-					//ChatService chatService = (ChatService) SpringUtil.getBean("chatServiceImpl");
-					//String msgId =  chatService.sva();
-					chatMsg.setMsgId("12346");;
+					ChatService chatService = SpringUtil.getBean(ChatServiceImpl.class);					String msgId =  chatService.insertMsg(chatMsg);
+					chatMsg.setMsgId(msgId);
 					//转发
 					System.out.println("manager2.0:"+manager);
 					Channel receviceChannel = manager.get(receiverId);
 					if(receviceChannel==null) {
 						//离线状态  TODO   推送消息
+						PushtoSingle ps = SpringUtil.getBean(PushtoSingle.class);
+						String cid = getCidByreceiverId(Integer.parseInt(receiverId));	//根据接收者电话查询cid
+						ps.push(cid);		//推送
 					}else {
 						//判断receviceChannel  是否在channelGroup中
 						Channel findChannel = users.find(receviceChannel.id());
@@ -70,6 +78,9 @@ public class wsHandler extends SimpleChannelInboundHandler<TextWebSocketFrame>{
 									JsonUtils.objectToJson(chatMsg)));	
 						}else {
 							//用户离线   TODO 推送
+							PushtoSingle ps = SpringUtil.getBean(PushtoSingle.class);
+							String cid = getCidByreceiverId(Integer.parseInt(receiverId));	//根据接收者电话查询cid
+							ps.push(cid);		//推送
 						}
 						
 					}
@@ -101,6 +112,16 @@ public class wsHandler extends SimpleChannelInboundHandler<TextWebSocketFrame>{
 /*		clients.writeAndFlush(new TextWebSocketFrame
 					("服务器在"+LocalDateTime.now()+"收到消息："+content));*/
 		
+	}
+	/**
+	 * 获取cid  根据电话号码
+	 * @return
+	 * @throws Exception 
+	 */
+	private String getCidByreceiverId(Integer phone) throws Exception {
+		LoginService loginservice = SpringUtil.getBean(LoginServiceImpl.class);
+		String cid = loginservice.getCidPhone(phone);
+		return cid;
 	}
 	/**
 	 * 客户端链接之后触发

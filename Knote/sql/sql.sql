@@ -119,3 +119,17 @@ CREATE TABLE like_info (
 	modify_time  timestamp 	NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
 	PRIMARY KEY(id)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=UTF8;
+
+/*聊天记录表*/
+CREATE TABLE chat_log(
+	id bigint(40) COMMENT '唯一主键',
+	send_phone int(15) NOT NULL COMMENT '发送者手机号',
+	to_phone int(15) NOT NULL COMMENT '接受者手机号',
+	text varchar(255) NOT NULL COMMENT '消息内容',
+	is_sign tinyint(1) NOT NULL DEFAULT 0 COMMENT '是否签收，1为签收',
+	create_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+	modify_time  timestamp 	NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
+	PRIMARY KEY(id)
+)ENGINE=InnoDB DEFAULT CHARSET=UTF8;
+
+
