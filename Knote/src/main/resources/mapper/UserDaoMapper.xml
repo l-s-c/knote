@@ -20,7 +20,7 @@
     where phone = #{phone,jdbcType=INTEGER}
   </select>
   
-    <select id="getCidPhone" parameterType="java.lang.Long" >
+    <select id="getCidPhone" parameterType="java.lang.Integer" resultType="java.lang.String">
     select 
     open_id as cid
     from user_info

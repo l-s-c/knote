@@ -2,6 +2,8 @@ package cn.buu.note.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import cn.buu.note.entity.FriendDao;
 
 public interface FriendDaoMapper {
@@ -19,4 +21,6 @@ public interface FriendDaoMapper {
     int updateByPrimaryKey(FriendDao record);
 
 	List<FriendDao> selectShowByMyPhone(Integer myPhone);
+
+	boolean checkIfFriend(@Param("myPhone")Integer phone,@Param("frPhone") Integer ophone);
 }

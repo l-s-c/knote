@@ -37,9 +37,9 @@ public class PushtoSingle {
 		System.out.println("appKey:"+appKey);
 		System.out.println("host:"+host);
 	}
-    public  void push(String CID) throws Exception {
+    public  void push(String CID,String title,String text) throws Exception {
         IGtPush push = new IGtPush(host, appKey, masterSecret);
-        LinkTemplate template = linkTemplateDemo();
+        LinkTemplate template = linkTemplateDemo(title,text);
         SingleMessage message = new SingleMessage();
         message.setOffline(true);
         // 离线有效时间，单位为毫秒，可选
@@ -64,7 +64,7 @@ public class PushtoSingle {
             System.out.println("服务器响应异常");
         }
     }
-    public  LinkTemplate linkTemplateDemo() {
+    public  LinkTemplate linkTemplateDemo(String title,String text) {
         LinkTemplate template = new LinkTemplate();
         // 设置APPID与APPKEY
         template.setAppId(appId);
@@ -72,8 +72,8 @@ public class PushtoSingle {
         template.setChannelLevel(4);
         Style0 style = new Style0();
         // 设置通知栏标题与内容
-        style.setTitle("lsc");
-        style.setText("text");
+        style.setTitle(title);
+        style.setText(text);
         // 配置通知栏图标
         style.setLogo("icon.png");
         // 配置通知栏网络图标

@@ -13,6 +13,21 @@
   <sql id="Base_Column_List">
     id, my_phone, fr_phone, remark, is_first, create_time, modify_time
   </sql>
+    <select id="checkIfFriend" parameterType="java.lang.Integer" resultType="java.lang.Boolean">
+SELECT
+CASE
+		count( id ) 
+		WHEN 0 THEN
+	FALSE ELSE TRUE 
+	END 
+	FROM
+		friend_info 
+WHERE
+	my_phone = #{myPhone,jdbcType=INTEGER} 
+	AND fr_phone =  #{frPhone,jdbcType=INTEGER}
+  </select>
+  
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -76,10 +91,10 @@
         #{id,jdbcType=BIGINT},
       </if>
       <if test="myPhone != null">
-        #{myPhone,jdbcType=INTEGER},
+        #{myPhone},
       </if>
       <if test="frPhone != null">
-        #{frPhone,jdbcType=INTEGER},
+        #{frPhone},
       </if>
       <if test="remark != null">
         #{remark,jdbcType=CHAR},

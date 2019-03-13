@@ -1,0 +1,11 @@
+2019-03-12 10:53:48,807 cn.buu.note.controller.LoginController [http-nio-8888-exec-4] (LoginController.java:157) INFO  --> login:123 , 123 , 62a3659176b0a856cae52b89397e7f18
+2019-03-12 16:05:12,245 cn.buu.note.controller.LoginController [http-nio-8888-exec-3] (LoginController.java:157) INFO  --> login:456 , 456 , 9c7707d89756f3cab2ab05625148b59d
+2019-03-12 17:23:30,999 com.baidu.aip.client.BaseClient [http-nio-8888-exec-7] (BaseClient.java:209) INFO  --> get access_token success. current state: STATE_AIP_AUTH_OK
+2019-03-12 17:23:42,763 com.baidu.aip.client.BaseClient [http-nio-8888-exec-8] (BaseClient.java:209) INFO  --> get access_token success. current state: STATE_AIP_AUTH_OK
+2019-03-12 17:23:43,626 com.baidu.aip.client.BaseClient [http-nio-8888-exec-10] (BaseClient.java:209) INFO  --> get access_token success. current state: STATE_AIP_AUTH_OK
+2019-03-12 17:23:45,301 com.baidu.aip.client.BaseClient [http-nio-8888-exec-2] (BaseClient.java:209) INFO  --> get access_token success. current state: STATE_AIP_AUTH_OK
+2019-03-12 17:23:48,805 com.baidu.aip.client.BaseClient [http-nio-8888-exec-9] (BaseClient.java:209) INFO  --> get access_token success. current state: STATE_AIP_AUTH_OK
+2019-03-12 17:23:49,551 com.baidu.aip.client.BaseClient [http-nio-8888-exec-5] (BaseClient.java:209) INFO  --> get access_token success. current state: STATE_AIP_AUTH_OK
+2019-03-12 17:23:54,046 com.baidu.aip.client.BaseClient [http-nio-8888-exec-1] (BaseClient.java:209) INFO  --> get access_token success. current state: STATE_AIP_AUTH_OK
+2019-03-12 17:23:57,145 com.baidu.aip.client.BaseClient [http-nio-8888-exec-3] (BaseClient.java:209) INFO  --> get access_token success. current state: STATE_AIP_AUTH_OK
+2019-03-12 17:23:59,532 com.baidu.aip.client.BaseClient [http-nio-8888-exec-6] (BaseClient.java:209) INFO  --> get access_token success. current state: STATE_AIP_AUTH_OK

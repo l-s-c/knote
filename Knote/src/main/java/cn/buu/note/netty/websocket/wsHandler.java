@@ -68,7 +68,7 @@ public class wsHandler extends SimpleChannelInboundHandler<TextWebSocketFrame>{
 						//离线状态  TODO   推送消息
 						PushtoSingle ps = SpringUtil.getBean(PushtoSingle.class);
 						String cid = getCidByreceiverId(Integer.parseInt(receiverId));	//根据接收者电话查询cid
-						ps.push(cid);		//推送
+						ps.push(cid,receiverId,msgText);		//推送
 					}else {
 						//判断receviceChannel  是否在channelGroup中
 						Channel findChannel = users.find(receviceChannel.id());
@@ -80,7 +80,7 @@ public class wsHandler extends SimpleChannelInboundHandler<TextWebSocketFrame>{
 							//用户离线   TODO 推送
 							PushtoSingle ps = SpringUtil.getBean(PushtoSingle.class);
 							String cid = getCidByreceiverId(Integer.parseInt(receiverId));	//根据接收者电话查询cid
-							ps.push(cid);		//推送
+							ps.push(cid,receiverId,msgText);		//推送
 						}
 						
 					}

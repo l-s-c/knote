@@ -1,11 +1,10 @@
-2019-03-12 10:53:48,807 cn.buu.note.controller.LoginController [http-nio-8888-exec-4] (LoginController.java:157) INFO  --> login:123 , 123 , 62a3659176b0a856cae52b89397e7f18
-2019-03-12 16:05:12,245 cn.buu.note.controller.LoginController [http-nio-8888-exec-3] (LoginController.java:157) INFO  --> login:456 , 456 , 9c7707d89756f3cab2ab05625148b59d
-2019-03-12 17:23:30,999 com.baidu.aip.client.BaseClient [http-nio-8888-exec-7] (BaseClient.java:209) INFO  --> get access_token success. current state: STATE_AIP_AUTH_OK
-2019-03-12 17:23:42,763 com.baidu.aip.client.BaseClient [http-nio-8888-exec-8] (BaseClient.java:209) INFO  --> get access_token success. current state: STATE_AIP_AUTH_OK
-2019-03-12 17:23:43,626 com.baidu.aip.client.BaseClient [http-nio-8888-exec-10] (BaseClient.java:209) INFO  --> get access_token success. current state: STATE_AIP_AUTH_OK
-2019-03-12 17:23:45,301 com.baidu.aip.client.BaseClient [http-nio-8888-exec-2] (BaseClient.java:209) INFO  --> get access_token success. current state: STATE_AIP_AUTH_OK
-2019-03-12 17:23:48,805 com.baidu.aip.client.BaseClient [http-nio-8888-exec-9] (BaseClient.java:209) INFO  --> get access_token success. current state: STATE_AIP_AUTH_OK
-2019-03-12 17:23:49,551 com.baidu.aip.client.BaseClient [http-nio-8888-exec-5] (BaseClient.java:209) INFO  --> get access_token success. current state: STATE_AIP_AUTH_OK
-2019-03-12 17:23:54,046 com.baidu.aip.client.BaseClient [http-nio-8888-exec-1] (BaseClient.java:209) INFO  --> get access_token success. current state: STATE_AIP_AUTH_OK
-2019-03-12 17:23:57,145 com.baidu.aip.client.BaseClient [http-nio-8888-exec-3] (BaseClient.java:209) INFO  --> get access_token success. current state: STATE_AIP_AUTH_OK
-2019-03-12 17:23:59,532 com.baidu.aip.client.BaseClient [http-nio-8888-exec-6] (BaseClient.java:209) INFO  --> get access_token success. current state: STATE_AIP_AUTH_OK
+2019-03-13 09:47:57,874 cn.buu.note.controller.LoginController [http-nio-8888-exec-1] (LoginController.java:157) INFO  --> login:456 , 456 , 9c7707d89756f3cab2ab05625148b59d
+2019-03-13 14:23:57,395 cn.buu.note.controller.LoginController [http-nio-8888-exec-3] (LoginController.java:157) INFO  --> login:456 , 456 , 9c7707d89756f3cab2ab05625148b59d
+2019-03-13 14:27:57,494 cn.buu.note.controller.LoginController [http-nio-8888-exec-10] (LoginController.java:97) INFO  --> 789
+2019-03-13 14:28:26,078 cn.buu.note.controller.LoginController [http-nio-8888-exec-3] (LoginController.java:130) INFO  --> UserDao [id=null, phone=789, pwd=789, openId=null, createTime=null, modifyTime=null, isAclivate=0, headPath=null, remark=null]
+2019-03-13 14:28:40,732 cn.buu.note.controller.LoginController [http-nio-8888-exec-9] (LoginController.java:157) INFO  --> login:789 , 789 , 9c7707d89756f3cab2ab05625148b59d
+2019-03-13 14:33:59,390 cn.buu.note.controller.LoginController [http-nio-8888-exec-8] (LoginController.java:157) INFO  --> login:789 , 789 , 9c7707d89756f3cab2ab05625148b59d
+2019-03-13 14:38:26,573 cn.buu.note.controller.LoginController [http-nio-8888-exec-8] (LoginController.java:157) INFO  --> login:123 , 123 , 62a3659176b0a856cae52b89397e7f18
+2019-03-13 14:49:09,480 cn.buu.note.controller.LoginController [http-nio-8888-exec-2] (LoginController.java:157) INFO  --> login:123 , 123 , 62a3659176b0a856cae52b89397e7f18
+2019-03-13 14:50:45,067 cn.buu.note.controller.LoginController [http-nio-8888-exec-9] (LoginController.java:157) INFO  --> login:123 , 123 , 62a3659176b0a856cae52b89397e7f18
+2019-03-13 15:10:30,008 cn.buu.note.controller.LoginController [http-nio-8888-exec-7] (LoginController.java:157) INFO  --> login:123 , 123 , 62a3659176b0a856cae52b89397e7f18

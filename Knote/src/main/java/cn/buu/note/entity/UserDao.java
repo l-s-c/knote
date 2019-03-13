@@ -22,11 +22,14 @@ public class UserDao implements Serializable{
 
 	private String remark;		//备注
 
+	
+	
+
 	@Override
 	public String toString() {
 		return "UserDao [id=" + id + ", phone=" + phone + ", pwd=" + pwd + ", openId=" + openId + ", createTime="
 				+ createTime + ", modifyTime=" + modifyTime + ", isAclivate=" + isAclivate + ", headPath=" + headPath
-				+ "]";
+				+ ", remark=" + remark + "]";
 	}
 
 	public Long getId() {
@@ -91,6 +94,14 @@ public class UserDao implements Serializable{
 
 	public void setHeadPath(String headPath) {
 		this.headPath = headPath;
+	}
+
+	public String getRemark() {
+		return remark;
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
 	}
 
 	

@@ -5,9 +5,9 @@ import java.util.Date;
 public class FriendDao {
     private Long id;
 
-    private Integer myPhone;
+    private Long myPhone;
 
-    private Integer frPhone;
+    private Long frPhone;
 
     private String remark;
 
@@ -25,19 +25,19 @@ public class FriendDao {
         this.id = id;
     }
 
-    public Integer getMyPhone() {
+    public Long getMyPhone() {
         return myPhone;
     }
 
-    public void setMyPhone(Integer myPhone) {
+    public void setMyPhone(Long myPhone) {
         this.myPhone = myPhone;
     }
 
-    public Integer getFrPhone() {
+    public Long getFrPhone() {
         return frPhone;
     }
 
-    public void setFrPhone(Integer frPhone) {
+    public void setFrPhone(Long frPhone) {
         this.frPhone = frPhone;
     }
 
