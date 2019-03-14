@@ -75,7 +75,13 @@
 	        enableDeleteByExample="false" enableSelectByExample="false"
 	        selectByExampleQueryId="false"></table> -->
 	        
-	        <table tableName="chat_log" domainObjectName="ChatLog" 
+	      <!--   <table tableName="chat_log" domainObjectName="ChatLog" 
+	        enableCountByExample="false" enableUpdateByExample="false"
+	        enableDeleteByExample="false" enableSelectByExample="false"
+	        selectByExampleQueryId="false"></table> -->
+	        
+	        
+	          <table tableName="like_people_info" domainObjectName="InterestDao" 
 	        enableCountByExample="false" enableUpdateByExample="false"
 	        enableDeleteByExample="false" enableSelectByExample="false"
 	        selectByExampleQueryId="false"></table>

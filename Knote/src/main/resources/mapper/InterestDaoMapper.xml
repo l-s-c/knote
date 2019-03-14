@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.buu.note.dao.InterestDaoMapper">
+  <resultMap id="BaseResultMap" type="cn.buu.note.entity.InterestDao">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="phone" jdbcType="INTEGER" property="phone" />
+    <result column="interest_phone" jdbcType="BIGINT" property="interestPhone" />
+    <result column="state" jdbcType="BIT" property="state" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, phone, interest_phone, state, create_time, modify_time
+  </sql>
+  
+    <select id="selectWhoLikeMe" parameterType="java.lang.Integer" resultType="java.util.Map">
+		SELECT
+			lp.id as id,
+			lp.phone AS phone,
+			state *1 as state,
+			head_path AS headPath 
+		FROM
+			like_people_info lp
+			LEFT JOIN user_info u ON u.phone = lp.phone 
+		WHERE
+			lp.interest_phone = #{phone}
+  	</select>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from like_people_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from like_people_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cn.buu.note.entity.InterestDao">
+    insert into like_people_info (id, phone, interest_phone, 
+      state, create_time, modify_time
+      )
+    values (#{id,jdbcType=BIGINT}, #{phone,jdbcType=INTEGER}, #{interestPhone,jdbcType=BIGINT}, 
+      #{state,jdbcType=BIT}, #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.buu.note.entity.InterestDao">
+    insert into like_people_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="interestPhone != null">
+        interest_phone,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=INTEGER},
+      </if>
+      <if test="interestPhone != null">
+        #{interestPhone,jdbcType=BIGINT},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=BIT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.buu.note.entity.InterestDao">
+    update like_people_info
+    <set>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=INTEGER},
+      </if>
+      <if test="interestPhone != null">
+        interest_phone = #{interestPhone,jdbcType=BIGINT},
+      </if>
+      <if test="state != null">
+        state = #{state,jdbcType=BIT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.buu.note.entity.InterestDao">
+    update like_people_info
+    set phone = #{phone,jdbcType=INTEGER},
+      interest_phone = #{interestPhone,jdbcType=BIGINT},
+      state = #{state,jdbcType=BIT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+    <update id="updataStateById">
+    update like_people_info
+    set 
+      state = #{state}
+    	where id = #{id}
+  </update>
+</mapper>

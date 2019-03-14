@@ -132,4 +132,15 @@ CREATE TABLE chat_log(
 	PRIMARY KEY(id)
 )ENGINE=InnoDB DEFAULT CHARSET=UTF8;
 
+/*关注人员表*/
+CREATE TABLE like_people_info (
+	id bigint(20) AUTO_INCREMENT COMMENT '自增id',
+	phone int(15) NOT NULL COMMENT '手机号',
+	interest_phone bigint(20) NOT NULL  COMMENT '被关注的人的电话',
+	state tinyint(1) NOT NULL DEFAULT 1 COMMENT '关注状态  1单方关注，2互相关注',
+	create_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+	modify_time  timestamp 	NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
+	PRIMARY KEY(id)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=UTF8;
+
 
