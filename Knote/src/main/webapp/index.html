@@ -1,39 +1,108 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
+<head>
+	<meta charset="utf-8"> 
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">  
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://cdn.bootcss.com/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+</head>
+<body>
 
-	<head>
-		<meta charset="UTF-8">
-		<title></title>
-		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-	</head>
+<table class="table table-hover">
+	<!-- 按钮触发模态框 -->
+<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+	上传
+</button>
+	<caption>版本</caption>
+	<thead>
+		<tr>
+			<th>id</th>
+			<th>版本代码</th>
+			<th>版本描述</th>
+			<th>创建时间</th>
+			<th>操作</th>
+		</tr>
+	</thead>
+	<tbody id = "tbody">
+	</tbody>
+</table>
 
-	<body>
-		<div>
-			<button onclick="ajaxtest();"></button>
-			
-		</div>
-	<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
-		<script type="text/javascript">
-			
-			
-			function ajaxtest(){
-				var url = "http://10.11.64.198:8888/t";
-				$.ajax({
-				    url: url,
-				    type: 'POST',
-				    async:true,
-				    xhrFields:{
-				        withCredentials:true
-				    },
-				    success: function(res){
-				        
-				    },
-				    error: function(){
-				        alert('服务器发生错误！');
-				    }
-				});
-			}
-		</script>
-	</body>
 
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" 
+						aria-hidden="true">×
+				</button>
+				<h4 class="modal-title" id="myModalLabel">
+					上传apk
+				</h4>
+			</div>
+			<div class="modal-body">
+				<form action="/version/uploadAPK" method="post" enctype="multipart/form-data">
+					<div class="form-group">
+						<label for="name">版本代码</label>
+						<input type="text" class="form-control" name="versionId" 
+							   placeholder="请输入版本代码" required="required">
+					</div>
+						<div class="form-group">
+						<label for="name">版本描述</label>
+						<input type="text" class="form-control" name="versionDesc" 
+							   placeholder="请输入版本描述" required="required">
+					</div>
+					<div class="form-group">
+						<label for="inputfile">文件输入</label>
+						<input type="file" id="file" required="required" name="file">
+					</div>
+					<button type="submit" class="btn btn-default">提交</button>
+				</form>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+</body>
+	<script>
+		var ip = "http://120.79.10.49:9080/";
+		$(function(){
+			version.loadVersion();
+		});
+		var version = {
+				URL:{
+					loadVersion:function(){
+						return ip+"version/loadVersion";
+					}
+				},
+				loadVersion:function(){
+					var url = version.URL.loadVersion();
+					$.get(url,function(res){
+						if(res.code==1){
+							version.addVersion(res.data);
+						}
+					});
+				},
+				addVersion:function(data){
+					var tbody = '<tr>'
+							+	'	<td>[id]</td>'
+							+	'	<td>[versionId]</td>'
+							+	'	<td>[versionDesc]</td>'
+							+	'	<td>[time]</td>'
+							+	'	<td id="[id]"></td>'
+							+	'</tr>';
+					$('#tbody').empty();
+					for(var i=0;i<data.length;i++){
+						var t = tbody.replace("[id]",data[i].id)
+									 .replace("[id]",data[i].id)
+									 .replace("[versionId]",data[i].versionId)
+									 .replace("[versionDesc]",data[i].versionDesc)
+									 .replace("[time]",data[i].createTime);
+						$('#tbody').append(t);
+						jQuery('#'+data[i].id).qrcode(ip+data[i].path);
+					}
+				}
+		}
+	</script>
 </html>

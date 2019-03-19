@@ -62,6 +62,13 @@
     <artifactId>quartz</artifactId>
     <version>2.3.0</version>
 </dependency>
+<!-- 添加servlet-api的依赖 （用于war包部署）-->
+<!--  <dependency>
+    <groupId>javax.servlet</groupId>
+    <artifactId>javax.servlet-api</artifactId>
+    <version>3.1.0</version>
+    <scope>provided</scope>
+</dependency>  -->
 		    <!-- 忽略自带的日志框架. -->
 		<dependency>
 		   <groupId>org.springframework.boot</groupId>
@@ -86,14 +93,18 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-web</artifactId>
         <exclusions>
+        		<!-- 移除日志组件 -->
                 <exclusion>
                     <groupId>ch.qos.logback</groupId>
                    <artifactId>logback-classic</artifactId>
                 </exclusion>
+                <!-- 移除嵌入式tomcat插件 -->
+                <!--  <exclusion>
+		            <groupId>org.springframework.boot</groupId>
+		            <artifactId>spring-boot-starter-tomcat</artifactId>
+		        </exclusion> --> 
            </exclusions>
 		</dependency>
-        
-        
         
         	<!-- Springboot热部署 -->
 		        <dependency>
@@ -199,14 +210,14 @@
 	                <configuration>
 	                    <mainClass>cn.buu.note.App</mainClass>
 	                </configuration>
-	                <!-- 注释内部tomcat 用于打包到云服务器 -->
-	                <executions>
+	               
+	            <!--     <executions>
 	                	<execution>
 	                		<goals>
 	                			<goal>repackage</goal>
 	                		</goals>
 	                	</execution>
-	                </executions>
+	                </executions> -->
 	            </plugin>
     		</plugins>
     	</pluginManagement>

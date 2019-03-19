@@ -143,4 +143,13 @@ CREATE TABLE like_people_info (
 	PRIMARY KEY(id)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=UTF8;
 
-
+/*版本表*/
+CREATE TABLE version_info(
+	id bigint(20) AUTO_INCREMENT COMMENT '自增id',
+	version_id varchar(50) NOT NULL COMMENT '版本代码',
+	version_desc varchar(100) NULL COMMENT '版本描述',
+	path varchar(100) NOT NULL COMMENT 'apk路径',
+	create_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+	modify_time  timestamp 	NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
+	PRIMARY KEY(id)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=UTF8;

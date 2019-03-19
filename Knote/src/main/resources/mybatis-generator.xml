@@ -81,7 +81,12 @@
 	        selectByExampleQueryId="false"></table> -->
 	        
 	        
-	          <table tableName="like_people_info" domainObjectName="InterestDao" 
+	         <!--  <table tableName="like_people_info" domainObjectName="InterestDao" 
+	        enableCountByExample="false" enableUpdateByExample="false"
+	        enableDeleteByExample="false" enableSelectByExample="false"
+	        selectByExampleQueryId="false"></table> -->
+	        
+	        <table tableName="version_info" domainObjectName="VersionDao" 
 	        enableCountByExample="false" enableUpdateByExample="false"
 	        enableDeleteByExample="false" enableSelectByExample="false"
 	        selectByExampleQueryId="false"></table>
