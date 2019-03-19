@@ -5,7 +5,6 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
-import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,7 +25,7 @@ import cn.buu.note.service.post.PostService;
 @RequestMapping("/post")
 @CrossOrigin       //处理跨域请求
 public class PostController extends BaseController{
-	private static Logger logger = Logger.getLogger(PostController.class);
+	//private static Logger logger = Logger.getLogger(PostController.class);
 		@Resource
 		private PostService postService;
 		@Resource

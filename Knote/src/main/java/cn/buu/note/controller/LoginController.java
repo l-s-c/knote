@@ -7,7 +7,6 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -29,7 +28,7 @@ import cn.buu.note.service.login.LoginService;
 @RequestMapping("/login")
 @CrossOrigin(allowCredentials="true",allowedHeaders="*")     //处理跨域请求
 public class LoginController extends BaseController{
-	private static Logger logger = Logger.getLogger(LoginController.class);
+	//private static Logger logger = Logger.getLogger(LoginController.class);
 		@Resource
 		private LoginService loginService;
 		
@@ -94,7 +93,7 @@ public class LoginController extends BaseController{
 		@RequestMapping("/{phone}/checkUser")
 		@ResponseBody
 		public JsonResult checkUser(@PathVariable Integer phone,HttpSession session) throws Exception {
-			logger.info(phone);
+		//	logger.info(phone);
 			loginService.checkUser(phone);
 			session.setAttribute("phone",phone);
 			session.setMaxInactiveInterval(-1);
@@ -110,7 +109,7 @@ public class LoginController extends BaseController{
 		@RequestMapping("/activate")
 		@ResponseBody
 		public JsonResult activate(byte[] user) throws Exception {
-			logger.info(user);
+			//logger.info(user);
 			loginService.activateEmail(user);
 			return new JsonResult();
 			
@@ -127,7 +126,7 @@ public class LoginController extends BaseController{
 		@ResponseBody
 		@Transactional					
 		public JsonResult test(UserDao userDao,String email) throws Exception {
-			logger.info(userDao);
+			//logger.info(userDao);
 			if(email==null&&email.isEmpty()) {						//邮箱正则
 				throw new CustomException(ErrorEnum.ILL_PARAMETER_ERROR,"邮箱格式错误");
 			}
@@ -154,8 +153,7 @@ public class LoginController extends BaseController{
 				String openId= user.getOpenId();
 				String phone = user.getPhone().toString();
 				String pwd = user.getPwd();
-				logger.info("login:"+phone+" , "+pwd+" , "+openId);
-				//if(openId.equals("0000")) {
+				System.out.println("login:"+phone+" , "+pwd+" , "+openId);
 					boolean b = loginService.checkUser(phone,pwd);
 					if(b) {
 						b = loginService.ifAclitave(phone);

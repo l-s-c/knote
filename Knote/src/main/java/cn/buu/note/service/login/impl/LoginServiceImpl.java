@@ -3,7 +3,6 @@ package cn.buu.note.service.login.impl;
 import javax.annotation.Resource;
 import javax.mail.MessagingException;
 
-import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import cn.buu.note.dao.UserDaoMapper;
@@ -17,7 +16,7 @@ import cn.buu.note.utils.SerializableUtils;
 
 @Service
 public class LoginServiceImpl implements LoginService{
-	private static Logger logger = Logger.getLogger(LoginServiceImpl.class);
+	//private static Logger logger = Logger.getLogger(LoginServiceImpl.class);
 	@Resource
 	private UserDaoMapper userDaoMapper;
 	@Override
@@ -26,7 +25,7 @@ public class LoginServiceImpl implements LoginService{
 		try {
 			userDao = userDaoMapper.selectByPrimaryKey(Long.valueOf(phone));
 		}catch(Exception e) {
-			logger.error(e);
+			e.printStackTrace();
 			throw new CustomException(ErrorEnum.DB_CONNECT_ERROR);
 		}
 		if(userDao.getPwd().equals(Md5Utils.getMd5(pwd))) {
@@ -40,7 +39,8 @@ public class LoginServiceImpl implements LoginService{
 		try {
 			userDao = userDaoMapper.selectByOpenId(openId);
 		}catch(Exception e) {
-			logger.error(e);
+			//logger.error(e);
+			e.printStackTrace();
 			throw new CustomException(ErrorEnum.DB_CONNECT_ERROR);
 		}
 		return userDao;

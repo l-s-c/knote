@@ -5,7 +5,6 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
-import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +19,7 @@ import cn.buu.note.service.like.LikeService;
 @RequestMapping("/like")
 @CrossOrigin(allowCredentials="true",allowedHeaders="*")       //处理跨域请求
 public class LikeController extends BaseController{
-	private static Logger logger = Logger.getLogger(LikeController.class);
+//	private static Logger logger = Logger.getLogger(LikeController.class);
 		@Resource
 		private LikeService likeService;
 	
