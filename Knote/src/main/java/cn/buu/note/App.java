@@ -60,8 +60,8 @@ public class App{
 		
 		
 try {
-	ps.push("62a3659176b0a856cae52b89397e7f18","添加好友","成功");
-	//ap.push("zgc", "chou", "http://www.baidu.com");
+	//ps.push("62a3659176b0a856cae52b89397e7f18","添加好友","成功");
+	ap.push("zgc", "chou", "http://www.baidu.com");
 } catch (Exception e) {
 	e.printStackTrace();
 }	

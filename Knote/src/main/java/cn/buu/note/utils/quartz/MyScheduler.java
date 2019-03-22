@@ -58,7 +58,7 @@ public class MyScheduler {
 				
 				//创建 Scheduler实例            //调度
 				scheduler = sfact.getScheduler();
-				//scheduler.start();
+				scheduler.start();
 				Date date = scheduler.scheduleJob(jobDetail, trigger);  //返回值为即将执行任务的时间
 			//	scheduler.standby();         //暂时挂起，再次调用时会重新启动
 			//	scheduler.shutdown(false);        //停止              参数默认为false,  如果为true, 会等待所有正在执行的job执行之后关闭
@@ -103,4 +103,9 @@ public class MyScheduler {
 	    	}
       
 	    }
+	    
+/*	    public static void main(String[] args) throws Exception {
+	    	MyScheduler myScheduler = new MyScheduler();
+	    	myScheduler.setQuartz("myJob00", "hello w", "myTrigger00", new Date(), null, "* * * * * ?");
+		}*/
 }

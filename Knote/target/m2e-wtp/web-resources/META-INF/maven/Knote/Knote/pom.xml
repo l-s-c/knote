@@ -10,8 +10,6 @@
         <url>http://mvn.gt.igexin.com/nexus/content/repositories/releases/</url>
     </repository>
  	</repositories>
-  
-  
   	<!-- 父仓库 -->
      <parent>
         <groupId>org.springframework.boot</groupId>
