@@ -66,9 +66,7 @@ public class wsHandler extends SimpleChannelInboundHandler<TextWebSocketFrame>{
 					Channel receviceChannel = manager.get(receiverId);
 					if(receviceChannel==null) {
 						//离线状态  TODO   推送消息
-						PushtoSingle ps = SpringUtil.getBean(PushtoSingle.class);
-						String cid = getCidByreceiverId(Integer.parseInt(receiverId));	//根据接收者电话查询cid
-						ps.push(cid,receiverId,msgText);		//推送
+						pushMsg(receiverId, msgText);
 					}else {
 						//判断receviceChannel  是否在channelGroup中
 						Channel findChannel = users.find(receviceChannel.id());
@@ -78,9 +76,7 @@ public class wsHandler extends SimpleChannelInboundHandler<TextWebSocketFrame>{
 									JsonUtils.objectToJson(chatMsg)));	
 						}else {
 							//用户离线   TODO 推送
-							PushtoSingle ps = SpringUtil.getBean(PushtoSingle.class);
-							String cid = getCidByreceiverId(Integer.parseInt(receiverId));	//根据接收者电话查询cid
-							ps.push(cid,receiverId,msgText);		//推送
+							pushMsg(receiverId,msgText);
 						}
 						
 					}
@@ -111,6 +107,19 @@ public class wsHandler extends SimpleChannelInboundHandler<TextWebSocketFrame>{
 		
 /*		clients.writeAndFlush(new TextWebSocketFrame
 					("服务器在"+LocalDateTime.now()+"收到消息："+content));*/
+		
+	}
+	/**
+	 * 离线推送
+	 * @param receiverId
+	 * @param msgText
+	 * @throws Exception 
+	 * @throws  
+	 */
+	private void pushMsg(String receiverId, String msgText) throws  Exception {
+		PushtoSingle ps = SpringUtil.getBean(PushtoSingle.class);
+		String cid = getCidByreceiverId(Integer.parseInt(receiverId));	//根据接收者电话查询cid
+		ps.push(cid,receiverId,msgText);		//推送
 		
 	}
 	/**

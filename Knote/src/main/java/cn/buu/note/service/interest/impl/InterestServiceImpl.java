@@ -52,5 +52,17 @@ public class InterestServiceImpl implements InterestService{
 			throw new CustomException(ErrorEnum.DB_CONNECT_ERROR);
 		}
 	}
+	@Override
+	public List<Map<String, Object>> getMeLikeWho(HttpSession session) throws Exception {
+		Integer phone;
+		try {
+			phone = Integer.parseInt(redisOperator.get(session.getId()));
+		}catch(Exception e) {
+			e.printStackTrace();
+			throw new CustomException(ErrorEnum.USER_LOSE_ERROR);
+		}
+		List<Map<String,Object>> list = interestDaoMapper.selectMeLikeWho(phone);
+		return list;
+	}
 	
 }

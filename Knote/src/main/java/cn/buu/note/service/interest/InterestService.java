@@ -15,4 +15,6 @@ public interface InterestService {
 
 	void unInterestPeople(Long id) throws Exception;
 
+	List<Map<String, Object>> getMeLikeWho(HttpSession session) throws Exception;
+
 }

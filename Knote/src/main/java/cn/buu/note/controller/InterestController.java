@@ -22,6 +22,22 @@ public class InterestController extends BaseController{
 	
 	@Resource
 	private InterestService interestService;
+	
+	
+	/**
+	 * 获取用户的关注
+	 * @param session
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/getMeLikeWho")
+	@ResponseBody
+	public JsonResult getMeLikeWho(HttpSession session) throws Exception {
+		List<Map<String,Object>> list = interestService.getMeLikeWho(session);
+		return new JsonResult(list);
+	}
+	
+	
 	/**
 	 * 获取关注用户的人
 	 * @return

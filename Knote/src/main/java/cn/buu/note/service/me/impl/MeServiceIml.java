@@ -31,7 +31,7 @@ public class MeServiceIml implements Meservice{
 	@Override
 	public boolean checkIfFriend(Integer phone, Integer ophone) throws Exception {
 		if(phone==ophone) {
-			return false;
+			return true;
 		}
 		boolean b = false;
 		try {

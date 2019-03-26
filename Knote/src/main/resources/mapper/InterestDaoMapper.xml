@@ -13,6 +13,19 @@
     id, phone, interest_phone, state, create_time, modify_time
   </sql>
   
+    <select id="selectMeLikeWho" parameterType="java.lang.Integer" resultType="java.util.Map">
+		SELECT
+			lp.id as id,
+			lp.interest_phone AS phone,
+			state *1 as state,
+			head_path AS headPath 
+		FROM
+			like_people_info lp
+			LEFT JOIN user_info u ON u.phone = lp.interest_phone 
+		WHERE
+			lp.phone = #{phone}
+  	</select>
+  
     <select id="selectWhoLikeMe" parameterType="java.lang.Integer" resultType="java.util.Map">
 		SELECT
 			lp.id as id,

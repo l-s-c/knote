@@ -23,4 +23,6 @@ public interface InterestDaoMapper {
 	List<Map<String,Object>> selectWhoLikeMe(Integer phone);
 
 	int updataStateById(@Param("id") Long id, @Param("state") int state);
+
+	List<Map<String, Object>> selectMeLikeWho(Integer phone);
 }
